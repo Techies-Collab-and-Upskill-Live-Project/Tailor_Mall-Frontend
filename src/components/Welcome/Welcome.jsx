@@ -19,7 +19,9 @@ const Welcome = () => {
               key={index}
               className="flex flex-col gap-[6px] border p-5 w-[300px] md:w-fit border-[#BCBCBC] rounded-3xl"
             >
-              <h3 className="text-base font-bold text-[#111] md:text-xl lg:text-2xl">{item.title}</h3>
+              <h3 className="text-base font-bold text-[#111] md:text-xl lg:text-2xl">
+                {item.title}
+              </h3>
               <p className="text-[#282828] text-[10px] font-normal md:w-[280px] md:text-base lg:text-[16px]">
                 {item.content}
               </p>
@@ -31,11 +33,10 @@ const Welcome = () => {
           <BigButton text="Create an account" />
 
           <p className="font-normal text-sm leading-4 text-center md:text-base md:leading-[22.4px] lg:text-xl">
-          I’m already a user
+            I’m already a user
             <Link className="ml-2 text-[#008080] font-medium">Login</Link>
           </p>
         </div>
-
       </div>
     </div>
   );

@@ -3,14 +3,14 @@ import { Link, NavLink } from "react-router-dom";
 
 const ButtonLink = ({ isMain }) => {
   return (
-    <div>
+    <div className="">
       <Link 
-       className={`px-4 py-2 rounded-3xl text-[6px] md:text-base ${
-        isMain ? "bg-blue-900 text-white" : "border border-black text-black"
+       className={`px-8 py-2 w-[140px] rounded-[100px] text-[6px] md:text-base flex items-center justify-center md:p-4 md:w-[324.5px] lg:w-[220.5px] md:gap-1 lg:p-4 ${
+        isMain ? "bg-[#1877f2] text-white" : "border border-[#bcbcbc] text-black"
       }`}
       >
-        <FaGoogle className="inline" />
-        <span className="hidden">Signup with facebook </span>
+        <FaGoogle className="inline w-5 h-5" />
+        <span className="hidden md:block md:text-base">Signup with facebook </span>
       </Link>
     </div>
   );
