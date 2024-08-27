@@ -8,7 +8,7 @@ const Welcome = () => {
   const [active, setActive] = useState(null);
 
   const onActive = (index) => {
-    setActive(index)
+    setActive(index);
   };
 
   return (
@@ -26,9 +26,10 @@ const Welcome = () => {
               onClick={() => onActive(index)}
               key={index}
               className={`flex flex-col gap-[6px] border p-5 w-[300px] md:w-fit rounded-3xl transition duration-300 ${
-                active === index ? 'border-blue-500 bg-blue-400' : 'border-[#BCBCBC]'
+                active === index
+                  ? "border-blue-500 bg-blue-400"
+                  : "border-[#BCBCBC]"
               }`}
-              // className={`flex flex-col gap-[6px] border p-5 w-[300px] md:w-fit border-[#BCBCBC] rounded-3xl  activeIndex === index ? 'border-blue-500 bg-blue-100' : 'border-[#BCBCBC]'`}
             >
               <h3 className="text-base font-bold text-[#111] md:text-xl lg:text-2xl">
                 {item.title}
