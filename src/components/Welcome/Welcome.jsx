@@ -50,7 +50,7 @@ const Welcome = () => {
 
           <p className="font-normal text-sm leading-4 text-center md:text-base md:leading-[22.4px] lg:text-xl">
             I’m already a user
-            <Link className="ml-2 text-[#008080] font-medium">Login</Link>
+            <Link className="ml-2 text-[#008080] font-medium" to="/signin">Login</Link>
           </p>
         </div>
       </div>
