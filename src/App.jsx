@@ -1,7 +1,16 @@
+import { Link, Route, Router, Routes } from "react-router-dom";
+import Container from "./components/Authentication/Container";
+import Welcome from "./components/Welcome/Welcome";
+import Signup from "./components/Signup/Signup";
+
 const App = () => {
-  return ( 
-    <h1 className="text-blue-600 text-4xl">Hello</h1>
-   );
-}
- 
+  return (
+    <Routes>
+      <Route path="/" element={<Welcome />} />
+      <Route path="/signup" element={<Signup />} />
+      {/* <Route path="user" element={<UserList />} /> */}
+    </Routes>
+  );
+};
+
 export default App;
