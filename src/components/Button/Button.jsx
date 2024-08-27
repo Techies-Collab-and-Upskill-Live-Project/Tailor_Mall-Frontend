@@ -1,4 +1,4 @@
-import { FaGoogle } from "react-icons/fa6";
+
 import googleIcon from "../../assets/Google.png"
 import { Link, NavLink } from "react-router-dom";
 
