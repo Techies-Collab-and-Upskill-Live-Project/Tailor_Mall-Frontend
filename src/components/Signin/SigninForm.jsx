@@ -12,13 +12,13 @@ const SigninForm = () => {
     }
 
   return (
-    <div className="flex gap-4 flex-col py-[60px] px-5 md:py-[40px] lg:py-[100px] lg:gap-8">
+    <div className="flex gap-4 flex-col py-[60px] px-5 md:py-[40px] lg:py-[100px] lg:justify-center lg:gap-8">
       <h5 className="font-medium text-xl leading-[24px] text-[#000]">
         Welcome back
       </h5>
 
       <div> 
-        <div className="flex flex-shrink-0 gap-3 md:gap-8 lg:gap-4">
+        <div className="flex flex-shrink-0 gap-3 md:gap-8">
           <ButtonLink img={Google} />
           <ButtonLink isMain img={Facebook} />
         </div>
