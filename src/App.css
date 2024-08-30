@@ -1,0 +1,11 @@
+body {
+  font-family: "Epilogue", sans-serif;
+}
+
+.modal {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 3px blue solid;
+}

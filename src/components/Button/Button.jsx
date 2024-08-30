@@ -2,7 +2,7 @@
 import googleIcon from "../../assets/Google.png"
 import { Link, NavLink } from "react-router-dom";
 
-const ButtonLink = ({ isMain }) => {
+const ButtonLink = ({ isMain, img }) => {
   return (
     <div className="">
       <Link 
@@ -10,7 +10,7 @@ const ButtonLink = ({ isMain }) => {
         isMain ? "bg-[#1877f2] text-white" : "border border-[#bcbcbc] text-black"
       }`}
       >
-        <img src={googleIcon} className="inline w-5 h-5" />
+        <img src={img} className="inline w-5 h-5" />
         <span className="hidden md:block md:text-base">Signup with facebook </span>
       </Link>
     </div>
