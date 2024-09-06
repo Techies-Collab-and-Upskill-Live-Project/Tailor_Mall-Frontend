@@ -1,5 +1,6 @@
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import mainImg from "./assets/main.png"
+import chevronleft from "./assets/fi_chevron-left (1).png"
 
 
 const Hero = () => {
@@ -12,8 +13,8 @@ const Hero = () => {
             </div>
 
             <div>
-                <BiChevronLeft />
-                <BiChevronRight />
+               <img src={chevronleft} className="w-[19.1px] h-[19.1px]" alt="" />
+               <img src={chevronleft} className="w-[19.1px] h-[19.1px] rotate-[180deg]" alt="" />
             </div>
         </div>
      );
