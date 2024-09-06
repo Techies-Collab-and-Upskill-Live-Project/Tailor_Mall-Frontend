@@ -4,12 +4,16 @@ import Google from "../../assets/Google.png";
 import Facebook from "../../assets/Facebook.png";
 import Mail from "../../assets/fi_mail.png";
 import Password from "../../assets/fi_lock.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SigninForm = () => {
-    const submit = (e) => {
-      console.log(e);
-    }
+  const navigate = useNavigate();
+
+  const submit = (e) => {
+    e.preventDefault();
+    navigate("home");
+    console.log(e);
+  };
 
   return (
     <div className="flex gap-4 flex-col py-[60px] px-5 md:py-[40px] lg:py-[100px] lg:justify-center lg:gap-8">
@@ -17,7 +21,7 @@ const SigninForm = () => {
         Welcome back
       </h5>
 
-      <div> 
+      <div>
         <div className="flex flex-shrink-0 gap-3 md:gap-8">
           <ButtonLink img={Google} />
           <ButtonLink isMain img={Facebook} />
@@ -73,12 +77,24 @@ const SigninForm = () => {
           </div>
 
           <div className="flex flex-col gap-3">
-            <BigButton handleSubmit={submit} to="" text="Create an account" />
+            {/* <BigButton
+              to="/signup"
+              text="Create an account"
+              /> */}
+
+            <BigButton
+              handleSubmit={submit}
+              text="Log in"
+              to="/home"
+            />
 
             <div className="flex flex-col gap-2">
-                <p className="text-center text-base font-normal text-[#535353]">Don’t have an account?
-                    <Link className="text-[#008080] block md:inline">Create an account</Link>
-                </p>
+              <p className="text-center text-base font-normal text-[#535353]">
+                Don’t have an account?
+                <Link className="text-[#008080] block md:inline">
+                  Create an account
+                </Link>
+              </p>
             </div>
           </div>
         </form>
