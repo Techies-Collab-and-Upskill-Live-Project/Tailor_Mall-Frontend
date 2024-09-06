@@ -1,4 +1,3 @@
-import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import mainImg from "./assets/main.png"
 import chevronleft from "./assets/fi_chevron-left (1).png"
 
