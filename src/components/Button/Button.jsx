@@ -6,12 +6,12 @@ const ButtonLink = ({ isMain, img }) => {
   return (
     <div className="">
       <Link 
-       className={`px-8 py-2 w-[140px] rounded-[100px] text-[6px] md:text-base flex items-center justify-center md:p-4 md:w-[324.5px] lg:w-[220.5px] md:gap-1 lg:p-4 ${
+       className={`px-8 py-2 w-[140px] rounded-[100px] text-[6px] md:text-base flex items-center justify-center dot md:w-full md:py-4 md:px-8 md:gap-[52px] lg:p-4 md:h-12 lg:gap-3 ${
         isMain ? "bg-[#1877f2] text-white" : "border border-[#bcbcbc] text-black"
       }`}
       >
         <img src={img} className="inline w-5 h-5" />
-        <span className="hidden md:block md:text-base">Signup with facebook </span>
+        <span className="hidden md:block md:text-base lg:text-[10px]">Signup with facebook </span>
       </Link>
     </div>
   );

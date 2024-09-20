@@ -45,7 +45,7 @@ const Welcome = () => {
           <BigButton
             className="w-[300px] md:w-[450px]"
             text="Create an account"
-            to="/home"
+            to="/signup"
           />
 
           <p className="font-normal text-sm leading-4 text-center md:text-base md:leading-[22.4px] lg:text-xl">
