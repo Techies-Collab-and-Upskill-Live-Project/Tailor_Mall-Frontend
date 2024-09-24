@@ -11,7 +11,7 @@ const SigninForm = ({ signinDetails, handleOnChange }) => {
 
   const submit = (e) => {
     e.preventDefault();
-    navigate("/home");
+    // navigate("/home");
   };
 
   return (
@@ -82,7 +82,7 @@ const SigninForm = ({ signinDetails, handleOnChange }) => {
           </div>
 
           <div className="flex flex-col gap-3">
-            <BigButton handleSubmit={submit} text="Log in" to="/home" />
+            <BigButton handleSubmit={submit} text="Log in" />
 
             <div className="flex flex-col gap-2">
               <p className="text-center text-base font-normal text-[#535353]">

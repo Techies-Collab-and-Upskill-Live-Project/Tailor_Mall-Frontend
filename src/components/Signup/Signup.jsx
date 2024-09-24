@@ -100,15 +100,13 @@ const Signup = () => {
         //     setSuccess('Signup successful!');
         //     setError('');
         //     console.log(data);
-      }
-
-      else {
-        setErrorMessage(validateForm)
+      } else {
+        setErrorMessage(validateForm);
         console.log(errorMessage);
-        
-        
       }
     } catch (error) {
+      console.log(error);
+
       // setError('Signup failed. Please try again.');
       //     setSuccess('');
       //     console.error('Error:', error);
@@ -120,6 +118,7 @@ const Signup = () => {
       {!isMailVeriifed ? (
         <Container>
           <SignupForm
+            errorMessage={errorMessage}
             handleSignup={handleSignup}
             handleChange={handleChange}
             signupDetails={signupDetails}
