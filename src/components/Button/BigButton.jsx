@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const BigButton = ({ text, submit, className, to }) => {
+const BigButton = ({ text, submit, className, to, IsDisabled }) => {
   return (
     <Link
       onClick={submit}

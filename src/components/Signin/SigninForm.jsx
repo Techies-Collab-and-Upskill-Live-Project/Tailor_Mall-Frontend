@@ -6,7 +6,7 @@ import Mail from "../../assets/fi_mail.png";
 import Password from "../../assets/fi_lock.png";
 import { Link, useNavigate } from "react-router-dom";
 
-const SigninForm = () => {
+const SigninForm = ({ signinDetails, handleOnChange }) => {
   const navigate = useNavigate();
 
   const submit = (e) => {
@@ -46,9 +46,12 @@ const SigninForm = () => {
               <div className="flex h-12 items-center gap-2 rounded-lg border border-[#bcbcbc] px-4">
                 <img src={Mail} className="h-5 w-5" alt="" />
                 <input
+                  value={signinDetails.email}
+                  name="email"
                   type="text"
                   className="border-none outline-none"
                   placeholder="example@gmail.com"
+                  onChange={handleOnChange}
                 />
               </div>
             </div>
@@ -63,9 +66,12 @@ const SigninForm = () => {
               <div className="flex h-12 items-center gap-2 rounded-lg border border-[#bcbcbc] px-4">
                 <img src={Password} className="h-5 w-5" alt="" />
                 <input
+                value={signinDetails.password}
+                name="password"
                   type="text"
                   className="border-none outline-none"
                   placeholder="Enter your password....."
+                  onChange={handleOnChange}
                 />
               </div>
             </div>
@@ -76,15 +82,7 @@ const SigninForm = () => {
           </div>
 
           <div className="flex flex-col gap-3">
-            
-            <BigButton
-              handleSubmit={submit}
-              text="Log in"
-              to="/home"
-    
-            />
-
-          
+            <BigButton handleSubmit={submit} text="Log in" to="/home" />
 
             <div className="flex flex-col gap-2">
               <p className="text-center text-base font-normal text-[#535353]">
