@@ -3,20 +3,23 @@ import Container from "../Authentication/Container";
 import SignupForm from "./SignupForm";
 import VerifyMail from "../VerifyMail/VerifyMail";
 import axios from "axios";
+import { toast } from "sonner";
 
 const Signup = () => {
   const baseUrl =
-    // "https://tailors-mall-backend.onrender.com/api/v1/client/signup";
-    "https://tailors-mall-backend.onrender.com/api/v1";
+    "https://tailors-mall-backend.onrender.com/api/v1/client/signup";
   const [isMailVeriifed, setIsVerified] = useState(false);
   const [signupDetails, setSignupDetails] = useState({
     email: "",
     phoneNo: "",
     password: "",
-    confirmPassword: "",
+    country: "",
+    platform: "",
   });
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [psswdError, setPsswdError] = useState(null);
+  const [hasSignup, setSignup] = useState(false)
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,27 +28,30 @@ const Signup = () => {
     if (e.target.name == "password") {
       let password = e.target.value;
       const validatePasswrd = validatePassword(password);
-      setErrorMessage(validatePasswrd);
+      setPsswdError(validatePasswrd);
     }
   };
 
   const validateForm = (e) => {
     let errors = {};
     if (!signupDetails.email) {
-      errors.email = "Name input cannot be empty";
+      errors.email = "Email field cannot be empty";
     }
     if (!signupDetails.phoneNo) {
-      errors.email = "Phone Number field cannot be empty";
+      errors.phoneNo = "Phone Number field cannot be empty";
     }
     if (!signupDetails.password) {
       errors.password = "Password must contain at least 8 characters";
     }
-    if (!signupDetails.confirmPassword) {
-      errors.confirmPassword = "Please input your password";
+    if (!signupDetails.country) {
+      errors.country = "Please input your country";
+    }
+    if (!signupDetails.platform) {
+      errors.platform = "Please input where you hear about us";
     }
     return errors;
   };
-  const validatePassword = (password, confirmPwrd) => {
+  const validatePassword = (password) => {
     let errors = {};
     const regex = /^(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\-])/;
     const upperCase = /[A-Z]/;
@@ -60,56 +66,43 @@ const Signup = () => {
     }
     return errors;
   };
-  const confirmPassword = (password, conPassword) => {
-    let errors = {};
-    if (!conPassword || password.includes(conPassword) === false) {
-      errors.confirm = "Password does not match";
-    }
-    return errors;
-  };
 
   const handleSignup = async (e) => {
     e.preventDefault();
     const validatePasswrd = validatePassword(signupDetails.password);
     const validatedForm = validateForm();
-    const validated = confirmPassword(
-      signupDetails.password,
-      signupDetails.confirmPassword
-    );
 
     try {
       if (
         Object.keys(validatePasswrd).length === 0 &&
-        Object.keys(validateForm).length === 0 &&
-        Object.keys(validated).length === 0
+        Object.keys(validatedForm).length === 0
       ) {
         console.log(signupDetails);
         setIsLoading(true);
-        const response = await axios.post(`${baseUrl}/client/signup"`, {
+        const response = await axios.post(`${baseUrl}`, {
+          country: signupDetails.country,
           email: signupDetails.email,
           password: signupDetails.password,
-          confirmPassword: signupDetails.confirmPassword,
           phoneNumber: signupDetails.phoneNo,
+          hearPlatformInfo: signupDetails.platform,
         });
-        console.log(response);
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
+        let token = response?.data?.data?.token;
+        if (token) {
+          localStorage.setItem("token", token);
+          setSignup(true);
+          toast.success(response.data.msg)
+        } else {
+          console.log(response?.data?.message);
         }
-
-        //     const data = await response.json();
-        //     setSuccess('Signup successful!');
-        //     setError('');
-        //     console.log(data);
+        setIsLoading(false)
       } else {
         setErrorMessage(validateForm);
         console.log(errorMessage);
+        toast.warning("Please check all input fields");
       }
     } catch (error) {
-      console.log(error);
-
-      // setError('Signup failed. Please try again.');
-      //     setSuccess('');
-      //     console.error('Error:', error);
+      toast.warning(error?.response?.data?.message);
+      setIsLoading(false)
     }
   };
 
@@ -122,6 +115,8 @@ const Signup = () => {
             handleSignup={handleSignup}
             handleChange={handleChange}
             signupDetails={signupDetails}
+            psswdError={psswdError}
+            isLoading={isLoading}
           />
         </Container>
       ) : (

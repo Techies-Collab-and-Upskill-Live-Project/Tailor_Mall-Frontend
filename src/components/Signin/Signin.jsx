@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Container from "../Authentication/Container";
 import SigninForm from "./SigninForm";
+import { toast } from "sonner";
+import axios from "axios";
 
 const Signin = () => {
   const baseUrl =
@@ -11,8 +13,6 @@ const Signin = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
-  const [emailError, setEmailError] = useState(false);
-  const [PasswrdError, setPasswrdError] = useState(false);
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -32,52 +32,39 @@ const Signin = () => {
     let errors = {};
     if (!signinDetails.email) {
       errors.email = "Name input cannot be empty";
-      setEmailError(true);
     }
     if (!signinDetails.password) {
       errors.password = "Password must contain at least 8 characters";
-      setPasswrdError(true);
     }
     return errors;
   };
 
-  const handleSignup = async (e) => {
+  const handleSignin = async (e) => {
     e.preventDefault();
-    const validated = validateForm(signinDetails);
+    const validated = validateForm();
+
+    console.log(signinDetails);
 
     try {
-      if (
-        Object.keys(validatePasswrd).length === 0 &&
-        Object.keys(validateForm).length === 0 &&
-        Object.keys(validated).length === 0
-      ) {
-        console.log(signupDetails);
+      if (Object.keys(validated).length === 0) {
+        console.log(signinDetails);
         setIsLoading(true);
         const response = await axios.post(`${baseUrl}/client/signup"`, {
-          email: signupDetails.email,
-          password: signupDetails.password,
-          confirmPassword: signupDetails.confirmPassword,
-          phoneNumber: signupDetails.phoneNo,
+          email: signinDetails.email,
+          password: signinDetails.password,
         });
         console.log(response);
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-
-        //     const data = await response.json();
-        //     setSuccess('Signup successful!');
-        //     setError('');
-        //     console.log(data);
+        // if (!response.ok) {
+        //   throw new Error("Network response was not ok");
+        // }
       } else {
         setErrorMessage(validateForm);
         console.log(errorMessage);
+        toast.warning("Please check all input fields");
       }
     } catch (error) {
-      console.log(error);
-
-      // setError('Signup failed. Please try again.');
-      //     setSuccess('');
-      //     console.error('Error:', error);
+      toast.warning(error?.response?.data?.message || "Network error");
+      setIsLoading(false);
     }
   };
 
@@ -87,6 +74,7 @@ const Signin = () => {
         <SigninForm
           signinDetails={signinDetails}
           handleOnChange={handleOnChange}
+          handleSignin={handleSignin}
         />
       </Container>
     </div>

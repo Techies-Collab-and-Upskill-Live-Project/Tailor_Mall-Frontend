@@ -7,9 +7,12 @@ import "./App.css"
 import Navbar from "./components/Navbar/Navbar";
 import LandingPage from "./Pages/LandingPage";
 import QuestionScreen from "./components/PersonalizedQuestion/QuestionScreen";
+import { Toaster } from "sonner";
 
 const App = () => {
   return (
+    <div>
+      <Toaster position="top-right" />
     <Routes>
       <Route path="/" element={<Welcome />} />
       <Route path="/signup" element={<Signup />} />
@@ -18,6 +21,7 @@ const App = () => {
       <Route path="/question" element={<QuestionScreen />} />
       {/* <Route path="user" element={<UserList />} /> */}
     </Routes>
+    </div>
   );
 };
 
