@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import BigButton from "../Button/BigButton";
 import ButtonLink from "../Button/Button";
 import { WelcomeData } from "./WelcomeData";
@@ -6,9 +6,20 @@ import { useState } from "react";
 
 const Welcome = () => {
   const [active, setActive] = useState(null);
+  const [loaction, setLocation] = useState(null);
+  const navigate = useNavigate();
 
   const onActive = (index) => {
     setActive(index);
+  };
+
+  const handleSubmit = () => {
+    if (active === 0) {
+      navigate("signup");
+    } else if (active === 1) {
+      navigate("signin");
+    } else active === null;
+    return;
   };
 
   return (
@@ -45,12 +56,15 @@ const Welcome = () => {
           <BigButton
             className="w-[300px] md:w-[450px]"
             text="Create an account"
-            to="/home"
+            submit={handleSubmit}
+            to={location}
           />
 
           <p className="font-normal text-sm leading-4 text-center md:text-base md:leading-[22.4px] lg:text-xl">
             I’m already a user
-            <Link className="ml-2 text-[#008080] font-medium" to="/signin">Login</Link>
+            <Link className="ml-2 text-[#008080] font-medium" to="/signin">
+              Login
+            </Link>
           </p>
         </div>
       </div>

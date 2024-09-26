@@ -3,7 +3,7 @@ const Container = ({children}) => {
   return (
     // <div className="border-red-600 border">
     <div className="w-full flex h-screen">
-      <div className="hidden lg:block w-[603px]">
+      <div className="hidden lg:block w-[55%]">
         <img className="w-full object-cover" src={wallpaper} />
       </div>
 

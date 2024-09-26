@@ -6,13 +6,13 @@ import Mail from "../../assets/fi_mail.png";
 import Password from "../../assets/fi_lock.png";
 import { Link, useNavigate } from "react-router-dom";
 
-const SigninForm = () => {
+const SigninForm = ({
+  signinDetails,
+  isLoading,
+  handleOnChange,
+  handleSignin
+}) => {
   const navigate = useNavigate();
-
-  const submit = (e) => {
-    e.preventDefault();
-    navigate("/home");
-  };
 
   return (
     <div className="flex gap-4 flex-col py-[60px] px-5 md:py-[40px] lg:py-[100px] lg:justify-center lg:gap-8">
@@ -46,9 +46,12 @@ const SigninForm = () => {
               <div className="flex h-12 items-center gap-2 rounded-lg border border-[#bcbcbc] px-4">
                 <img src={Mail} className="h-5 w-5" alt="" />
                 <input
+                  value={signinDetails.email}
+                  name="email"
                   type="text"
                   className="border-none outline-none"
                   placeholder="example@gmail.com"
+                  onChange={handleOnChange}
                 />
               </div>
             </div>
@@ -63,9 +66,12 @@ const SigninForm = () => {
               <div className="flex h-12 items-center gap-2 rounded-lg border border-[#bcbcbc] px-4">
                 <img src={Password} className="h-5 w-5" alt="" />
                 <input
+                  value={signinDetails.password}
+                  name="password"
                   type="text"
                   className="border-none outline-none"
                   placeholder="Enter your password....."
+                  onChange={handleOnChange}
                 />
               </div>
             </div>
@@ -76,15 +82,17 @@ const SigninForm = () => {
           </div>
 
           <div className="flex flex-col gap-3">
-            
             <BigButton
-              handleSubmit={submit}
+              submit={handleSignin}
               text="Log in"
-              to="/home"
-    
+              className="mt-7"
             />
-
-          
+            {/* <button
+            // onClick={() => passwordFocus()}
+            className="mt-7 text-white text-[13px] sm:text-[15px] bg-[#008080] w-full md:w-[550px] py-[13px] rounded-full"
+          >
+            Log in
+          </button> */}
 
             <div className="flex flex-col gap-2">
               <p className="text-center text-base font-normal text-[#535353]">
