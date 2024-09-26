@@ -4,8 +4,11 @@ import BigButton from "../Button/BigButton";
 import Google from "../../assets/Google.png";
 import facebook from "../../assets/Facebook.png";
 import password from "../../assets/fi_lock.png";
+import logo from "../../assets/Tailoralogo.png"
 import { useState } from "react";
 import { toast } from "sonner";
+import { Oval } from "react-loader-spinner";
+import { Link } from "react-router-dom";
 
 const SignupForm = ({
   handleSignup,
@@ -13,31 +16,28 @@ const SignupForm = ({
   signupDetails,
   errorMessage,
   psswdError,
+  isLoading
 }) => {
   return (
-    <div className="flex flex-col items-center gap-4 md:gap-8 bg-white px-[10px] py-[25px] md:px-[40px] lg:px-[100px] justify-center md:items-start">
-      {/* <div className="flex flex-col gap-4 mb-4 md:gap-5"> */}
-      {/* <h2 className="font-extrabold text-[#111111] text-4xl tracking-[-4%] text-center md:text-5xl">
-          LOGO
-        </h2> */}
+    <div className="flex flex-col gap-4 py-6 md:gap-8 md:py-[54px] px-[20px]">
+    <img src={logo} className="lg:hidden w-[200px] self-center" alt="" />
       <h5 className="font-bold text-xl text-[#000000] md:text-[28px] leading-8">
         Create an account
       </h5>
       {/* </div> */}
 
       <div className="flex flex-col gap-2 md:gap-4 lg:gap-6">
-        {/* <div className="flex gap-3 self-stretch md:gap-8 lg:gap-4">
+        <div className="flex gap-3 self-stretch md:gap-8 lg:gap-4">
           <ButtonLink img={Google} />
           <ButtonLink isMain img={facebook} />
         </div>
-
         <div className="flex p-2 md:gap-8">
           <div className="border-t-[0.5px] w-[122px] border-black md:w-[287px] lg:w-full self-center"></div>
           <p className="mx-2 text-base font-normal text-[#bcbcbc] md:text-xl leading-6">
             OR
           </p>
           <div className="border-t-[0.5px] w-[122px] border-black md:w-[287px] lg:w-full self-center"></div>
-        </div> */}
+        </div>
 
         <form action="" className="flex flex-col gap-4 md:gap-8">
           <div className="flex flex-col gap-3">
@@ -286,10 +286,22 @@ const SignupForm = ({
             </div>
           </div>
 
-          {/* <button className="border border-emerald-600">submit</button> */}
+          <BigButton IsDisabled={isLoading} loadingText="Signing Up" submit={handleSignup} text="Create an account" />
+          <div>
+          <div className="flex mt-2 flex-col gap-2">
+              <p className="text-center text-base font-normal text-[#535353]">
+                Already have an account?
+                <Link to="/signin" className="ml-1 text-[#008080] block md:inline">
+                  Log in
+                </Link>
+              </p>
+            </div>
 
-          <BigButton submit={handleSignup} text="Create an account" />
+          </div>
+
         </form>
+
+
       </div>
     </div>
   );

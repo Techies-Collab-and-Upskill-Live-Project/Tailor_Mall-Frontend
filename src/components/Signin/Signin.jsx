@@ -3,16 +3,20 @@ import Container from "../Authentication/Container";
 import SigninForm from "./SigninForm";
 import { toast } from "sonner";
 import axios from "axios";
+import VerifyMail from "../VerifyMail/VerifyMail";
 
 const Signin = () => {
+  // const baseUrl = import.meta.env.ENDPOINT_URL;
   const baseUrl =
-    "https://tailors-mall-backend.onrender.com/api/v1/designer/signup";
+    "https://tailors-mall-backend.onrender.com/api/v1/client/login";
+
   const [signinDetails, setSigninDetails] = useState({
     email: "",
     password: "",
   });
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [hasSignin, setHasSignin] = useState(false);
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -20,12 +24,6 @@ const Signin = () => {
     console.log(signinDetails);
     setErrorMessage((prev) => ({ ...prev, [name]: "" }));
     console.log(errorMessage);
-
-    // if (e.target.name == "password") {
-    //   let password = e.target.value;
-    //   const validatePasswrd = validatePassword(password);
-    //   setErrorMessage(validatePasswrd);
-    // }
   };
 
   const validateForm = (e) => {
@@ -49,20 +47,28 @@ const Signin = () => {
       if (Object.keys(validated).length === 0) {
         console.log(signinDetails);
         setIsLoading(true);
-        const response = await axios.post(`${baseUrl}/client/signup"`, {
+        const response = await axios.post(`${baseUrl}`, {
           email: signinDetails.email,
           password: signinDetails.password,
         });
         console.log(response);
-        // if (!response.ok) {
-        //   throw new Error("Network response was not ok");
-        // }
+        let token = response?.data?.data?.token;
+        if (token) {
+          localStorage.setItem("token", token);
+          setHasSignin(true);
+          toast.success(response.data.msg);
+        } else {
+          console.log(response?.data?.message);
+        }
+        setIsLoading(false);
       } else {
         setErrorMessage(validateForm);
         console.log(errorMessage);
         toast.warning("Please check all input fields");
       }
     } catch (error) {
+      console.log(error);
+
       toast.warning(error?.response?.data?.message || "Network error");
       setIsLoading(false);
     }
@@ -70,13 +76,18 @@ const Signin = () => {
 
   return (
     <div>
-      <Container>
-        <SigninForm
-          signinDetails={signinDetails}
-          handleOnChange={handleOnChange}
-          handleSignin={handleSignin}
-        />
-      </Container>
+      {hasSignin ? (
+        <VerifyMail />
+      ) : (
+        <Container>
+          <SigninForm
+            signinDetails={signinDetails}
+            handleOnChange={handleOnChange}
+            handleSignin={handleSignin}
+            isLoading={isLoading}
+          />
+        </Container>
+      )}
     </div>
   );
 };

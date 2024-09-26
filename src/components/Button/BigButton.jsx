@@ -1,16 +1,32 @@
+import { Oval } from "react-loader-spinner";
 import { Link } from "react-router-dom";
 
-const BigButton = ({ text, submit, className, to, IsDisabled }) => {
+const BigButton = ({ text, submit, className, to, IsDisabled, loadingText }) => {
   return (
-    <Link
+    <button
+      disabled={IsDisabled}
       onClick={submit}
       to={to}
       className={`rounded-[100px] flex items-center justify-center px-[12px] bg-[#008080] h-10 text-[#E6F2F2] text-[12px] leading-4 font-medium md:text-base md:leading-[16.8px] lg:text-[16px] md:w-full ${className}`}
     >
-      <button type="submit">
-        <span className="text-center"> {text} </span>
-      </button>
-    </Link>
+      <Link type="submit">
+        {IsDisabled ? (
+          <div className="flex justify-center space-x-2">
+            <span>{loadingText}</span>
+            <Oval
+              height={20}
+              width={20}
+              color="white"
+              secondaryColor="white"
+              strokeWidth={2}
+              strokeWidthSecondary={2}
+            />
+          </div>
+        ) : (
+          <span className="text-center">{text}</span>
+        )}
+      </Link>
+    </button>
   );
 };
 
