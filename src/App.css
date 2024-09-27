@@ -12,3 +12,7 @@ body {
 .dot {
   flex: 1 0 0;
 }
+
+.skill {
+  flex: 1 1 0;
+}
