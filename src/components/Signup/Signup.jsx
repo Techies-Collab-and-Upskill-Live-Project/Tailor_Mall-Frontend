@@ -4,6 +4,7 @@ import SignupForm from "./SignupForm";
 import VerifyMail from "../VerifyMail/VerifyMail";
 import axios from "axios";
 import { toast } from "sonner";
+import QuestionScreen from "../PersonalizedQuestion/QuestionScreen";
 
 const Signup = () => {
   const baseUrl =
@@ -108,7 +109,7 @@ const Signup = () => {
 
   return (
     <div>
-      {!isMailVeriifed ? (
+      {!hasSignup ? (
         <Container>
           <SignupForm
             errorMessage={errorMessage}
@@ -120,7 +121,7 @@ const Signup = () => {
           />
         </Container>
       ) : (
-        <VerifyMail />
+        <QuestionScreen />
       )}
     </div>
   );

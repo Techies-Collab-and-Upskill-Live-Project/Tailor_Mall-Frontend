@@ -5,17 +5,19 @@ import Facebook from "../../assets/Facebook.png";
 import Mail from "../../assets/fi_mail.png";
 import Password from "../../assets/fi_lock.png";
 import { Link, useNavigate } from "react-router-dom";
+import logo from "../../assets/Tailoralogo.png"
 
 const SigninForm = ({
   signinDetails,
   isLoading,
   handleOnChange,
-  handleSignin
+  handleSignin,
 }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex gap-4 flex-col py-[60px] px-5 md:py-[40px] lg:py-[100px] lg:justify-center lg:gap-8">
+    <div className="flex gap-4 flex-col py-[60px] px-5 md:py-[40px] lg:py-[100px] lg:gap-8">
+      <img src={logo} className="lg:hidden borde border-green-600 w-[200px] self-center" alt="" />
       <h5 className="font-medium text-xl leading-[24px] text-[#000]">
         Welcome back
       </h5>
@@ -76,28 +78,25 @@ const SigninForm = ({
               </div>
             </div>
 
-            <Link className="self-end text-base font-medium leading-[22.4px] text-[#008080]">
+            <Link to="/reset-password" className="self-end text-base font-medium leading-[22.4px] text-[#008080]">
               Forgotten password?
             </Link>
           </div>
 
           <div className="flex flex-col gap-3">
             <BigButton
+              IsDisabled={isLoading}
               submit={handleSignin}
               text="Log in"
               className="mt-7"
+              loadingText="Loging in"
             />
-            {/* <button
-            // onClick={() => passwordFocus()}
-            className="mt-7 text-white text-[13px] sm:text-[15px] bg-[#008080] w-full md:w-[550px] py-[13px] rounded-full"
-          >
-            Log in
-          </button> */}
 
+            {/* className="mt-7 text-white text-[13px] sm:text-[15px] bg-[#008080] w-full md:w-[550px] py-[13px] rounded-full" */}
             <div className="flex flex-col gap-2">
               <p className="text-center text-base font-normal text-[#535353]">
                 Don’t have an account?
-                <Link className="text-[#008080] block md:inline">
+                <Link to="/signup" className="text-[#008080] block md:inline">
                   Create an account
                 </Link>
               </p>
