@@ -2,23 +2,36 @@ import { Link, useNavigate } from "react-router-dom";
 import BigButton from "../Button/BigButton";
 import ButtonLink from "../Button/Button";
 import { WelcomeData } from "./WelcomeData";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "../../Context/UserContext";
+import { toast } from "sonner";
 
 const Welcome = () => {
   const [active, setActive] = useState(null);
   const [loaction, setLocation] = useState(null);
   const navigate = useNavigate();
 
+  const { updateClient, updateDesigner, user } = useContext(UserContext);
+
   const onActive = (index) => {
     setActive(index);
   };
 
   const handleSubmit = () => {
-    if (active === 0) {
-      navigate("signup");
-    } else if (active === 1) {
-      navigate("signin");
-    } else active === null;
+    if (active === 0 || active === 1) {
+      if (active === 0) {
+        updateClient();
+        console.log(user);
+      } else if (active === 1) {
+        updateDesigner();
+        console.log(user);
+      } 
+      navigate("signup")
+    }
+   else {
+    active === null
+    toast.warning("Please choose a box!")
+   }
     return;
   };
 

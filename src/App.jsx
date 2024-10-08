@@ -4,17 +4,21 @@ import Welcome from "./components/Welcome/Welcome";
 import Signup from "./components/Signup/Signup";
 import Signin from "./components/Signin/Signin";
 import "./App.css";
-import Navbar from "./components/Navbar/Navbar";
 import LandingPage from "./Pages/LandingPage";
 import QuestionScreen from "./components/PersonalizedQuestion/QuestionScreen";
 import { Toaster } from "sonner";
 import SetupProfile from "./Pages/ProfileCreation/SetupProfile";
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 import JobApplication from "./Pages/JobApplications/JobApplication";
-import JobApplicationDetail from "./Pages/JobApplications/JobApplicationDetails";
+import JobApplicationDetails from "./Pages/JobApplications/JobApplicationDetails";
+import JobApplicationUpload from "./Pages/JobApplicationUpload/JobApplicationUpload";
+import CreateJobPost from "./Pages/JobPosting/CreateJobPost/CreateJobPost";
+import JobDetails from "./Pages/JobPosting/JobDetails/JobDetails";
+import { UserProvider } from "./Context/UserContext";
 
 const App = () => {
   return (
+    <UserProvider>
     <div className="">
       <Toaster position="top-right" />
     <Routes>
@@ -26,11 +30,14 @@ const App = () => {
       <Route path="/setup-profile" element={<SetupProfile />} />
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/jobs" element={<JobApplication />} />
-      <Route path="/jobs/:id" element={<JobApplicationDetail  />} />
+      <Route path="/jobupload" element={<JobApplicationUpload />} />
+      <Route path="/jobs/:id" element={<JobApplicationDetails  />} />
+      <Route path="/jobpost" element={<JobDetails />} />
 
       {/* <Route path="user" element={<UserList />} /> */}
     </Routes>
     </div>
+    </UserProvider>
   );
 };
 

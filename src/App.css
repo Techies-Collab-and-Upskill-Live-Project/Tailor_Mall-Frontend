@@ -16,3 +16,9 @@ body {
 .skill {
   flex: 1 1 0;
 }
+
+@media (min-width: 789px) {
+  .grid-container {
+    display: grid;
+  }
+}
