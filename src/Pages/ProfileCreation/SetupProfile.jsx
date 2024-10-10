@@ -154,7 +154,7 @@ const SetupProfile = () => {
         </div>
       </div>
       <div className={`${setup ? "flex" : "hidden"} w-full`}>
-        <div className="w-[400px] px-10 py-4 hidden md:flex md:flex-col ">
+        <div className="w-[400px] px-10 py-4 hidden lg:flex md:flex-col ">
           <div>
             <img className="w-[140px]" src={logo} alt="" />
           </div>
@@ -340,7 +340,7 @@ const SetupProfile = () => {
             <div className="px-5 md:px-10 pt-8 pb-20">
               <div className="w-full">
                 <p className="font-bold text-[20px] md:text-[24px]">About Me</p>
-                <p className="text-[14px] w-full md:w-[550px] text-secondary">
+                <p className="text-[14px] w-full lg:w-[550px] text-secondary">
                   Share a brief overview of your passion, experience, and what
                   drives your creativity.
                 </p>
@@ -353,7 +353,7 @@ const SetupProfile = () => {
                   type="text"
                   name="businessName"
                   onChange={handleProfileDetailsChange}
-                  className="mt-1 w-full md:w-[500px] h-[34px] rounded-md border-[1.5px] outline-none px-2 text-[13px]"
+                  className="mt-1 w-full lg:w-[500px] h-[34px] rounded-md border-[1.5px] outline-none px-2 text-[13px]"
                 />
               </div>
               <div className="mt-6">
@@ -363,7 +363,7 @@ const SetupProfile = () => {
                 <textarea
                   name="aboutMe"
                   onChange={handleProfileDetailsChange}
-                  className="mt-1 w-full md:w-[500px] h-[130px] rounded-md border-[1.5px] outline-none px-2 py-[5px] text-[13px] resize-none"
+                  className="mt-1 w-full lg:w-[500px] h-[130px] rounded-md border-[1.5px] outline-none px-2 py-[5px] text-[13px] resize-none"
                 ></textarea>
               </div>
             </div>
@@ -405,7 +405,7 @@ const SetupProfile = () => {
                   type="text"
                   name="instagramLink"
                   onChange={handleProfileDetailsChange}
-                  className="mt-3 w-full md:w-[300px] h-[34px] rounded-md border-[1.5px] outline-none px-2 text-[13px]"
+                  className="mt-3 w-full lg:w-[300px] h-[34px] rounded-md border-[1.5px] outline-none px-2 text-[13px]"
                   placeholder="Enter your instagram url.."
                 />
               </div>
@@ -420,7 +420,7 @@ const SetupProfile = () => {
                   type="text"
                   name="twitterLink"
                   onChange={handleProfileDetailsChange}
-                  className="mt-3 w-full md:w-[300px] h-[34px] rounded-md border-[1.5px] outline-none px-2 text-[13px]"
+                  className="mt-3 w-full lg:w-[300px] h-[34px] rounded-md border-[1.5px] outline-none px-2 text-[13px]"
                   placeholder="Enter your twitter url.."
                 />
               </div>
@@ -433,7 +433,7 @@ const SetupProfile = () => {
                   type="text"
                   name="facebookLink"
                   onChange={handleProfileDetailsChange}
-                  className="mt-3 w-full md:w-[300px] h-[34px] rounded-md border-[1.5px] outline-none px-2 text-[13px]"
+                  className="mt-3 w-full lg:w-[300px] h-[34px] rounded-md border-[1.5px] outline-none px-2 text-[13px]"
                   placeholder="Enter your facebook url.."
                 />
               </div>
@@ -446,22 +446,22 @@ const SetupProfile = () => {
                   type="text"
                   name="tiktokLink"
                   onChange={handleProfileDetailsChange}
-                  className="mt-3 w-full md:w-[300px] h-[34px] rounded-md border-[1.5px] outline-none px-2 text-[13px]"
+                  className="mt-3 w-full lg:w-[300px] h-[34px] rounded-md border-[1.5px] outline-none px-2 text-[13px]"
                   placeholder="Enter your tiktok url.."
                 />
               </div>
             </div>
           </div>
-          <div className="px-5 md:px-10 py-5 flex flex-col sm:flex-row justify-center sm:justify-between md:justify-end border-t">
+          <div className="px-5 md:px-10 py-5 flex flex-col sm:flex-row justify-center sm:justify-between lg:justify-end border-t">
             <button
               onClick={() => experienceFocus()}
-              className="text-primary-100 border-primary-100 w-full md:w-[160px] py-3 hover:bg-primary-100 hover:text-primary-50 sm:mr-3 text-sm rounded-full "
+              className="text-primary-100 border-primary-100 w-full lg:w-[160px] py-3 hover:bg-primary-100 hover:text-primary-50 sm:mr-3 text-sm rounded-full "
             >
               Skip
             </button>
             <button
               onClick={() => experienceFocus()}
-              className="bg-primary-100 w-full md:w-[160px] mt-4 sm:mt-0 lg:mt-0 text-primary-50 py-3 text-sm rounded-full"
+              className="bg-primary-100 w-full lg:w-[160px] mt-4 sm:mt-0 lg:mt-0 text-primary-50 py-3 text-sm rounded-full"
             >
               Continue
             </button>
@@ -482,13 +482,13 @@ const SetupProfile = () => {
                   <p className="font-bold text-[20px] md:text-[24px]">
                     Previous work experience
                   </p>
-                  <p className="text-[14px] w-full md:w-[550px] text-secondary">
+                  <p className="text-[14px] w-full lg:w-[550px] text-secondary">
                     Adding your work experience helps potential clients and
                     collaborators understand your background and the unique
                     skills you bring to every project.
                   </p>
                 </div>
-                <div className="mt-5 px-5 py-3 w-full md:w-[550px] border-t">
+                <div className="mt-5 px-5 py-3 w-full lg:w-[550px] border-t">
                   <p className="text-[14px] text-secondary">
                     No work experience added
                   </p>
@@ -502,16 +502,16 @@ const SetupProfile = () => {
               </div>
             </div>
           </div>
-          <div className="px-5 md:px-10 py-5 flex flex-col sm:flex-row justify-center sm:justify-between md:justify-end border-t">
+          <div className="px-5 md:px-10 py-5 flex flex-col sm:flex-row justify-center sm:justify-between lg:justify-end border-t">
             <button
               onClick={() => handleProfileDetailsSubmit()}
-              className="text-primary-100 border-primary-100 w-full md:w-[160px] py-3 hover:bg-primary-100 hover:text-primary-50 sm:mr-3 text-sm rounded-full"
+              className="text-primary-100 border-primary-100 w-full lg:w-[160px] py-3 hover:bg-primary-100 hover:text-primary-50 sm:mr-3 text-sm rounded-full"
             >
               Skip
             </button>
             <button
               onClick={() => handleProfileDetailsSubmit()}
-              className="bg-primary-100 w-full md:w-[160px] mt-4 sm:mt-0 lg:mt-0 text-primary-50 py-3 text-sm rounded-full"
+              className="bg-primary-100 w-full lg:w-[160px] mt-4 sm:mt-0 lg:mt-0 text-primary-50 py-3 text-sm rounded-full"
             >
               Continue
             </button>
@@ -665,16 +665,16 @@ const SetupProfile = () => {
               </div>
             </div>
           </div>
-          <div className="px-5 md:px-10 py-5 mt-6 flex flex-col sm:flex-row justify-center sm:justify-between md:justify-end">
+          <div className="px-5 md:px-10 py-5 mt-6 flex flex-col sm:flex-row justify-center sm:justify-between lg:justify-end">
             <button
               onClick={() => experienceFocus()}
-              className="text-primary-100 hover:bg-primary-100 hover:text-primary-50 w-full md:w-[160px] py-3 sm:mr-3 text-sm rounded-full"
+              className="text-primary-100 hover:bg-primary-100 hover:text-primary-50 w-full lg:w-[160px] py-3 sm:mr-3 text-sm rounded-full"
             >
               Cancel
             </button>
             <button
               onClick={() => experienceFocus()}
-              className="bg-primary-100 w-full md:w-[160px] mt-4 sm:mt-0 lg:mt-0 text-primary-50 py-3 text-sm rounded-full"
+              className="bg-primary-100 w-full lg:w-[160px] mt-4 sm:mt-0 lg:mt-0 text-primary-50 py-3 text-sm rounded-full"
             >
               Save
             </button>
