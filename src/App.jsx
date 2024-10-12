@@ -13,30 +13,35 @@ import JobApplication from "./Pages/JobApplications/JobApplication";
 import JobApplicationDetails from "./Pages/JobApplications/JobApplicationDetails";
 import JobApplicationUpload from "./Pages/JobApplicationUpload/JobApplicationUpload";
 import CreateJobPost from "./Pages/JobPosting/CreateJobPost/CreateJobPost";
-import JobDetails from "./Pages/JobPosting/JobDetails/JobDetails";
 import { UserProvider } from "./Context/UserContext";
+import JobDetails from "./Pages/JobPosting/JobDetails/JobDetail";
+import JobDescription from "./Pages/JobPosting/JobDetails/JobDescription";
+import JobTitle from "./Pages/JobPosting/JobDetails/JobTitle";
+import JobBudget from "./Pages/JobPosting/JobDetails/JobBudget/JobBudget";
+import JobReview from "./Pages/JobPosting/JobDetails/JobReview/JobReview";
+import JobModal from "./Pages/JobPosting/JobModal";
 
 const App = () => {
   return (
     <UserProvider>
-    <div className="">
-      <Toaster position="top-right" />
-    <Routes>
-      <Route path="/" element={<Welcome />} />
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/signin" element={<Signin />} />
-      <Route path="/home" element={<LandingPage />} />
-      <Route path="/question" element={<QuestionScreen />} />
-      <Route path="/setup-profile" element={<SetupProfile />} />
-      <Route path="/reset-password" element={<ResetPassword />} />
-      <Route path="/jobs" element={<JobApplication />} />
-      <Route path="/jobupload" element={<JobApplicationUpload />} />
-      <Route path="/jobs/:id" element={<JobApplicationDetails  />} />
-      <Route path="/jobpost" element={<JobDetails />} />
+      <div className="">
+        <Toaster position="top-right" />
+        <Routes>
+          <Route path="/" element={<Welcome />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/home" element={<LandingPage />} />
+          <Route path="/question" element={<QuestionScreen />} />
+          <Route path="/setup-profile" element={<SetupProfile />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/jobs" element={<JobApplication />} />
+          <Route path="/jobupload" element={<JobApplicationUpload />} />
+          <Route path="/jobs/:id" element={<JobApplicationDetails />} />
+          <Route path="/jobpost" element={<JobModal />} />
 
-      {/* <Route path="user" element={<UserList />} /> */}
-    </Routes>
-    </div>
+          {/* <Route path="user" element={<UserList />} /> */}
+        </Routes>
+      </div>
     </UserProvider>
   );
 };

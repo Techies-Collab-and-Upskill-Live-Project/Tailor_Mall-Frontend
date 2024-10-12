@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Container from "../Authentication/Container";
 import SignupForm from "./SignupForm";
 import VerifyMail from "../VerifyMail/VerifyMail";
 import axios from "axios";
 import { toast } from "sonner";
 import QuestionScreen from "../PersonalizedQuestion/QuestionScreen";
+import { UserContext } from "../../Context/UserContext";
 
 const Signup = () => {
-  const baseUrl =
-    "https://tailors-mall-backend.onrender.com/api/v1/client/signup";
+  const url = import.meta.env.VITE_API_ENDPOINT_URL
   const [isMailVeriifed, setIsVerified] = useState(false);
   const [signupDetails, setSignupDetails] = useState({
     email: "",
@@ -21,6 +21,15 @@ const Signup = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [psswdError, setPsswdError] = useState(null);
   const [hasSignup, setSignup] = useState(false)
+  const { user } = useContext(UserContext);
+
+  console.log(user);
+
+  const baseUrl = user === "client" ? `${url}/client/signup` : `${url}/designer/signup`;
+
+  console.log(baseUrl);
+  
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -80,7 +89,8 @@ const Signup = () => {
       ) {
         console.log(signupDetails);
         setIsLoading(true);
-        const response = await axios.post(`${baseUrl}`, {
+        // const response = await axios.post(`${baseUrl}/client/signup"`, {
+        const response = await axios.post(`${baseUrl}/client/signup`, {
           country: signupDetails.country,
           email: signupDetails.email,
           password: signupDetails.password,

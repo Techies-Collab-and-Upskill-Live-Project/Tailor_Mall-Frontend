@@ -21,10 +21,8 @@ const Welcome = () => {
     if (active === 0 || active === 1) {
       if (active === 0) {
         updateClient();
-        console.log(user);
       } else if (active === 1) {
         updateDesigner();
-        console.log(user);
       } 
       navigate("signup")
     }

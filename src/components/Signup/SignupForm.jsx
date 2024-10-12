@@ -24,7 +24,6 @@ const SignupForm = ({
       <h5 className="font-bold text-xl text-[#000000] md:text-[28px] leading-8">
         Create an account
       </h5>
-      {/* </div> */}
 
       <div className="flex flex-col gap-2 md:gap-4 lg:gap-6">
         <div className="flex gap-3 self-stretch md:gap-8 lg:gap-4">

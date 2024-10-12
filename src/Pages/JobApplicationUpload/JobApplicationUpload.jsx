@@ -28,7 +28,7 @@ const JobApplicationUpload = () => {
       </div>
 
       <div className="flex lg:justify-end">
-          <button className="rounded-[100px] flex items-center justify-center px-7 py-3 bg-[#008080] h-10 text-[#E6F2F2] text-[12px] leading-4 font-medium md:text-base md:leading-[22.4px] lg:text-[16px] lg:w-fit">
+          <button className="rounded-[100px] flex items-center justify-center px-7 py-3 bg-[#008080] h-10 text-[#E6F2F2] text-[12px] w-full leading-4 font-medium md:text-base md:leading-[22.4px] lg:text-[16px] lg:w-fit">
             Send Application
           </button>
         </div>

@@ -17,6 +17,15 @@ body {
   flex: 1 1 0;
 }
 
+.modal {
+  background-image: url(./Pages/JobPosting/assets/Frame322.png);
+  width: 100%;
+  height: 50%;
+  background-position:top;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 @media (min-width: 789px) {
   .grid-container {
     display: grid;
