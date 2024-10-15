@@ -21,13 +21,13 @@ const QuestionScreen = () => {
               </p>
             </div>
 
-            <div className="flex flex-col gap-10 md:flex-row-reverse md:justify-evenly">
+            <div className="flex flex-col md:flex-row-reverse md:justify-around w-full">
               <BigButton
                 submit={() => setHasStarted(true)}
-                className="w-[300px] md:w-[350px] leading-[140%] md:dot md:py-[12px] md:text-[16px]"
+                className="w-full md:w-[40%] leading-[140%] md:dot md:py-[12px] md:text-[16px]"
                 text="Get started"
               />
-              <Link className="text-[#008080] dot self-center text-base font-medium">
+              <Link to="/setup-profile" className="text-[#008080] dot self-center text-base font-medium">
                 Skip
               </Link>
             </div>

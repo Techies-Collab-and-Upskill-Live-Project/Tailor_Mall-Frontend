@@ -37,7 +37,7 @@ const App = () => {
           <Route path="/jobs" element={<JobApplication />} />
           <Route path="/jobupload" element={<JobApplicationUpload />} />
           <Route path="/jobs/:id" element={<JobApplicationDetails />} />
-          <Route path="/jobpost" element={<JobModal />} />
+          <Route path="/jobpost" element={<CreateJobPost />} />
 
           {/* <Route path="user" element={<UserList />} /> */}
         </Routes>

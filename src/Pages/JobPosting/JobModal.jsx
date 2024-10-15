@@ -3,7 +3,8 @@ import img from "./assets/Frame322.png"
 
 const JobModal = () => {
   return (
-    <div className="flex flex-col w-full bg-white">
+    <div className="flex flex-col w-full bg-whiteo
+    ">
       <div className="w-full">
         <img src={img} className="w-full" alt="" />
       </div>
