@@ -1,11 +1,35 @@
+import { useContext, useState } from "react";
+import { BudgetData } from "./BudgetData";
+import { JobContext } from "../../../../Context/JobContext";
+
 const BudgetTimeline = () => {
+  const [error, setError] = useState (null);
+  const { handleChange, jobData, setJobData } = useContext(JobContext);
+
+
+  const updateBudget = (e) => {
+    const { name, value } = e.target;
+
+    setJobData((prevData) => ({
+      ...prevData,
+      budget: {
+        ...prevData.budget,
+        [name]: value,
+      },
+    }));
+  };
+
+  const handleSubmit = () => {
+    
+  }
+
   return (
     <div className="flex flex-col gap-4 self-stretch">
       <div className="flex flex-col gap-4 self-stretch">
         <h3 className="text-xl leading-6 font-medium">Budget</h3>
 
         <div className="flex flex-col gap-5">
-          <div className="flex items-start gap-4">
+          {/* <div className="flex items-start gap-4">
             <input type="radio" />
 
             <div>
@@ -30,9 +54,92 @@ const BudgetTimeline = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
 
-          <div className="flex items-start gap-4">
+          {BudgetData.map((item, i) => (
+            <div key={i} className="flex items-start gap-4">
+              <input type="radio" name="jobType" />
+
+              <div>
+                <h5 className="dot text-base leeading-[22.4px] font-semibold">
+                  {item.title}
+                </h5>
+
+                <p className="text-base leading-[22.4px] opacity-70">
+                  {item.details}
+                </p>
+
+                {item.input && (
+                  <div className="flex items-center gap-1">
+                    <p className="w-5 h-5">$</p>
+                    <div>
+                      <input
+                        type="text"
+                        name="budget"
+                        className="dot outline-none border h-12 pl-2 "
+                        placeholder="0.00"
+                        value={jobData.budget}
+                        onChange={(e) => updateBudget(e)}
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {item.range && (
+                  <div className="flex flex-col gap-2 lg:flex-row lg:justify-between">
+                    <div>
+                      <p className="lg:hidden">From</p>
+                      <div className="flex items-center">
+                        <p className="w-5 h-5">$</p>
+                        <input
+                          name="min"
+                          type="text"
+                          className="dot outline-none border h-12 pl-2 "
+                          placeholder="0.00"
+                          value={jobData.budget.min}
+                          onChange={updateBudget}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="hidden lg:flex items-center">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="23"
+                        height="4"
+                        viewBox="0 0 23 4"
+                        fill="none"
+                      >
+                        <path
+                          d="M1.5 2H21.5"
+                          stroke="#535353"
+                          stroke-width="3"
+                          stroke-linecap="round"
+                        />
+                      </svg>
+                    </div>
+
+                    <div>
+                      <p className="lg:hidden">To</p>
+                      <div className="flex items-center">
+                        <p className="w-5 h-5">$</p>
+                        <input
+                          name="max"
+                          value={jobData.budget.max}
+                          type="text"
+                          className="dot outline-none border h-12 pl-2 "
+                          placeholder="0.00"
+                          onChange={updateBudget}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+
+          {/* <div className="flex items-start gap-4">
             <input type="radio" />
 
             <div>
@@ -89,16 +196,22 @@ const BudgetTimeline = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div className="flex gap-2 self-stretch flex-col">
-          <p className="text-xl leading-6 font-medium">Timeline</p>
+          <p className="text-xl leading-6 font-medium">TimeLine</p>
 
           <div className="flex flex-col gap-4 rounded-lg self-stretch">
             <div>
               <div className="bg-white flex border justify-center">
-                <input type="text" className="w-full outline-none" />
+                <input
+                  type="text"
+                  className="w-full outline-none"
+                  name="timeLine"
+                  value={jobData.timeLine}
+                  onChange={(e) => handleChange(e)}
+                />
                 <p className="bg-foundationGrey-50 self-end items-end flex p-4">
                   weeks
                 </p>
@@ -112,21 +225,13 @@ const BudgetTimeline = () => {
                     1 week
                   </span>
                 </div>
-                <div className="flex p-2 justify-center items-center gap-[10px] flex-shrink-0 rounded-[100px] bg-success-50">
-                  <span className="text-[12px] leading-[14.4px] text-primary-100">
-                    1 week
-                  </span>
-                </div>
-                <div className="flex p-2 justify-center items-center gap-[10px] flex-shrink-0 rounded-[100px] bg-success-50">
-                  <span className="text-[12px] leading-[14.4px] text-primary-100">
-                    1 week
-                  </span>
-                </div>
-                <div className="flex p-2 justify-center items-center gap-[10px] flex-shrink-0 rounded-[100px] bg-success-50">
-                  <span className="text-[12px] leading-[14.4px] text-primary-100">
-                    1 week
-                  </span>
-                </div>
+                {jobData?.timeLine && (
+                  <div className="flex p-2 justify-center items-center gap-[10px] flex-shrink-0 rounded-[100px] bg-success-50">
+                    <span className="text-[12px] leading-[14.4px] text-primary-100">
+                      {`${jobData.timeLine} weeks`}
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
           </div>

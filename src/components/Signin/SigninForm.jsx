@@ -51,7 +51,7 @@ const SigninForm = ({
                   value={signinDetails.email}
                   name="email"
                   type="text"
-                  className="border-none outline-none"
+                  className="border-none outline-none w-full"
                   placeholder="example@gmail.com"
                   onChange={handleOnChange}
                 />
@@ -71,7 +71,7 @@ const SigninForm = ({
                   value={signinDetails.password}
                   name="password"
                   type="text"
-                  className="border-none outline-none"
+                  className="border-none outline-none w-full"
                   placeholder="Enter your password....."
                   onChange={handleOnChange}
                 />

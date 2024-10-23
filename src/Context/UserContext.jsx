@@ -8,6 +8,18 @@ export const UserProvider = ({ children }) => {
       ? JSON.parse(localStorage.getItem("user"))
       : null
   );
+  const [token, setToken] = useState(localStorage.getItem("token") || null);
+  const [clientId, setClientId] = useState(
+    localStorage.getItem("clientId") || null
+  );
+
+  //   let user;
+  // try {
+  //   user = JSON.parse(someData);  // Attempt to parse the JSON string
+  // } catch (error) {
+  //   console.error("Invalid JSON data:", error);
+  //   user = null;  // Set user to null or some default value if parsing fails
+  // }
 
   const updateClient = () => {
     setUser("client");
@@ -17,12 +29,25 @@ export const UserProvider = ({ children }) => {
     setUser("designer");
   };
 
+  const updateNewToken = (newToken) => {
+    setToken(newToken);
+    localStorage.setItem("token", JSON.stringify(newToken)); // Optionally persist the token
+  };
+  const updateClientId = (newClientId) => {
+    setClientId(newClientId);
+    localStorage.setItem("clientId", newClientId); // Store clientId in localStorage
+  };
+
   return (
     <UserContext.Provider
       value={{
         updateClient,
         updateDesigner,
         user,
+        updateNewToken,
+        token,
+        clientId,
+        updateClientId,
       }}
     >
       {children}

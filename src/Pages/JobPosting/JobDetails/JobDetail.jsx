@@ -1,7 +1,7 @@
 import Chervon from "../assets/fi_chevron-dow.png";
 import mark from "../assets/fi_check.png";
 import BigButton from "../../../components/Button/BigButton";
-import JobTitle from "./JobTitle";
+import JobTitle from "./JobTitles";
 import JobDescription from "./JobDescription";
 
 const JobDetail = () => {
@@ -21,8 +21,6 @@ const JobDetail = () => {
                 habitasse aenean fames mauris amet volutpat neque.{" "}
               </p>
             </div>
-
-            
           </div>
 
           <div className="flex py-10 px-4 flex-col gap-[10px] self-stretch rounded-xl border border-primaryGreen-100">
@@ -30,8 +28,6 @@ const JobDetail = () => {
             <JobDescription />
           </div>
         </div>
-
-      
       </div>
     </>
   );

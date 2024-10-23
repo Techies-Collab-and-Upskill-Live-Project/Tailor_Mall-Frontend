@@ -3,8 +3,11 @@ import BigButton from "../../../components/Button/BigButton";
 import JobButton from "./component/JobButton";
 import JobDraft from "./component/JobDraft";
 import JobProgress from "./component/JobProgress";
+import { useContext } from "react";
+import { JobContext } from "../../../Context/JobContext";
 
 const JobContainer = ({ title, detail, children }) => {
+
   return (
     <>
       <div className="px-5 py-5 lg:px-[60px] xl:px-[100px] lg:flex lg:pt-[100px] lg:pb-[200px]">
@@ -21,12 +24,11 @@ const JobContainer = ({ title, detail, children }) => {
             <JobProgress />
           </div>
 
-
           {children}
         </div>
       </div>
 
-      <div className="flex flex-col lg:hidden lg:border-t lg:border-foundationGrey-100 lg:fixed lg:w-full lg:bottom-0 lg:justify-between lg:px-0 lg:items-center">
+      {/* <div className="flex flex-col lg:hidden lg:border-t lg:border-foundationGrey-100 lg:fixed lg:w-full lg:bottom-0 lg:justify-between lg:px-0 lg:items-center">
         <div className="px-5 py-5 lg:py-0 lg:px-0 lg:flex w-full">
           <BigButton
             className="border border-primary-100 bg-transparent w-full text-primary-100"
@@ -50,14 +52,18 @@ const JobContainer = ({ title, detail, children }) => {
           
           "
           >
-            <BigButton text="Next" className="lg:w-[300px]" />
+            <BigButton
+              text="Next"
+              submit={handleNextPage}
+              className="lg:w-[300px]"
+            />
 
             <Link className="text-primary-100 text-base leading-[22.4px] text-center">
               Previous
             </Link>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };

@@ -13,12 +13,10 @@ const QuestionFrame = () => {
 
   const increaseCounter = () => {
     setCounter((count) => count + 1);
-    console.log(active);
     if (count === progress.length - 1) {
       setCounter(3);
       navigate("/setup-profile");
     }
-    console.log(count);
   };
 
   return (
@@ -29,9 +27,8 @@ const QuestionFrame = () => {
             key={index}
             className={`h-2 w-[60px] md:w-[120px] dot rounded-[100px] 
             
-              `
-            }
-              // ${index === count ? "bg-primary-100" : "bg-primaryGreen-50"}
+              `}
+            // ${index === count ? "bg-primary-100" : "bg-primaryGreen-50"}
           ></div>
         ))}
       </div>
@@ -69,7 +66,7 @@ const QuestionFrame = () => {
                     ))}
                   </div>
                 )}
-                <div className="flex flex-col gap-6 md:flex-row w-full md:items-center md:justify-evenly">
+                 {/* <div className="flex flex-col gap-6 md:flex-row w-full md:items-center md:justify-evenly">
                   <Link
                     to="/setup-profile"
                     className="text-[#008080] text-center self-center text-base font-medium md:dot"
@@ -81,11 +78,16 @@ const QuestionFrame = () => {
                     className="md:dot leading-[140%] md:py-[12px] md:text-[16px] md:w-[30%]"
                     text="Next"
                   />
-                  {/* <button
-                  // rounded-[100px] flex items-center justify-center px-3 bg-[#008080] h-10 text-[#E6F2F2] text-[12px] leading-4 font-medium md:text-base md:leading-[16.8px] lg:text-[16px] md:w-full ${className}`}
-                  className="rounded-[100px] bg-primary-100 flex h-10 py-3 px-4 w-full items-center justify-center gap-3 self-stretch text-primaryGreen-50"
-                  >Next</button> */}
-                </div>
+               
+                </div> */}
+
+                <div className="flex py-6 px-3 flex-col md:flex-row-reverse items-center md:justify-around gap-6">
+              <Link to="/setup-profile" className="text-[#008080] w-full dot self-center text-base font-medium">
+                Skip
+              </Link>
+              <BigButton submit={() => increaseCounter()} text="Next" className="w-full" />
+
+            </div>
               </div>
             )
         )}

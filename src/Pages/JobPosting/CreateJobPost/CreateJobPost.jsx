@@ -1,19 +1,20 @@
 import { useState } from "react";
-import BigButton from "../../../components/Button/BigButton";
-import JobApplication from "../../JobApplications/JobApplication";
-import JobContainer from "../JobDetails/JobContainer";
-import JobTitle from "../JobDetails/JobTitle";
+import JobTitle from "../JobDetails/JobTitle/JobTitle";
+import CreateJob from "../CreateJob/CreateJob";
+
 
 const CreateJobPost = () => {
   const [hasStartedPosting, setHasStartedPosting] = useState(false);
   const handleCreateJob = (e) => {
-    setHasStartedPosting(true)
+    setHasStartedPosting(true);
   };
+
+ 
 
   return (
     <>
       {hasStartedPosting ? (
-        <JobTitle />
+        <CreateJob />
       ) : (
         <div className="flex px-5 py-[60px] md:px-10 flex-col items-start gap-[60px] lg:px-[100px]">
           <div className="flex flex-col lg:flex-row lg:px-5 gap-[60px] items-center justify-center">
@@ -51,7 +52,7 @@ const CreateJobPost = () => {
             </div>
           </div>
 
-          <div className="flex flex-col gap-6 self-stretch">
+          <div className="flex flex-col gap-6 lg:px-5 self-stretch">
             <h3 className="text-[#000] text-[32px] font-bold leading-normal tracking-[-2.56px]">
               Recent activities
             </h3>

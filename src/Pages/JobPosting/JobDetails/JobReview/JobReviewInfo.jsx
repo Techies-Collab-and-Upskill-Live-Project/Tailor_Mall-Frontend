@@ -1,23 +1,23 @@
 import { useContext } from "react";
-import JobContainer from "../JobContainer";
-
-import JobReviewInfo from "./JobReviewInfo";
 import { JobContext } from "../../../../Context/JobContext";
-import JobDraft from "../component/JobDraft";
-import JobButton from "../component/JobButton";
-import PreviousBtn from "../component/PreviousBtn";
+import edit from "../../assets/fi_edit.png";
+import img1 from "../../assets/unsplash_dJNVojMZhGU.png";
 
-const JobReview = () => {
-  const title = "Review";
-  const detail =
-    "Risus ut dolor mauris molestie est diam. Massa pellentesque tristique vestibulum vivamus scelerisque eu sagittis. Quam habitasse aenean fames mauris amet volutpat neque. ";
+const JobReviewInfo = () => {
+  const responsibility = [
+    "Design school, uniforms, including shirts, pants, skirts, and blazers.",
+    "Choose appropriate fabrics and materials for durability and comfort.",
+    "Ensure the uniforms align with the school’s identity and colors.",
+    "Collaborate on size and fit specifications to accommodate a range of ages",
+  ];
 
-    const { handleSubmit} = useContext(JobContext)
+  const { jobData, requiredSkills } = useContext(JobContext);
 
   return (
     <>
-      <JobContainer title={title} detail={detail}>
-        {/* <div className="flex flex-col gap-8 self-stretch lg:w-[90%]">
+      {/* {jobData ? <h1>Hello</h1> : <p>Loading....</p>} */}
+
+      <div className="flex flex-col gap-8 self-stretch lg:w-[90%]">
         <div className="flex p-4 flex-col items-center self-stretch rounded-2xl border border-foundationGrey-50">
           <div className="flex pb-5 items-center justify-between self-stretch border-b border-foundationGrey-50">
             <h5 className="text-xl font-bold leading-6">Basic job details</h5>
@@ -28,12 +28,31 @@ const JobReview = () => {
 
           <div className="flex flex-col pt-5 gap-6 self-stretch">
             <div className="flex flex-col gap-4 self-stretch">
-              <h5 className="text-xl font-medium leading-6 self-stretch">
-                Job Title
-              </h5>
-              <p className="text-base text-secondary leading-[22.4px]">
-                Children School uniform
-              </p>
+              <div className="flex flex-col items-start gap-4 self-stretch">
+                <h3 className="text-[#111] font-medium text-xl leading-6">
+                  Job Title
+                </h3>
+                <h5 className="text-base leading-6 self-stretch">
+                  {jobData.title}
+                </h5>
+              </div>
+              <div className="flex flex-col items-start gap-4 self-stretch">
+                <h3 className="text-[#111] font-medium text-xl leading-6">
+                  Job Category
+                </h3>
+                <h5 className="text-base leading-6 self-stretch">
+                  {jobData.category}
+                </h5>
+              </div>
+              <div className="flex flex-col items-start gap-4 self-stretch">
+                <h3 className="text-[#111] font-medium text-xl leading-6">
+                  Job Type
+                </h3>
+                <h5 className="text-base leading-6 self-stretch">
+                  {jobData.jobType}
+                </h5>
+              </div>
+             
             </div>
           </div>
         </div>
@@ -52,7 +71,7 @@ const JobReview = () => {
             <div className="flex flex-col gap-4">
               <h6 className="text-xl font-medium leading-6">Job description</h6>
               <p className="self-stretch text-base leading-[22.px] text-secondary">
-                {description}
+                {jobData.description}
               </p>
 
               <div>
@@ -61,7 +80,9 @@ const JobReview = () => {
                 </p>
                 <ul>
                   {responsibility.map((item, index) => (
-                    <li key={index} className="list-disc">{item}</li>
+                    <li key={index} className="list-disc">
+                      {item}
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -71,16 +92,17 @@ const JobReview = () => {
               <h5 className="text-xl font-bold leading-6">Skill required</h5>
 
               <div className="flex flex-start content-start gap-[10px] self-stretch flex-wrap">
-                <div className="flex p-5 justify-center items-center gap-[10px] rounded-[100px] bg-success-50">
-                  <p className="text-[14px] leading-5 text-primary-100">
-                    Fashion illustration
-                  </p>
-                </div>
-                <div className="flex p-5 justify-center items-center gap-[10px] rounded-[100px] bg-success-50">
-                  <p className="text-[14px] leading-5 text-primary-100">
-                    Silhouette ‘n’ Proportion
-                  </p>
-                </div>
+                {requiredSkills.map((item, index) => (
+                  <div
+                    key={index}
+                    className="flex p-5 justify-center items-center gap-[10px] rounded-[100px] bg-success-50"
+                  >
+                    <p className="text-[14px] leading-5 text-primary-100">
+                      {/* Fashion illustration */}
+                      {item}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -88,7 +110,9 @@ const JobReview = () => {
               <h5 className="text-xl font-semibold leading-6">
                 Applicants qualification
               </h5>
-              <p className="text-base leading-[22.4px]">Intermediate</p>
+              <p className="text-base leading-[22.4px]">
+                {jobData.qualification}
+              </p>
             </div>
 
             <div className="flex flex-col gap-4 self-stretch">
@@ -100,7 +124,7 @@ const JobReview = () => {
                 <div className="flex items-center gap-4">
                   <img src={img1} alt="" />
                   <p className="leading-4 text-[12px]">
-                    Jaycris_complex_video.mp4
+                    {jobData.files}
                   </p>
                 </div>
               </div>
@@ -119,36 +143,24 @@ const JobReview = () => {
           <div className="flex flex-col items-start gap-6 self-stretch ">
             <div className="flex flex-col gap-4">
               <h6 className="text-base leading-[22.4px]">Budget</h6>
-              <p className="text-base leading-[22.4px] text-secondary">
-                Fixed price - <span className="font-bold">$ 10, 000.00</span>
+              <p className="text-base leading-[22.4px] text-secondary"> Price Range 
+                 <span className="font-bold"> $ {jobData.budget.min}</span> 
+                 <span className="font-bold"> - </span>
+                 <span className="font-bold"> $ {jobData.budget.max}</span>
               </p>
             </div>
             <div className="flex flex-col gap-4">
               <h6 className="text-base leading-[22.4px]">Timeline</h6>
               <p className="text-base leading-[22.4px] text-secondary">
-                4 weeks
+                {jobData.timeLine}
+                <span> weeks</span>
               </p>
             </div>
           </div>
-        </div>
-      </div> */}
-
-        <JobReviewInfo />
-      </JobContainer>
-
-      <div className="px-5 py-5 lg:flex lg:border-t lg:bottom-0 lg:fixed lg:border-foundationGrey-100 lg:justify-between lg:w-full">
-        <div className="flex py-4 w-full items-center justify-center lg:w-fit">
-          <JobDraft />
-        </div>
-
-        <div className="flex py-6 px-3 flex-col md:flex-row-reverse items-center md:justify-around gap-6 border-t border-foundationGrey-100 lg:border-none">
-          <JobButton handleClick={handleSubmit} />
-
-          <PreviousBtn />
         </div>
       </div>
     </>
   );
 };
 
-export default JobReview;
+export default JobReviewInfo;

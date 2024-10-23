@@ -23,13 +23,27 @@ const Welcome = () => {
         updateClient();
       } else if (active === 1) {
         updateDesigner();
-      } 
-      navigate("signup")
+      }
+      navigate("signup");
+    } else {
+      active === null;
+      toast.warning("Please choose a box!");
     }
-   else {
-    active === null
-    toast.warning("Please choose a box!")
-   }
+    return;
+  };
+  const handleLogin = () => {
+    console.log(user);
+    if (active === 0 || active === 1) {
+      if (active === 0) {
+        navigate("signin")
+      } else if (active === 1) {
+        updateDesigner();
+      }
+      navigate("signin");
+    } else {
+      active === null;
+      toast.warning("Please choose a box!");
+    }
     return;
   };
 
@@ -71,9 +85,15 @@ const Welcome = () => {
             to={location}
           />
 
-          <p className="font-normal text-sm leading-4 text-center md:text-base md:leading-[22.4px] lg:text-xl">
+          <p
+            onClick={handleLogin}
+            className="font-normal text-sm leading-4 text-center md:text-base md:leading-[22.4px] lg:text-xl"
+          >
             I’m already a user
-            <Link className="ml-2 text-[#008080] font-medium" to="/signin">
+            <Link
+              className="ml-2 text-[#008080] font-medium"
+              onClick={handleLogin}
+            >
               Login
             </Link>
           </p>

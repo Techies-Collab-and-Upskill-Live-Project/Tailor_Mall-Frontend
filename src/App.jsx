@@ -14,12 +14,8 @@ import JobApplicationDetails from "./Pages/JobApplications/JobApplicationDetails
 import JobApplicationUpload from "./Pages/JobApplicationUpload/JobApplicationUpload";
 import CreateJobPost from "./Pages/JobPosting/CreateJobPost/CreateJobPost";
 import { UserProvider } from "./Context/UserContext";
-import JobDetails from "./Pages/JobPosting/JobDetails/JobDetail";
-import JobDescription from "./Pages/JobPosting/JobDetails/JobDescription";
-import JobTitle from "./Pages/JobPosting/JobDetails/JobTitle";
-import JobBudget from "./Pages/JobPosting/JobDetails/JobBudget/JobBudget";
 import JobReview from "./Pages/JobPosting/JobDetails/JobReview/JobReview";
-import JobModal from "./Pages/JobPosting/JobModal";
+
 
 const App = () => {
   return (
@@ -37,7 +33,7 @@ const App = () => {
           <Route path="/jobs" element={<JobApplication />} />
           <Route path="/jobupload" element={<JobApplicationUpload />} />
           <Route path="/jobs/:id" element={<JobApplicationDetails />} />
-          <Route path="/jobpost" element={<CreateJobPost />} />
+          <Route path="/createjob" element={<CreateJobPost />} />
 
           {/* <Route path="user" element={<UserList />} /> */}
         </Routes>
