@@ -1,29 +1,35 @@
 import { useState } from "react";
 import { QuestionData } from "./Questions";
 import BigButton from "../Button/BigButton";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useActive from "../../Hooks/useActive";
 
 const QuestionFrame = () => {
   const [count, setCounter] = useState(0);
-  const [progress, setProgress] = useState([1,2,3,4])
-  let active = false;
+  const [progress, setProgress] = useState([1, 2, 3, 4]);
+  const navigate = useNavigate();
+  const { active, onActive } = useActive();
+  // let active = false;
 
   const increaseCounter = () => {
-    setCounter(count => count+1)
-    active = true
+    setCounter((count) => count + 1);
     if (count === progress.length - 1) {
-      setCounter(3)
+      setCounter(3);
+      navigate("/setup-profile");
     }
-
-    console.log(count);
-    
-  }
+  };
 
   return (
     <div className="flex flex-col items-center gap-6 md:gap-10 flex-shrink-0 justify-center md:self-stretch">
-      <div className="flex pt-5 px-5 md:p-[70px] items-start gap-[10px]">
+      <div className="hidden md:flex absolute top-[30%] gap-[10px]">
         {progress.map((item, index) => (
-          <div key={index} className={`h-2 w-[60px] md:w-[120px] dot rounded-[100px] ${active ? "bg-[#e6f2f2]" : "bg-[#008080]"}`}></div>
+          <div
+            key={index}
+            className={`h-2 w-[60px] md:w-[120px] dot rounded-[100px] 
+            
+              `}
+            // ${index === count ? "bg-primary-100" : "bg-primaryGreen-50"}
+          ></div>
         ))}
       </div>
       <div className="">
@@ -32,7 +38,7 @@ const QuestionFrame = () => {
             id === count && (
               <div
                 key={id}
-                className="flex px-5 mt-5 flex-col justify-center items-center gap-8 absolute w-full top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] "
+                className="flex px-5 mt-5 flex-col justify-center items-center gap-8 absolute w-full top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] lg:px-[100px] "
               >
                 <h5 className="text-[#000] text-center text-lg font-bold leading-[120%] md:text-[40px] md:tracking-[-3.2px] md:w-full">
                   {question.question}
@@ -48,22 +54,40 @@ const QuestionFrame = () => {
                 {question.options && (
                   <div className="flex flex-col md:flex-row justify-center items-center gap-4 self-stretch md:gap-6 md:self-stretch">
                     {question.options.map((option, index) => (
-                      <div key={index} className="flex py-4 flex-col justify-center items-center gap-[10px] self-stretch border border-[#BCBCBC] rounded-2xl md:p-[52px]">
+                      <div
+                        onClick={() => onActive(index)}
+                        key={index}
+                        className={`flex py-4 flex-col justify-center items-center gap-[10px] self-stretch border border-[#BCBCBC] rounded-2xl md:p-[52px] ${
+                          active === index ? "bg-primary-100" : "bg-transparent"
+                        }`}
+                      >
                         {option}
                       </div>
                     ))}
                   </div>
                 )}
-                <div className="flex flex-col gap-6 md:flex-row-reverse">
-                  <BigButton
-                    submit={() => increaseCounter()}
-                    className="w-[300px] md:dot md:w-[350px] leading-[140%] md:py-[12px] md:text-[16px]"
-                    text="Next"
-                  />
-                  <Link className="text-[#008080] text-center self-center text-base font-medium md:dot">
+                 {/* <div className="flex flex-col gap-6 md:flex-row w-full md:items-center md:justify-evenly">
+                  <Link
+                    to="/setup-profile"
+                    className="text-[#008080] text-center self-center text-base font-medium md:dot"
+                  >
                     Skip
                   </Link>
-                </div>
+                  <BigButton
+                    submit={() => increaseCounter()}
+                    className="md:dot leading-[140%] md:py-[12px] md:text-[16px] md:w-[30%]"
+                    text="Next"
+                  />
+               
+                </div> */}
+
+                <div className="flex py-6 px-3 flex-col md:flex-row-reverse items-center md:justify-around gap-6">
+              <Link to="/setup-profile" className="text-[#008080] w-full dot self-center text-base font-medium">
+                Skip
+              </Link>
+              <BigButton submit={() => increaseCounter()} text="Next" className="w-full" />
+
+            </div>
               </div>
             )
         )}

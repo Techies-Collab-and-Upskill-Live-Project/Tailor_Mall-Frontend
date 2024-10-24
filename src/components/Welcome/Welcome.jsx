@@ -2,23 +2,48 @@ import { Link, useNavigate } from "react-router-dom";
 import BigButton from "../Button/BigButton";
 import ButtonLink from "../Button/Button";
 import { WelcomeData } from "./WelcomeData";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "../../Context/UserContext";
+import { toast } from "sonner";
 
 const Welcome = () => {
   const [active, setActive] = useState(null);
   const [loaction, setLocation] = useState(null);
   const navigate = useNavigate();
 
+  const { updateClient, updateDesigner, user } = useContext(UserContext);
+
   const onActive = (index) => {
     setActive(index);
   };
 
   const handleSubmit = () => {
-    if (active === 0) {
+    if (active === 0 || active === 1) {
+      if (active === 0) {
+        updateClient();
+      } else if (active === 1) {
+        updateDesigner();
+      }
       navigate("signup");
-    } else if (active === 1) {
+    } else {
+      active === null;
+      toast.warning("Please choose a box!");
+    }
+    return;
+  };
+  const handleLogin = () => {
+    console.log(user);
+    if (active === 0 || active === 1) {
+      if (active === 0) {
+        navigate("signin")
+      } else if (active === 1) {
+        updateDesigner();
+      }
       navigate("signin");
-    } else active === null;
+    } else {
+      active === null;
+      toast.warning("Please choose a box!");
+    }
     return;
   };
 
@@ -60,9 +85,15 @@ const Welcome = () => {
             to={location}
           />
 
-          <p className="font-normal text-sm leading-4 text-center md:text-base md:leading-[22.4px] lg:text-xl">
+          <p
+            onClick={handleLogin}
+            className="font-normal text-sm leading-4 text-center md:text-base md:leading-[22.4px] lg:text-xl"
+          >
             I’m already a user
-            <Link className="ml-2 text-[#008080] font-medium" to="/signin">
+            <Link
+              className="ml-2 text-[#008080] font-medium"
+              onClick={handleLogin}
+            >
               Login
             </Link>
           </p>

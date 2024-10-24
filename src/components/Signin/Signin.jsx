@@ -1,14 +1,19 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Container from "../Authentication/Container";
 import SigninForm from "./SigninForm";
 import { toast } from "sonner";
 import axios from "axios";
 import VerifyMail from "../VerifyMail/VerifyMail";
+import { UserContext } from "../../Context/UserContext";
 
 const Signin = () => {
-  // const baseUrl = import.meta.env.ENDPOINT_URL;
+  const url = import.meta.env.VITE_API_ENDPOINT_URL;
+
+  const { user, updateNewToken, token, clientId, updateClientId } =
+    useContext(UserContext);
+
   const baseUrl =
-    "https://tailors-mall-backend.onrender.com/api/v1/client/login";
+    user === "client" ? `${url}/client/login` : `${url}/designer/login`;
 
   const [signinDetails, setSigninDetails] = useState({
     email: "",
@@ -21,9 +26,9 @@ const Signin = () => {
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setSigninDetails((prev) => ({ ...prev, [name]: value }));
-    console.log(signinDetails);
-    setErrorMessage((prev) => ({ ...prev, [name]: "" }));
-    console.log(errorMessage);
+    // console.log(signinDetails);
+    // setErrorMessage((prev) => ({ ...prev, [name]: "" }));
+    // console.log(errorMessage);
   };
 
   const validateForm = (e) => {
@@ -53,9 +58,13 @@ const Signin = () => {
         });
         console.log(response);
         let token = response?.data?.data?.token;
+        let clientid = response?.data?.data?._id;
+        
         if (token) {
           localStorage.setItem("token", token);
           setHasSignin(true);
+          updateNewToken(token)
+          updateClientId(clientid)
           toast.success(response.data.msg);
         } else {
           console.log(response?.data?.message);
