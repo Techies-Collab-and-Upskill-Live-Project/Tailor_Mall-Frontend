@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import axios from "axios";
 import VerifyMail from "../VerifyMail/VerifyMail";
 import { UserContext } from "../../Context/UserContext";
+import LandingPage from "../../Pages/LandingPage";
 
 const Signin = () => {
   const url = import.meta.env.VITE_API_ENDPOINT_URL;
@@ -86,7 +87,7 @@ const Signin = () => {
   return (
     <div>
       {hasSignin ? (
-        <VerifyMail />
+        <LandingPage />
       ) : (
         <Container>
           <SigninForm

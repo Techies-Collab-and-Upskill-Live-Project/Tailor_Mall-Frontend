@@ -9,6 +9,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { Oval } from "react-loader-spinner";
 import { Link } from "react-router-dom";
+import Logo from "../logo/logo";
 
 const SignupForm = ({
   handleSignup,
@@ -20,7 +21,7 @@ const SignupForm = ({
 }) => {
   return (
     <div className="flex flex-col gap-4 py-6 md:gap-8 md:py-[54px] px-[20px]">
-    <img src={logo} className="lg:hidden w-[200px] self-center" alt="" />
+    <Logo />
       <h5 className="font-bold text-xl text-[#000000] md:text-[28px] leading-8">
         Create an account
       </h5>

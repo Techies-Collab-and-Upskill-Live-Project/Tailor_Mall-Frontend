@@ -3,6 +3,19 @@ import googleIcon from "../../assets/Google.png"
 import { Link, NavLink } from "react-router-dom";
 
 const ButtonLink = ({ isMain, img }) => {
+  // const [active, setActive] = useState(null);
+
+  // const onActive = (index) => {
+  //   setActive(index);
+  // };
+
+  // onClick={() => onActive(index)}
+  // key={index}
+  // className={`flex flex-col gap-[6px] border p-5 w-[300px] md:w-fit rounded-3xl transition duration-300 ${
+  //   active === index
+  //     ? "border-blue-500 bg-blue-400"
+  //     : "border-[#BCBCBC]"
+  // }`}
   return (
     // <div className="">
     //   <button
