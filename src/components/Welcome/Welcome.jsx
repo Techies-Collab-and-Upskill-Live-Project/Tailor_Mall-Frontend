@@ -97,6 +97,10 @@ const Welcome = () => {
               Login
             </Link>
           </p>
+
+          <Link to="/home" className="flex py-0 px-3 justify-center items-center gap-3 self-stretch rounded-[100px]">
+          <span className="text-primary-100 text-[14px] font-medium leading-[16.8px]">Join as a guest</span>
+          </Link>
         </div>
       </div>
     </div>
