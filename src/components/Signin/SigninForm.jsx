@@ -6,6 +6,7 @@ import Mail from "../../assets/fi_mail.png";
 import Password from "../../assets/fi_lock.png";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/Tailoralogo.png"
+import Logo from "../logo/logo";
 
 const SigninForm = ({
   signinDetails,
@@ -17,7 +18,7 @@ const SigninForm = ({
 
   return (
     <div className="flex gap-4 flex-col py-[60px] px-5 md:py-[40px] lg:py-[100px] lg:gap-8">
-      <img src={logo} className="lg:hidden borde border-green-600 w-[200px] self-center" alt="" />
+      <Logo />
       <h5 className="font-medium text-xl leading-[24px] text-[#000]">
         Welcome back
       </h5>
