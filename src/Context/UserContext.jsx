@@ -31,7 +31,7 @@ export const UserProvider = ({ children }) => {
 
   const updateNewToken = (newToken) => {
     setToken(newToken);
-    localStorage.setItem("token", JSON.stringify(newToken)); // Optionally persist the token
+    localStorage.setItem("token", newToken); // Optionally persist the token
   };
   const updateClientId = (newClientId) => {
     setClientId(newClientId);

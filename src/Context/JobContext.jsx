@@ -157,7 +157,10 @@ export const JobProvider = ({ children }) => {
     try {
       const response = await axios.post(
         `${baseUrl}/job/`,
-        jobData, // This is the job data being sent
+        {
+          ...jobData,
+          requiredSkills,
+        },
         {
           headers: {
             Authorization: `Bearer ${token}`,
