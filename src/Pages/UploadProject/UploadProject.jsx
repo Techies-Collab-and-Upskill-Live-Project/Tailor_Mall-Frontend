@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import logo from "./Assets/logo.png";
 import { CiText } from "react-icons/ci";
 import successImg from "./Assets/successImg.svg";
 import { toast } from "sonner";
 import NavWlogoNborderLine from "../../components/Navbar/NavWlogoNborderLine";
 import axios from "axios";
+import UploadProjectCoverPage from "./pages/UploadProjectCoverPage";
+import ProjectCoverChangePage from "./pages/ProjectCoverChangePage";
 
 const UploadProject = () => {
   const [uploadProjectHomePage, setUploadProjectHomePage] = useState(true);
@@ -15,12 +17,59 @@ const UploadProject = () => {
   const [uploadProjectTextScreen, setUploadProjectTextScreen] = useState(false);
   const [uploadProjectCoverChangePage, setUploadProjectCoverChangePage] =
     useState(false);
+  const [uploadProjectSuccess, setUploadProjectSuccess] = useState(false);
   const [textScreenCurrentText, setTextScreenCurrentText] = useState("");
   const [projectTitle, setprojectTitle] = useState("");
   const [projectContent, setProjectContent] = useState([]);
   const [projectCoverContent, setProjectCoverContent] = useState([]);
   const [projectUploadTags, setProjectUploadTags] = useState([]);
   const [tagInputValue, setTagInputValue] = useState("");
+  const [zoomScale, setZoomScale] = useState(1);
+  const [zoomTranslate, setZoomTranslate] = useState({ x: 0, y: 0 });
+  const [uploadedImages, setUploadedImages] = useState([]);
+  const [projectCoverImageChange, setProjectCoverImageChange] = useState([]);
+  const endOfContentRef = useRef(null);
+  const [projectCategory, setProjectCategory] = useState("");
+  const [projectUploadDetails, setProjectUploadDetails] = useState({
+    name: "",
+    category: "",
+    tags: [],
+    content: [],
+  });
+
+  useEffect(() => {
+    console.log(projectUploadDetails);
+  }, [projectUploadDetails]);
+
+  const baseUrl = import.meta.env.VITE_API_URL;
+
+  //I need the userId Here to finish the job
+  const handleSubmitProjectUploadDetails = async () => {
+    try {
+      const response = await axios.post(
+        `${baseUrl}/portfolio/update/userId`,
+        projectUploadDetails
+      );
+
+      console.log("Project details submitted successfully:", response.data);
+      setProjectUploadDetails({
+        name: "",
+        category: "",
+        content: [],
+        tags: [],
+      });
+      handleToUploadProjectSucessPage();
+      toast.success("Project details submitted successfully!");
+    } catch (error) {
+      console.error("Error submitting project details:", error);
+      toast.error("Failed to submit project details. Please try again.");
+    }
+  };
+
+  const handleToUploadProjectSucessPage = () => {
+    setUploadProjectCoverPage(false);
+    setUploadProjectSuccess(true);
+  };
 
   const handleToUploadProjectFormPage = () => {
     setUploadProjectFormPage(true);
@@ -28,11 +77,11 @@ const UploadProject = () => {
   };
 
   const handleToUploadProjectCoverPage = () => {
-    const checkIfImageIsUploaded = projectContent.find(
+    const checkIfImageIsUploaded = projectContent.some(
       (project) => project.type === "image"
     );
 
-    if (projectContent.length === 0 || !projectTitle.trim()) {
+    if (projectContent.length === 0 || !projectUploadDetails.name.trim()) {
       toast.error("Please upload content and add a title to continue.");
     } else if (!checkIfImageIsUploaded) {
       toast.error("Please upload at least one image to continue.");
@@ -66,7 +115,10 @@ const UploadProject = () => {
   };
 
   const handleUploadProjectTitleChange = (e) => {
-    setprojectTitle(e.target.value);
+    setProjectUploadDetails({
+      ...projectUploadDetails,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleUploadTextContentChange = (e) => {
@@ -83,6 +135,10 @@ const UploadProject = () => {
       };
 
       setProjectContent((prevContent) => [...prevContent, newTextContent]);
+      setProjectUploadDetails((prevContent) => ({
+        ...prevContent,
+        content: [...prevContent.content, newTextContent],
+      }));
       setTextScreenCurrentText("");
     }
 
@@ -99,21 +155,26 @@ const UploadProject = () => {
   };
 
   const handleUploadProjectImageChange = (e) => {
-    const imageFile = Array.from(e.target.files); // Convert FileList to an array
-    console.log(imageFile);
+    const imageFiles = Array.from(e.target.files); // Convert FileList to an array
 
-    const newImages = imageFile.map((file) => ({
+    // Create image objects with preview URLs
+    const newImages = imageFiles.map((file) => ({
       type: "image",
-      imageFile,
+      imageFile: file,
       imagePreview: URL.createObjectURL(file), // Create a preview URL for the file
     }));
 
+    // Update projectContent state
     setProjectContent((prevContent) => {
-      if (prevContent.length === 0) {
-        return newImages; // If no images have been selected yet, just set the new files
-      } else {
-        return [...prevContent, ...newImages]; // Append new files to the existing ones
-      }
+      const updatedContent = [...prevContent, ...newImages];
+
+      // Also update projectUploadDetails to include the new images in the content field
+      setProjectUploadDetails((prevDetails) => ({
+        ...prevDetails,
+        content: updatedContent, // Update content with the merged array
+      }));
+
+      return updatedContent;
     });
 
     console.log(newImages);
@@ -129,23 +190,34 @@ const UploadProject = () => {
 
   const handleUploadProjectGridChange = (e) => {
     const gridFiles = Array.from(e.target.files); // Convert FileList to an array
-    console.log(gridFiles);
 
     if (gridFiles.length > 3) {
       toast.error("You can only select up to 3 images.");
       return;
     }
 
+    // Create preview objects for each file
     const newGridImages = gridFiles.map((file) => ({
       preview: URL.createObjectURL(file),
     }));
 
-    setProjectContent((prevContent) => [
-      ...prevContent,
-      { type: "grid", gridFiles, gridPreview: newGridImages },
-    ]);
+    // Update projectContent state
+    setProjectContent((prevContent) => {
+      const updatedContent = [
+        ...prevContent,
+        { type: "grid", gridFiles, gridPreview: newGridImages },
+      ];
 
-    console.log(projectContent);
+      // Also update projectUploadDetails to include the new grid in the content field
+      setProjectUploadDetails((prevDetails) => ({
+        ...prevDetails,
+        content: updatedContent,
+      }));
+
+      return updatedContent;
+    });
+
+    console.log(newGridImages);
   };
 
   const handleUploadProjectVideoTriggerClick = () => {
@@ -159,14 +231,24 @@ const UploadProject = () => {
   const handleUploadProjectVideoChange = (e) => {
     const videoFiles = Array.from(e.target.files);
 
+    // Create new video objects with previews
     const newVideo = videoFiles.map((file) => ({
       type: "video",
-      videoFiles,
-      videoPreview: URL.createObjectURL(file),
+      file,
+      videoPreview: URL.createObjectURL(file), // Create a preview URL
     }));
 
+    // Update projectContent state
     setProjectContent((prevContent) => {
-      return [...prevContent, ...newVideo];
+      const updatedContent = [...prevContent, ...newVideo];
+
+      // Also update projectUploadDetails to include the new video in the content field
+      setProjectUploadDetails((prevDetails) => ({
+        ...prevDetails,
+        content: updatedContent,
+      }));
+
+      return updatedContent;
     });
 
     console.log("Selected videos:", newVideo);
@@ -178,12 +260,41 @@ const UploadProject = () => {
     );
     if (firstImage) {
       setProjectCoverContent(firstImage);
+      setProjectCoverImageChange(firstImage);
     }
   }, [projectContent]);
 
-  const handleToUploadProjectSucessPage = () => {
-    setReadyToUpload(false);
-    setUploadSuccess(true);
+  useEffect(() => {
+    const newUploadedImages = projectContent.filter(
+      (content) => content.type === "image"
+    );
+
+    setUploadedImages((prevImages) => {
+      const imageUrls = prevImages.map((img) => img.imagePreview);
+      const filteredImages = newUploadedImages.filter(
+        (img) => !imageUrls.includes(img.imagePreview)
+      );
+
+      console.log("Prev Images:", prevImages);
+      console.log("New Images to Add:", filteredImages);
+
+      return [...prevImages, ...filteredImages];
+    });
+  }, [projectContent]);
+
+  // Scroll to the end of the content list after updates
+  useEffect(() => {
+    if (endOfContentRef.current) {
+      // Wait for the DOM to render the changes
+      setTimeout(() => {
+        endOfContentRef.current.scrollIntoView({ behavior: "smooth" });
+      }, 1);
+    }
+  }, [projectContent]);
+
+  const handleProjectCoverImageChange = () => {
+    setProjectCoverContent(projectCoverImageChange);
+    setUploadProjectCoverChangePage(false);
   };
 
   //Undone//: Page Commin Soon
@@ -233,17 +344,23 @@ const UploadProject = () => {
       ? suggestedTag
       : `#${suggestedTag}`;
 
-    // Update the state to include the new tag if it's not already in the list
+    // Update the `tagInputValue` to include the new tag if not already present
     setTagInputValue((prevTags) => {
-      // Split current input into an array of tags
       const tagArray = prevTags.trim() ? prevTags.split(" ") : [];
 
-      // Add the new tag if it's not already in the array
       if (!tagArray.includes(formattedTag)) {
         tagArray.push(formattedTag);
       }
 
-      // Return the updated array of tags as a space-separated string
+      // Update `projectUploadDetails.tags` with the new tag if it's not already included
+      setProjectUploadDetails((prevDetails) => ({
+        ...prevDetails,
+        tags: prevDetails.tags.includes(formattedTag)
+          ? prevDetails.tags
+          : [...prevDetails.tags, formattedTag],
+      }));
+
+      // Return the updated tags as a space-separated string for `tagInputValue`
       return tagArray.join(" ");
     });
   };
@@ -261,13 +378,29 @@ const UploadProject = () => {
     setTagInputValue(input);
 
     // Update the projectUploadTags state
+    setProjectUploadDetails({
+      ...projectUploadDetails,
+      [e.target.name]: tags,
+    });
+
     setProjectUploadTags(tags);
   };
 
-  console.log(projectContent);
-  console.log(projectTitle);
-  console.log(projectCoverContent);
-  console.log(projectUploadTags);
+  // console.log(projectCoverContent);
+  // console.log(projectUploadTags);
+  // console.log("uploaded Images:", uploadedImages);
+
+  const handleZoomIn = () => {
+    setZoomScale((prev) => Math.min(prev + 0.1, 3));
+  };
+
+  const handleZoomOut = () => {
+    setZoomScale((prev) => Math.max(prev - 0.1, 1));
+  };
+
+  const handleZoomChange = (event) => {
+    setZoomScale(parseFloat(event.target.value));
+  };
 
   return (
     <div className="relative h-full">
@@ -302,10 +435,10 @@ const UploadProject = () => {
         id="uploadForm"
         className={`${
           uploadProjectFormPage ? "flex" : "hidden"
-        } flex-col h-full z-0`}
+        } flex-col h-full `}
       >
         <NavWlogoNborderLine />
-        <div className=" flex w-full flex-col h-full justify-between lg:flex-row lg:gap-x-[50px]">
+        <div className="lg:z-0 flex w-full flex-col h-full justify-between lg:flex-row lg:gap-x-[50px]">
           <div className=" flex-1 w-full lg:h-full lg:mt-[50px] lg:mb-[100px] mb-[200px]">
             <div className="px-5 md:pl-14 w-full h-full">
               <div
@@ -318,12 +451,12 @@ const UploadProject = () => {
                 <input
                   className="w-full px-[10px] border-none outline-none h-[30px] placeholder:md:text-[16px] placeholder:text-[15px] text-16px font-semibold "
                   placeholder="Name your project"
-                  value={projectTitle}
+                  name="name"
                   type="text"
                   onChange={handleUploadProjectTitleChange}
                 />
               </div>
-              <div className="mt-[10px] overflow-y-scroll lg:overflow-auto">
+              <div className="mt-[10px] overflow-y-scroll lg:overflow-auto ">
                 {projectContent.length === 0 ? (
                   <div className="hidden lg:flex flex-col lg:mt-[40px] items-center justify-center h-[400px] rounded-[20px] border-dashed border-[1px] border-zinc-600">
                     <p className="text-gray-500 text-[16px]">Create a post</p>
@@ -402,6 +535,8 @@ const UploadProject = () => {
                     ))}
                   </div>
                 )}
+                {/* This div acts as the scroll target */}
+                <div ref={endOfContentRef} />
               </div>
             </div>
           </div>
@@ -448,6 +583,7 @@ const UploadProject = () => {
               type="file"
               onChange={handleUploadProjectImageChange}
               id="uploadImageInput"
+              multiple
               className="hidden"
             />
             <input
@@ -532,6 +668,7 @@ const UploadProject = () => {
                 }  lg:w-full px-5 md:px-10 lg:px-0 py-5 lg:py-0 flex-col md:flex-row lg:flex-col items-center gap-x-[20px] gap-y-[20px] border-t lg:border-none bg-white`}
               >
                 <button
+                  onClick={() => handleSaveProjectUploadAsDraft()}
                   className={`${
                     projectContent.length > 0 ? "flex" : "hidden"
                   } w-full py-3 text-primary-100 text-sm rounded-full justify-center lg:flex lg:mt-[20px] border-[1px] border-primary-100  `}
@@ -540,7 +677,7 @@ const UploadProject = () => {
                 </button>
                 <button
                   onClick={() => handleToUploadProjectCoverPage()}
-                  className=" justify-center bg-primary-100 w-full py-3 text-primary-50 text-sm rounded-full border-[1px]"
+                  className=" justify-center bg-primary-100 w-full py-3 text-white text-sm rounded-full border-[1px]"
                 >
                   Continue
                 </button>
@@ -554,14 +691,14 @@ const UploadProject = () => {
           uploadProjectTextScreen ? "flex" : "hidden"
         }  fixed left-0 right-0 top-0 bottom-0 bg-black bg-opacity-40 justify-center items-center h-screen px-[20px] `}
       >
-        <div className="flex flex-col justify-between p-[25px] rounded-[10px] bg-white w-full h-[370px] md:h-[300px] md:w-[550px]">
+        <div className="flex flex-col p-[20px] sm:p-[25px] rounded-[10px] bg-white w-full md:h-[300px] md:w-[550px]">
           <textarea
             className="w-full outline-none rounded-[10px] p-[15px] border-[1.5px] h-[260px] md:h-[200px] resize-none text-[14px] md:text-[16px] placeholder:text-[]"
             placeholder="Say something about your project ..."
             value={textScreenCurrentText}
             onChange={handleUploadTextContentChange}
           ></textarea>
-          <div className="flex justify-end">
+          <div className="flex justify-end mt-[20px]">
             <button
               onClick={() => handleSubmitUploadTextContent()}
               className="bg-primary-100 text-white text-[13px] px-[50px] py-[7px] rounded-full"
@@ -584,139 +721,56 @@ const UploadProject = () => {
             Your progress will be lost if you close without saving
           </p>
           <div className="mt-[10px] w-full">
-            <button className="bg-primary-100 text-white text-[12px] w-full py-[8px] rounded-full cursor-pointer">
+            <button className="bg-primary-100 text-white text-[12px] w-full py-3 rounded-full cursor-pointer">
               Save to Draft
             </button>
           </div>
           <div className="mt-[10px] w-full">
             <button
               onClick={() => handleCancelProjectUpload()}
-              className=" text-red-500 text-[12px] w-full py-[8px] rounded-full cursor-pointer"
+              className=" text-red-500 text-[12px] w-full py-3 rounded-full cursor-pointer"
             >
               Close
             </button>
           </div>
         </div>
       </div>
+      <UploadProjectCoverPage
+        isUploadProjectCoverPageOn={uploadProjectCoverPage}
+        tagInputValue={tagInputValue}
+        setIsUploadProjectCoverPageOn={setUploadProjectCoverPage}
+        coverContent={projectCoverContent}
+        handleTagInputChange={handleTagInputChange}
+        uploadProjectTagSugesstion={uploadProjectTagSugesstion}
+        handleAddTagSuggestion={handleAddTagSuggestion}
+        setUploadProjectCoverChangePage={setUploadProjectCoverChangePage}
+        setUploadProjectSuccess={setUploadProjectSuccess}
+        projectCategory={projectCategory}
+        setProjectCategory={setProjectCategory}
+        projectUploadDetails={projectUploadDetails}
+        setProjectUploadDetails={setProjectUploadDetails}
+        handleSubmitProjectUploadDetails={handleSubmitProjectUploadDetails}
+      />
+      <ProjectCoverChangePage
+        isUploadProjectCoverChangePageOn={uploadProjectCoverChangePage}
+        setIsUploadProjectCoverChangePageOn={setUploadProjectCoverChangePage}
+        handleZoomIn={handleZoomIn}
+        handleZoomOut={handleZoomOut}
+        zoomScale={zoomScale}
+        setZoomScale={setZoomScale}
+        zoomTranslate={zoomTranslate}
+        setZoomTranslate={setZoomTranslate}
+        uploadedImages={uploadedImages}
+        handleZoomChange={handleZoomChange}
+        projectCoverContent={projectCoverContent}
+        setProjectCoverContent={setProjectCoverContent}
+        handleProjectCoverImageChange={handleProjectCoverImageChange}
+        projectCoverImageChange={projectCoverImageChange}
+        setProjectCoverImageChange={setProjectCoverImageChange}
+      />
       <div
         className={`${
-          uploadProjectCoverPage ? "flex" : "hidden"
-        } absolute lg:fixed top-0 bottom-0 left-0 right-0 bg-white lg:bg-black lg:bg-opacity-40 lg:justify-center lg:items-center lg:h-full overflow-y lg:overflow-visible mb-[200px] `}
-      >
-        <div className="bg-white grid rounded-[14px] px-[20px] xl:p-[35px] w-full lg:w-[800px] lg:h-[500px] items-center">
-          <div className=" lg:hidden flex-1 justify-start flex">
-            <button
-              onClick={() => setUploadProjectCoverPage(false)}
-              className="w-[130px] bg-black border border-white hover:border-primary-100 py-[10px] text-black text-sm rounded-full justify-center"
-            >
-              cancel
-            </button>
-          </div>
-          <div className=" box-border flex justify-cente mt-[30px] lg:mt-0 flex-col lg:flex-row">
-            <div className=" justify-center lg:justify-normal lg:flex-1 flex">
-              <div className="w-[230px]">
-                <img
-                  className="w-full h-[310px] object-cover rounded-[15px]"
-                  src={projectCoverContent?.imagePreview}
-                  alt=""
-                />
-                <div className="w-full flex justify-between mt-[10px]">
-                  <p className="text-[14px] text-zinc-500">Cover Image</p>
-                  <p
-                    onClick={() => setUploadProjectCoverChangePage(true)}
-                    className="text-[14px] cursor-pointer"
-                  >
-                    Edit
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-col lg:mb-0 lg:flex-1 mt-[40px] lg:mt-0 h-full">
-              <div>
-                <p className="font-semibold text-[15px]">Category</p>
-                <select
-                  className=" mt-[5px] w-full h-[32px] border-[1.5px] rounded-[7px] outline-none px-[5px]"
-                  name=""
-                  id=""
-                >
-                  <option value="Select"></option>
-                  <option value="Select"></option>
-                </select>
-              </div>
-              <div className="mt-[25px] w-full">
-                <p className="font-semibold text-[15px]">Add tags</p>
-                <p className="text-[13px] mt-[5px] text-zinc-600">
-                  This enhances the chances of your project been seen from
-                  search
-                </p>
-                <input
-                  className="h-[32px] border-[1.5px] w-full outline-none rounded-[7px] mt-[5px] px-[10px] text-[14px]"
-                  type="text"
-                  value={tagInputValue}
-                  onChange={handleTagInputChange}
-                />
-                <p className="mt-[8px] text-[14px] text-zinc-600">
-                  Suggestions:
-                </p>
-                <div className=" flex justify-between sm:justify-normal gap-[15px] mt-[5px] gap-x-[5px]">
-                  {uploadProjectTagSugesstion.map((sugestions, index) => (
-                    <p
-                      key={index}
-                      onClick={() => handleAddTagSuggestion(sugestions)}
-                      className="px-[18px] py-[6px] rounded-full text-[11px] text-primary-100 bg-primary-10 cursor-pointer"
-                    >
-                      {sugestions}
-                    </p>
-                  ))}
-                </div>
-              </div>
-              <div className="mt-[25px]">
-                <p className="font-semibold text-[15px]">
-                  Collaboration (optional)
-                </p>
-                <p className="text-[13px] mt-[5px] text-zinc-600">
-                  You can add co-owners here (username)
-                </p>
-                <input
-                  className="h-[32px] border-[1.5px] w-full outline-none rounded-[7px] mt-[5px] px-[10px] text-[15px]"
-                  type="text"
-                />
-              </div>
-            </div>
-          </div>
-          <div className="fixed bottom-0 right-0 left-0 lg:static py-[25px] px-[20px] md:px-[35px] lg:px-0 lg:py-0 border-t lg:border-t-0 lg:mt-[30px] w-full flex justify-between items-center bg-white">
-            <div className=" lg:flex flex-1 justify-start hidden">
-              <p
-                onClick={() => setUploadProjectCoverPage(false)}
-                className="text-black text-[14px] cursor-pointer"
-              >
-                Cancel
-              </p>
-            </div>
-            <div className="flex flex-1 items-center flex-col sm:flex-row lg:w-[350px] w-full justify-center gap-x-[20px]">
-              <button className="flex w-full py-[10px] text-primary-100 text-sm rounded-full justify-center border-[1px] border-primary-100 ">
-                Save as draft
-              </button>
-              <button
-                onClick={() => handleToUploadProjectSucessPage()}
-                className="bg-primary-100 text-[14px] w-full py-[10px] text-white text-sm rounded-full border-[1px] mt-[20px] sm:mt-0 "
-              >
-                Continue
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        className={`${
-          uploadProjectCoverChangePage ? "flex" : "hidden"
-        } absolute lg:fixed top-0 bottom-0 left-0 right-0  bg-white lg:bg-black lg:bg-opacity-40 lg:justify-center lg:items-center lg:h-full overflow-y lg:overflow-visible mb-[200px] `}
-      >
-        {/* <div className="bg-white grid rounded-[14px] mx-[40px] px-[20px] xl:p-[35px] w-full lg:w-[650px] lg:h-[500px] items-center"></div> */}
-      </div>
-      {/* <div
-        className={`${
-          uploadSuccess ? "flex" : "hidden"
+          uploadProjectSuccess ? "flex" : "hidden"
         }  fixed left-0 right-0 top-0 bottom-0 bg-black bg-opacity-40 justify-center items-center h-screen`}
       >
         <div className=" bg-white flex flex-col rounded-[20px] w-[300px] h-[400px]">
@@ -727,16 +781,19 @@ const UploadProject = () => {
               You have uploaded your project succesfully
             </p>
             <div className="flex flex-col mt-[10px] gap-y-[10px] w-full">
-              <button className="bg-primary-100 text-white px-full py-[8px] text-[13px] rounded-full">
+              <button
+                onClick={() => setUploadProjectSuccess(false)}
+                className="bg-primary-100 text-white px-full py-3 text-[13px] rounded-full"
+              >
                 Dismiss
               </button>
-              <button className="bg-white text-primary-100 px-full py-[8px] text-[13px] rounded-full">
+              <button className="bg-white text-primary-100 px-full py-3 text-[13px] rounded-full">
                 Share
               </button>
             </div>
           </div>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };

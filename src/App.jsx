@@ -24,9 +24,8 @@ const App = () => {
         <Route path="/setup-profile" element={<SetupProfile />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/upload-project" element={<UploadWork />} />
+        <Route path="/upload-project/fill" element={<UploadWork />} />
         <Route path="/designer-profile" element={<DesignerProfile />} />
-
-        {/* <Route path="user" element={<UserList />} /> */}
       </Routes>
     </>
   );

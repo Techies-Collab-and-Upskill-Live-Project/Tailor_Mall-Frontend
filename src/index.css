@@ -2,4 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
+.range-slider {
+  @apply appearance-none bg-zinc-300 rounded-full outline-none;
+}
 
+.range-slider::-webkit-slider-thumb {
+  @apply bg-primary-100 h-[13px] w-[13px] rounded-full;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 7px; /* Width of the scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Background color of the scrollbar track */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #008080; /* Color of the scrollbar thumb */
+  border-radius: 10px; /* Rounded corners on the thumb */
+  border: 2px solid #f1f1f1; /* Border around the thumb */
+}
+
+.styleProgress {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 200px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #b0d8d8;
+}
+
+.styleProgress::-webkit-progress-value {
+  background-color: #008080; /* Bar color */
+  border-radius: 10px; /* Rounded corners */
+}
+
+/* Style the progress bar's background (for WebKit browsers) */
+.styleProgress::-webkit-progress-bar {
+  background-color: #b0d8d8; /* Background behind the bar */
+}
