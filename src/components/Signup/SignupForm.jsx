@@ -9,7 +9,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { Oval } from "react-loader-spinner";
 import { Link } from "react-router-dom";
-import Logo from "../logo/logo";
+import Logo from "../logo/Logo";
 
 const SignupForm = ({
   handleSignup,

@@ -5,8 +5,7 @@ import Facebook from "../../assets/Facebook.png";
 import Mail from "../../assets/fi_mail.png";
 import Password from "../../assets/fi_lock.png";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../../assets/Tailoralogo.png"
-import Logo from "../logo/logo";
+import Logo from "../logo/Logo";
 
 const SigninForm = ({
   signinDetails,
