@@ -49,11 +49,11 @@ const Welcome = () => {
 
   return (
     <>
-      <div className="flex py-10 h-10 px-[40px] items-center gap-[3px] border border-foundationGrey-50">
+      <div className="flex py-8 h-10 px-[40px] items-center gap-[3px] border border-foundationGrey-50">
         <img src={logo} alt="" />
       </div>
 
-      <div className="flex flex-col absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%]">
+      <div className="flex flex-col absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%] pt-7">
         <div className="flex flex-col gap-3 md:gap-8">
           <div>
             <h1 className="text-[#111] font-bold text-xl text-center md:text-4xl -tracking-[-4%] lg:text-6xl leading-[72px]">
