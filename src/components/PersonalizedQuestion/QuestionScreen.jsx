@@ -21,22 +21,20 @@ const QuestionScreen = () => {
               </p>
             </div>
 
-            {/* <div className="flex flex-col md:flex-row-reverse md:justify-around w-full">
+            <div className="flex py-6 px-3 flex-col w-full md:flex-row-reverse items-center justify-center md:justify-around gap-6">
               <BigButton
                 submit={() => setHasStarted(true)}
-                className="w-full leading-[140%] md:dot md:py-[12px] md:text-[16px]"
                 text="Get started"
+                className="w-full md:w-[50%]"
               />
-              <Link to="/setup-profile" className="text-[#008080] w-full dot self-center text-base font-medium">
-                Skip
-              </Link>
-            </div> */}
 
-            <div className="flex py-6 px-3 flex-col md:flex-row-reverse items-center md:justify-around gap-6">
-              <BigButton submit={() => setHasStarted(true)} text="Get started" className="w-full" />
-
-              <Link to="/setup-profile" className="text-[#008080] w-full dot self-center text-base font-medium">
-                Skip
+              <Link
+                to="/setup-profile"
+                className="flex py-3 px-4 justify-center items-center dot rounded-[100px] w-full md:w-[50%]"
+              >
+                <span className="text-base w-full text-primary-100 leading-[22.4px]">
+                  Skip
+                </span>
               </Link>
             </div>
           </div>

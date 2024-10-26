@@ -66,27 +66,41 @@ const QuestionFrame = () => {
                     ))}
                   </div>
                 )}
-                 {/* <div className="flex flex-col gap-6 md:flex-row w-full md:items-center md:justify-evenly">
+              
+
+
+                {/* <div className="flex py-6 px-3 flex-col w-full md:flex-row-reverse items-center md:justify-around gap-6">
                   <Link
                     to="/setup-profile"
-                    className="text-[#008080] text-center self-center text-base font-medium md:dot"
+                    className="flex py-3 px-4 justify-center items-center dot rounded-[100px] w-full"
                   >
-                    Skip
+                    <span className="text-base text-primary-100 leading-[22.4px]">
+                      Skip
+                    </span>
                   </Link>
                   <BigButton
                     submit={() => increaseCounter()}
-                    className="md:dot leading-[140%] md:py-[12px] md:text-[16px] md:w-[30%]"
                     text="Next"
+                    className="w-full md:[50%]"
                   />
-               
                 </div> */}
 
-                <div className="flex py-6 px-3 flex-col md:flex-row-reverse items-center md:justify-around gap-6">
-              <Link to="/setup-profile" className="text-[#008080] w-full dot self-center text-base font-medium">
-                Skip
-              </Link>
-              <BigButton submit={() => increaseCounter()} text="Next" className="w-full" />
 
+                <div className="flex py-6 px-3 flex-col w-full md:flex-row-reverse items-center justify-center md:justify-around gap-6">
+              <BigButton
+                submit={() => increaseCounter()}
+                text="Get started"
+                className="w-full md:w-[50%]"
+              />
+
+              <Link
+                to="/setup-profile"
+                className="flex py-3 px-4 justify-center items-center dot rounded-[100px] w-full md:w-[50%]"
+              >
+                <span className="text-base w-full text-primary-100 leading-[22.4px]">
+                  Skip
+                </span>
+              </Link>
             </div>
               </div>
             )
