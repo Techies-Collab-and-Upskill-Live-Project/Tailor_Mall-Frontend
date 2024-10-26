@@ -57,12 +57,12 @@ const Slideshow = () => {
           </SwiperSlide>
         </div>
 
-        <div className="slider-controler">
-          <div className="swiper-button-prev flex p-[12.87] justify-center items-center gap-[10.714px] rounded-[214.28px] border border-secondary slider-arrow">
+        <div className="slider-controler flex justify-between">
+          <div className="swiper-button-prev flex p-[12.87] justify-center items-center rounded-[214.28px] border border-secondary slider-arrow">
             {/* <ion-icon name="arrow-back-outline"></ion-icon> */}
-            <img src={Left} className="text-white" alt="" />
+            <img src={Left} className="text-white " alt="" />
           </div>
-          <div className="swiper-button-next flex p-[12.87] justify-center items-center gap-[10.714px] rounded-[214.28px] border border-secondary slider-arrow">
+          <div className="swiper-button-next flex p-[12.87] justify-center items-center  rounded-[214.28px] border border-secondary slider-arrow">
             {/* <ion-icon name="arrow-forward-outline"></ion-icon> */}
             <img src={Left} className="text-white" alt="" />
           </div>
