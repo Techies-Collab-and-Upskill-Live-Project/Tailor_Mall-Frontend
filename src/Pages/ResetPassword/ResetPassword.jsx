@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import logo from "./Assets/logo.png";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "sonner";
 
 const ResetPassword = () => {
   const [email, setEmail] = useState("");
@@ -43,14 +44,21 @@ const ResetPassword = () => {
 
   const handleSubmitResetPasswordEmail = async () => {
     console.log(email);
-    try {
-      const response = await axios.post(`${baseUrl}/reset-password/email`, {
-        email: email,
-      });
-      console.log("Response:", response.data);
-    } catch (error) {
-      console.error("Error:", error);
-    }
+    resetFocus();
+
+    // try {
+    //   const response = await axios.post(`${baseUrl}/client/send-otp`, {
+    //     email: email,
+    //     type: "email",
+    //   });
+    //   console.log("Response:", response.data);
+    //   resetFocus();
+    // } catch (error) {
+    //   console.error("Error:", error);
+
+    //   const message = error.response?.data?.message || "Failed to send OTP.";
+    //   toast.error(message);
+    // }
   };
 
   const handleCodesChange = (index, event) => {
@@ -64,23 +72,32 @@ const ResetPassword = () => {
   };
 
   const handleSubmitVerificationCodes = async () => {
+    verifyFocus();
+
     const verificationCode = codes.join("");
 
-    if (verificationCode.length < 5) {
-      ErrorMessage("Please fill in all verification code fields.");
-      return;
-    }
+    // if (verificationCode.length < 5) {
+    //   toast.error("Please fill all code fields.");
+    //   return;
+    // }
 
-    console.log("Verification Code:", verificationCode);
+    // console.log("Verification Code:", verificationCode);
 
-    try {
-      const response = await axios.post(`${baseUrl}/verify-code`, {
-        code: verificationCode,
-      });
-      console.log("Response:", response.data);
-    } catch (error) {
-      console.error("Error:", error);
-    }
+    // try {
+    //   const response = await axios.post(`${baseUrl}/client/verify/otp`, {
+    //     userDetails: email,
+    //     otp: verificationCode,
+    //   });
+    //   console.log("Response:", response.data);
+    //   verifyFocus();
+    // } catch (error) {
+    //   console.error("Error:", error);
+
+    //   const message =
+    //     error.response?.data?.message ||
+    //     "Something went wrong. Please try again.";
+    //   toast.error(message);
+    // }
   };
 
   const handleNewPasswordChange = (e) => {
@@ -94,39 +111,53 @@ const ResetPassword = () => {
   const handleSubmitNewPassword = async () => {
     console.log(newPassword);
 
-    const passwordRequirements =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+    passwordFocus();
 
-    if (!newPassword) {
-      console.error("Password is required.");
-    } else if (!passwordRequirements.test(newPassword)) {
-      console.error(
-        "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number."
-      );
-    }
+    // const passwordRequirements =
+    //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
 
-    if (newPassword !== confirmNewPassword) {
-      console.error("Passwords do not match.");
-    }
+    // if (!newPassword) {
+    //   toast.error("Password is required.");
+    //   return;
+    // }
 
-    try {
-      const response = await axios.post(`${baseUrl}/set-new-password`, {
-        newPassword,
-      });
-      console.log("Password reset successful:", response.data); // Handle the response as needed
-    } catch (error) {
-      console.error(
-        "Error setting new password:",
-        error.response ? error.response.data : error.message
-      );
-    }
+    // if (!passwordRequirements.test(newPassword)) {
+    //   toast.error(
+    //     "Password must be at least 8 characters, include uppercase, lowercase, a number, and a special character."
+    //   );
+    //   return;
+    // }
+
+    // if (newPassword !== confirmNewPassword) {
+    //   toast.error("Passwords do not match.");
+    //   return;
+    // }
+
+    // try {
+    //   const response = await axios.post(`${baseUrl}/client/reset/password`, {
+    //     email: email,
+    //     newPassword: newPassword,
+    //     confirmPassword: confirmNewPassword,
+    //   });
+    //   console.log("Password reset successful:", response.data);
+    //   toast.success("Password reset successful!");
+    //   passwordFocus(); // Focus or reset the password field as needed
+    // } catch (error) {
+    //   console.error(
+    //     "Error setting new password:",
+    //     error.response ? error.response.data : error.message
+    //   );
+    //   toast.error("Failed to reset password. Please try again.");
+    // }
   };
+
+  const navigateTo = useNavigate();
 
   return (
     <div>
       <div className={`${reset ? "flex" : "hidden"} flex-col h-full`}>
         <div className=" px-5 md:px-10 py-4 border-b ">
-          <img className="md:w-[140px] w-[100px]" src={logo} alt="" />
+          <img className="md:w-[130px] w-[100px]" src={logo} alt="" />
         </div>
         <div className=" px-5 md:px-10 my-20 flex flex-col h-full flex-grow items-center justify-center">
           <p className="font-bold text-[20px] sm:text-[30px] md:text-[50px]">
@@ -151,7 +182,7 @@ const ResetPassword = () => {
             </div>
           </div>
           <button
-            onClick={() => resetFocus()}
+            onClick={() => handleSubmitResetPasswordEmail()}
             className="mt-7 text-white text-[13px] sm:text-[15px] bg-primary-100 w-full md:w-[550px] py-[13px] rounded-full"
           >
             Continue
@@ -178,20 +209,20 @@ const ResetPassword = () => {
                 type="text"
                 value={code}
                 onChange={(event) => handleCodesChange(index, event)}
-                className="w-[45px] h-[45px] mx-2 text-center border-black border rounded-md outline-none"
+                className=" w-[40px] sm:w-[45px] sm:h-[45px] h-[40px] mx-2 text-center border-zinc-300 border rounded-md outline-none font-bold text-[18px] sm:text-[22px]"
               />
             ))}
           </div>
           <button
-            onClick={() => verifyFocus()}
+            onClick={() => handleSubmitVerificationCodes()}
             className="mt-7 text-white text-[13px] sm:text-[15px] bg-primary-100 w-full md:w-[550px] py-[13px] rounded-full"
           >
             Verify
           </button>
           <div className="mt-3">
             <p className="text-[14px] text-secondary ">
-              Didn’t receive code?{" "}
-              <span className="text-[14px] text-primary-100 cursor-pointer">
+              Didn’t receive code?
+              <span className=" ml-[8px] text-[14px] text-primary-100 cursor-pointer">
                 Resend
               </span>
             </p>
@@ -238,27 +269,29 @@ const ResetPassword = () => {
             </div>
           </div>
           <button
-            onClick={() => passwordFocus()}
+            onClick={() => handleSubmitNewPassword()}
             className="mt-7 text-white text-[13px] sm:text-[15px] bg-primary-100 w-full md:w-[550px] py-[13px] rounded-full"
           >
             Reset password
           </button>
         </div>
       </div>
-      <div className={`${success ? "flex" : "hidden"} flex-col h-full`}>
+      <div className={`${success ? "flex" : "hidden"} flex-col h-screen`}>
         <div className=" px-5 md:px-10 py-4 border-b ">
           <img className="md:w-[140px] w-[100px]" src={logo} alt="" />
         </div>
-        <div className=" my-20  px-5 md:px-10 flex flex-col h-full flex-grow items-center justify-center">
+        <div className=" mt-[]  px-5 md:px-10 flex flex-col h-full items-center justify-center">
           <p className="font-bold text-[20px] sm:text-[30px] md:text-[50px]">
             Congratulations
           </p>
-          <p className="text-secondary mt-2 sm:mt-0 w-full sm:w-[550px] text-center text-[14px]">
-            Congratulations! Your password has been successfully updated. You
-            can now log in with your new credentials.
+          <p className="text-secondary mt-2 sm:mt-0 w-full sm:w-[500px] text-center text-[14px]">
+            Your password reset has been successful. Please turn to login to
+            continue.
           </p>
-
-          <button className="mt-7 text-white text-[13px] sm:text-[15px] bg-primary-100 w-full md:w-[550px] py-[13px] rounded-full">
+          <button
+            onClick={() => navigateTo("/signin")}
+            className="mt-7 text-white text-[13px] sm:text-[15px] bg-primary-100 w-full md:w-[550px] py-[13px] rounded-full"
+          >
             Login
           </button>
         </div>

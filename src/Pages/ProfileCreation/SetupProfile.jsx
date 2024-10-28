@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import logo from "./Assets/logo.png";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "sonner";
+import NavWlogoNborderLine from "../../components/Navbar/NavWlogoNborderLine";
 
 const SetupProfile = () => {
   const [create, setCreate] = useState(true);
@@ -31,6 +33,8 @@ const SetupProfile = () => {
     experienceStillInRole: "",
     experienceDescription: "",
   });
+
+  console.log(profileDetails);
 
   const handleProfileDetailsChange = (e) => {
     setProfileDetails({ ...profileDetails, [e.target.name]: e.target.value });
@@ -62,6 +66,14 @@ const SetupProfile = () => {
   };
 
   const aboutFocus = () => {
+    if (
+      !profileDetails.name ||
+      !profileDetails.location ||
+      !profileDetails.tailoringSkills ||
+      !profileDetails.yearOfExperience
+    )
+      return toast.error("Please fill all required field to continue.");
+
     setAbout(true);
     setPersonal(false);
     setSocial(false);
@@ -70,6 +82,14 @@ const SetupProfile = () => {
   };
 
   const socialFocus = () => {
+    if (
+      !profileDetails.name ||
+      !profileDetails.location ||
+      !profileDetails.tailoringSkills ||
+      !profileDetails.yearOfExperience ||
+      !profileDetails.aboutMe
+    )
+      return toast.error("Please fill all required field to continue.");
     setSocial(true);
     setAbout(false);
     setPersonal(false);
@@ -78,6 +98,8 @@ const SetupProfile = () => {
   };
 
   const experienceFocus = () => {
+    if (!profileDetails.aboutMe)
+      return toast.error("Please fill all required field to continue.");
     setExperience(true);
     setSocial(false);
     setAbout(false);
@@ -130,14 +152,15 @@ const SetupProfile = () => {
   return (
     <div className="flex">
       <div className={`${create ? "flex" : "hidden"} w-full flex-col h-full`}>
-        <div className=" px-5 md:px-10 py-4 border-b ">
-          <img className="md:w-[140px] w-[100px]" src={logo} alt="" />
+        <div className=" flex items-center px-5 md:px-14 py-4 border-b w-full h-[60px] ">
+          <img className="md:w-[130px] w-[100px]" src={logo} alt="" />
         </div>
+
         <div className=" px-5 md:px-10 my-20 flex flex-col h-full flex-grow items-center justify-center">
           <p className="font-bold text-[20px] sm:text-[30px] md:text-[50px]">
             Next,
           </p>
-          <p className="text-secondary mt-2 sm:mt-5 w-full sm:w-[550px] text-center text-[14px]">
+          <p className="text-secondary mt-2 sm:mt-5 w-full sm:w-[550px] text-center text-[14px] lg:text-[14px]">
             We would like to get to know more about you. Follow the next steps
             to create a professional profile.
           </p>
@@ -154,9 +177,9 @@ const SetupProfile = () => {
         </div>
       </div>
       <div className={`${setup ? "flex" : "hidden"} w-full`}>
-        <div className="w-[400px] px-10 py-4 hidden md:flex md:flex-col ">
+        <div className="w-[400px] px-10 py-4 hidden lg:flex md:flex-col ">
           <div>
-            <img className="w-[140px]" src={logo} alt="" />
+            <img className="w-[130px]" src={logo} alt="" />
           </div>
           <div
             className={`${
@@ -240,15 +263,15 @@ const SetupProfile = () => {
             personal ? "flex" : "hidden"
           } w-full border-l h-full flex-col justify-between transition-all duration-200`}
         >
-          <div className=" px-5 md:px-10 py-4 border-b ">
+          <div className=" px-5 md:px-10  py-4 border-b ">
             <img
-              className="md:w-[140px] w-[100px] md:opacity-0"
+              className="md:w-[130px] w-[100px] lg:opacity-0"
               src={logo}
               alt=""
             />
           </div>
-          <div className="flex flex-col py-8 h-full">
-            <div className=" px-5 md:px-10 ">
+          <div className="flex flex-col pt-8 pb-[100px] md:py-[150px] lg:pt-10 lg:pb-[200px] h-full">
+            <div className=" px-5 md:px-10">
               <div className="w-full">
                 <p className="font-bold text-[20px] md:text-[24px]">
                   Personal info
@@ -266,7 +289,7 @@ const SetupProfile = () => {
                   type="text"
                   name="name"
                   onChange={handleProfileDetailsChange}
-                  className="mt-1 w-full md:w-[500px] h-[34px] rounded-md border-[1.5px] outline-none px-2 text-[13px]"
+                  className="mt-1 w-full lg:w-[500px] h-[34px] rounded-md border-[1.5px] outline-none px-2 text-[14px]"
                 />
               </div>
               <div className="mt-6">
@@ -277,7 +300,7 @@ const SetupProfile = () => {
                   type="text"
                   name="location"
                   onChange={handleProfileDetailsChange}
-                  className=" mt-1 w-full md:w-[500px] h-[34px] rounded-md border-[1.5px] outline-none px-2 text-[13px]"
+                  className=" mt-1 w-full lg:w-[500px] h-[34px] rounded-md border-[1.5px] outline-none px-2 text-[14px]"
                 />
               </div>
               <div className="mt-6">
@@ -286,7 +309,7 @@ const SetupProfile = () => {
                   type="text"
                   name="tailoringSkills"
                   onChange={handleProfileDetailsChange}
-                  className=" mt-1 w-full md:w-[500px] h-[34px] rounded-md border-[1.5px] outline-none px-2 text-[13px]"
+                  className=" mt-1 w-full lg:w-[500px] h-[34px] rounded-md border-[1.5px] outline-none px-2 text-[14px]"
                 />
               </div>
               <div className="mt-6">
@@ -294,7 +317,7 @@ const SetupProfile = () => {
                 <select
                   name="yearOfExperience"
                   onChange={handleProfileDetailsChange}
-                  className=" mt-1 w-full md:w-[500px] h-[34px] rounded-md border-[1.5px] outline-none px-2 text-[13px]"
+                  className=" mt-1 w-full lg:w-[500px] h-[34px] rounded-md border-[1.5px] outline-none px-2 text-[14px]"
                 >
                   <option value="" className="text-[14.5px] ">
                     Select your year of experience
@@ -322,7 +345,7 @@ const SetupProfile = () => {
           <div className=" px-5 md:px-10 py-5 flex justify-center md:justify-end border-t">
             <button
               onClick={() => aboutFocus()}
-              className="bg-primary-100 w-full md:w-[160px] py-3 text-primary-50 text-sm rounded-full"
+              className="bg-primary-100 w-full md:w-[160px] py-3 text-white text-sm rounded-full"
             >
               Continue
             </button>
@@ -334,13 +357,13 @@ const SetupProfile = () => {
           } w-full border-l h-full flex-col justify-between transition-all duration-200`}
         >
           <div className="px-5 md:px-10 py-4 border-b ">
-            <img className="md:w-[140px] w-[100px] md:opacity-0" src={logo} />
+            <img className="md:w-[130px] w-[100px] lg:opacity-0" src={logo} />
           </div>
-          <div className="flex flex-col">
-            <div className="px-5 md:px-10 pt-8 pb-20">
+          <div className="flex flex-col pt-8 pb-[100px] md:py-[150px] lg:pt-10 lg:pb-[200px]">
+            <div className="px-5 md:px-10">
               <div className="w-full">
                 <p className="font-bold text-[20px] md:text-[24px]">About Me</p>
-                <p className="text-[14px] w-full md:w-[550px] text-secondary">
+                <p className="text-[14px] w-full lg:w-[550px] text-secondary">
                   Share a brief overview of your passion, experience, and what
                   drives your creativity.
                 </p>
@@ -353,7 +376,7 @@ const SetupProfile = () => {
                   type="text"
                   name="businessName"
                   onChange={handleProfileDetailsChange}
-                  className="mt-1 w-full md:w-[500px] h-[34px] rounded-md border-[1.5px] outline-none px-2 text-[13px]"
+                  className="mt-1 w-full lg:w-[500px] h-[34px] rounded-md border-[1.5px] outline-none px-3 text-[14px]"
                 />
               </div>
               <div className="mt-6">
@@ -363,7 +386,7 @@ const SetupProfile = () => {
                 <textarea
                   name="aboutMe"
                   onChange={handleProfileDetailsChange}
-                  className="mt-1 w-full md:w-[500px] h-[130px] rounded-md border-[1.5px] outline-none px-2 py-[5px] text-[13px] resize-none"
+                  className="mt-1 w-full lg:w-[500px] h-[130px] rounded-md border-[1.5px] outline-none px-3 py-[5px] text-[14px] resize-none"
                 ></textarea>
               </div>
             </div>
@@ -371,7 +394,7 @@ const SetupProfile = () => {
           <div className="px-5 md:px-10 py-5 flex justify-center md:justify-end border-t">
             <button
               onClick={() => socialFocus()}
-              className="bg-primary-100 w-full md:w-[160px] py-3 text-primary-50 text-sm rounded-full"
+              className="bg-primary-100 w-full md:w-[160px] py-3 text-white text-sm rounded-full"
             >
               Continue
             </button>
@@ -383,10 +406,10 @@ const SetupProfile = () => {
           } w-full border-l h-full flex-col justify-between transition-all duration-200`}
         >
           <div className="px-5 md:px-10 py-4 border-b">
-            <img className="md:w-[140px] w-[100px] md:opacity-0" src={logo} />
+            <img className="md:w-[130px] w-[100px] lg:opacity-0" src={logo} />
           </div>
-          <div className="flex flex-col">
-            <div className="px-5 md:px-10 py-8">
+          <div className="flex flex-col pt-8 pb-[100px] md:py-[150px] lg:pt-10 lg:pb-[200px]">
+            <div className="px-5 md:px-10">
               <div className="w-full">
                 <p className="font-bold text-[20px] md:text-[24px]">
                   Connect your social media accounts
@@ -398,70 +421,68 @@ const SetupProfile = () => {
               </div>
               <div className="mt-8">
                 <div className="flex items-center">
-                  <i className="fa-brands fa-instagram mr-3 bg-primary-50 text-primary-100 px-[8px] py-[6px] rounded-full text-[16px]"></i>
-                  <p className="font-medium text-[14.5px]">Instagram</p>
+                  <i className="fa-brands fa-instagram mr-3 bg-primary-10 text-primary-100 px-[10px] py-[8px] rounded-full text-[17px]"></i>
+                  <p className="font-medium text-[16px]">Instagram</p>
                 </div>
                 <input
                   type="text"
                   name="instagramLink"
                   onChange={handleProfileDetailsChange}
-                  className="mt-3 w-full md:w-[300px] h-[34px] rounded-md border-[1.5px] outline-none px-2 text-[13px]"
+                  className="mt-3 w-full lg:w-[320px] h-[45px] rounded-md border-[1.5px] outline-none px-2 text-[14px]"
                   placeholder="Enter your instagram url.."
                 />
               </div>
               <div className="mt-10">
                 <div className="flex items-center">
-                  <i className="fa-brands fa-x-twitter mr-3 bg-primary-50 text-primary-100 px-[6px] py-[6px] rounded-full text-[16px]"></i>
-                  <p className="font-medium text-[14.5px]">
-                    X &#40;Twitter&#41;
-                  </p>
+                  <i className="fa-brands fa-x-twitter mr-3 bg-primary-10 text-primary-100 px-[8px] py-[8px] rounded-full text-[17px]"></i>
+                  <p className="font-medium text-[16px]">X &#40;Twitter&#41;</p>
                 </div>
                 <input
                   type="text"
                   name="twitterLink"
                   onChange={handleProfileDetailsChange}
-                  className="mt-3 w-full md:w-[300px] h-[34px] rounded-md border-[1.5px] outline-none px-2 text-[13px]"
+                  className="mt-3 w-full lg:w-[320px] h-[45px] rounded-md border-[1.5px] outline-none px-2 text-[14px]"
                   placeholder="Enter your twitter url.."
                 />
               </div>
               <div className="mt-10">
                 <div className="flex items-center">
-                  <i className="fa-brands fa-facebook-f mr-3 bg-primary-50 text-primary-100 px-[10px] py-[6px] rounded-full text-[14px]"></i>
-                  <p className="font-medium text-[14.5px]">Facebook</p>
+                  <i className="fa-brands fa-facebook-f mr-3 bg-primary-10 text-primary-100 px-[12px] py-[8px] rounded-full text-[15px]"></i>
+                  <p className="font-medium text-[16px]">Facebook</p>
                 </div>
                 <input
                   type="text"
                   name="facebookLink"
                   onChange={handleProfileDetailsChange}
-                  className="mt-3 w-full md:w-[300px] h-[34px] rounded-md border-[1.5px] outline-none px-2 text-[13px]"
+                  className="mt-3 w-full lg:w-[320px] h-[45px] rounded-md border-[1.5px] outline-none px-2 text-[14px]"
                   placeholder="Enter your facebook url.."
                 />
               </div>
               <div className="mt-10 mb-32">
                 <div className="flex items-center">
-                  <i className="fa-brands fa-tiktok mr-3 bg-primary-50 text-primary-100 px-[8px] py-[7px] rounded-full text-[14px]"></i>
-                  <p className="font-medium text-[14.5px]">TikTok</p>
+                  <i className="fa-brands fa-tiktok mr-3 bg-primary-10 text-primary-100 px-[10px] py-[9px] rounded-full text-[15px]"></i>
+                  <p className="font-medium text-[16px]">TikTok</p>
                 </div>
                 <input
                   type="text"
                   name="tiktokLink"
                   onChange={handleProfileDetailsChange}
-                  className="mt-3 w-full md:w-[300px] h-[34px] rounded-md border-[1.5px] outline-none px-2 text-[13px]"
+                  className="mt-3 w-full lg:w-[320px] h-[45px] rounded-md border-[1.5px] outline-none px-2 text-[14px]"
                   placeholder="Enter your tiktok url.."
                 />
               </div>
             </div>
           </div>
-          <div className="px-5 md:px-10 py-5 flex flex-col sm:flex-row justify-center sm:justify-between md:justify-end border-t">
+          <div className="px-5 md:px-10 py-5 flex flex-col sm:flex-row justify-center sm:justify-between lg:justify-end border-t">
             <button
               onClick={() => experienceFocus()}
-              className="text-primary-100 border-primary-100 w-full md:w-[160px] py-3 hover:bg-primary-100 hover:text-primary-50 sm:mr-3 text-sm rounded-full "
+              className="text-primary-100 border-primary-100 w-full lg:w-[160px] py-3 hover:bg-primary-100 hover:text-white sm:mr-3 text-sm rounded-full "
             >
               Skip
             </button>
             <button
               onClick={() => experienceFocus()}
-              className="bg-primary-100 w-full md:w-[160px] mt-4 sm:mt-0 lg:mt-0 text-primary-50 py-3 text-sm rounded-full"
+              className="bg-primary-100 w-full lg:w-[160px] mt-4 sm:mt-0 lg:mt-0 text-white py-3 text-sm rounded-full"
             >
               Continue
             </button>
@@ -473,22 +494,22 @@ const SetupProfile = () => {
           } w-full border-l h-full flex-col justify-between transition-all duration-200`}
         >
           <div className="px-5 md:px-10 py-4 border-b ">
-            <img className="md:w-[140px] w-[100px] md:opacity-0" src={logo} />
+            <img className="md:w-[130px] w-[100px] lg:opacity-0" src={logo} />
           </div>
-          <div className="flex flex-col h-full">
+          <div className="flex flex-col h-full ">
             <div className="flex flex-col">
-              <div className="px-5 md:px-10  pt-8 pb-44">
+              <div className="px-5 md:px-10 pt-8 pb-[100px] md:py-[150px] lg:pt-10 lg:pb-[200px]">
                 <div className=" w-full">
                   <p className="font-bold text-[20px] md:text-[24px]">
                     Previous work experience
                   </p>
-                  <p className="text-[14px] w-full md:w-[550px] text-secondary">
+                  <p className=" mt-[8px] text-[14px] w-full lg:w-[550px] text-secondary">
                     Adding your work experience helps potential clients and
                     collaborators understand your background and the unique
                     skills you bring to every project.
                   </p>
                 </div>
-                <div className="mt-5 px-5 py-3 w-full md:w-[550px] border-t">
+                <div className="mt-5 px-5 py-3 w-full lg:w-[550px] border-t">
                   <p className="text-[14px] text-secondary">
                     No work experience added
                   </p>
@@ -497,21 +518,21 @@ const SetupProfile = () => {
               <div className="px-5 md:px-10 h-[60px] sm:h-[100px] bg-blue-30 flex justify-end items-start ">
                 <i
                   onClick={() => experienceFormFocus()}
-                  className="fa-solid fa-plus bottom-[100px] bg-primary-100 text-primary-50 rounded-full px-[7px] py-[6px] sm:px-[12px] sm:py-[11px] cursor-pointer "
+                  className="fa-solid fa-plus bottom-[100px] bg-primary-100 text-white rounded-full px-[7px] py-[6px] sm:px-[12px] sm:py-[11px] cursor-pointer "
                 ></i>
               </div>
             </div>
           </div>
-          <div className="px-5 md:px-10 py-5 flex flex-col sm:flex-row justify-center sm:justify-between md:justify-end border-t">
+          <div className="px-5 md:px-10 py-5 flex flex-col sm:flex-row justify-center sm:justify-between lg:justify-end border-t">
             <button
               onClick={() => handleProfileDetailsSubmit()}
-              className="text-primary-100 border-primary-100 w-full md:w-[160px] py-3 hover:bg-primary-100 hover:text-primary-50 sm:mr-3 text-sm rounded-full"
+              className="text-primary-100 border-primary-100 w-full lg:w-[160px] py-3 hover:bg-primary-100 hover:text-white sm:mr-3 text-sm rounded-full"
             >
               Skip
             </button>
             <button
               onClick={() => handleProfileDetailsSubmit()}
-              className="bg-primary-100 w-full md:w-[160px] mt-4 sm:mt-0 lg:mt-0 text-primary-50 py-3 text-sm rounded-full"
+              className="bg-primary-100 w-full lg:w-[160px] mt-4 sm:mt-0 lg:mt-0 text-white py-3 text-sm rounded-full"
             >
               Continue
             </button>
@@ -523,14 +544,14 @@ const SetupProfile = () => {
           } w-full border-l h-full flex-col transition-all duration-200`}
         >
           <div className="flex flex-col">
-            <div className="px-5 md:px-10">
+            <div className="px-5 md:px-10 pt-8 pb-[100px] md:py-[150px] lg:pt-10 lg:pb-[200px]">
               <div className="mt-4 w-full">
                 <p className="font-bold text-[20px] md:text-[24px]">
                   Work experience
                 </p>
               </div>
-              <div className="flex flex-col sm:flex-row">
-                <div className="mt-3 w-full sm:mr-4">
+              <div className="flex items-center flex-col sm:flex-row">
+                <div className="mt-[20px] w-full sm:mr-4">
                   <div className="flex items-center">
                     <p className="font-medium text-[14.5px]">Role</p>
                   </div>
@@ -538,18 +559,18 @@ const SetupProfile = () => {
                     type="text"
                     name="experienceRole"
                     onChange={handleProfileDetailsChange}
-                    className="mt-1 w-full h-[36px] rounded-md border-[1.5px] outline-none px-2 text-[13px]"
+                    className="mt-1 w-full h-[36px] rounded-md border-[1.5px] outline-none px-2 text-[14px]"
                     placeholder="Eg. Tailor"
                   />
                 </div>
-                <div className="mt-6 sm:mt-3 w-full">
+                <div className="mt-[20px] w-full">
                   <div className="flex items-center">
                     <p className="font-medium text-[14.5px]">Employment Type</p>
                   </div>
                   <select
                     name="experienceType"
                     onChange={handleProfileDetailsChange}
-                    className=" mt-1 w-full h-[36px] rounded-md border-[1.5px] outline-none px-2 text-[13px]"
+                    className=" mt-1 w-full h-[36px] rounded-md border-[1.5px] outline-none px-2 text-[14px]"
                   >
                     <option
                       value=""
@@ -572,7 +593,7 @@ const SetupProfile = () => {
                   type="text"
                   name="experienceOrganization"
                   onChange={handleProfileDetailsChange}
-                  className="mt-1 w-full h-[36px] rounded-md border-[1.5px] outline-none px-2 text-[13px]"
+                  className="mt-1 w-full h-[36px] rounded-md border-[1.5px] outline-none px-2 text-[14px]"
                   placeholder="Name of the organisation"
                 />
               </div>
@@ -584,7 +605,7 @@ const SetupProfile = () => {
                   <select
                     name="experienceStartMonth"
                     onChange={handleProfileDetailsChange}
-                    className="mr-3 sm:mr-4 mt-1 w-full h-[36px] rounded-md border-[1.5px] outline-none px-2 text-[13px]"
+                    className="mr-3 sm:mr-4 mt-1 w-full h-[36px] rounded-md border-[1.5px] outline-none px-2 text-[14px]"
                   >
                     <option value="" disabled selected hidden>
                       Start month
@@ -598,7 +619,7 @@ const SetupProfile = () => {
                   <select
                     name="experienceStartYear"
                     onChange={handleProfileDetailsChange}
-                    className=" mt-1 w-full h-[36px] rounded-md border-[1.5px] outline-none px-2 text-[13px]"
+                    className=" mt-1 w-full h-[36px] rounded-md border-[1.5px] outline-none px-2 text-[14px]"
                   >
                     <option value="" disabled selected hidden>
                       Start year
@@ -619,7 +640,7 @@ const SetupProfile = () => {
                   <select
                     name="experienceThroughMonth"
                     onChange={handleProfileDetailsChange}
-                    className=" mr-3 sm:mr-4 mt-1 w-full h-[36px] rounded-md border-[1.5px] outline-none px-2 text-[13px]"
+                    className=" mr-3 sm:mr-4 mt-1 w-full h-[36px] rounded-md border-[1.5px] outline-none px-2 text-[14px]"
                   >
                     <option value="" disabled selected hidden>
                       Through month
@@ -633,7 +654,7 @@ const SetupProfile = () => {
                   <select
                     name="experienceThroughYear"
                     onChange={handleProfileDetailsChange}
-                    className=" mt-1 w-full h-[36px] rounded-md border-[1.5px] outline-none px-2 text-[13px]"
+                    className=" mt-1 w-full h-[36px] rounded-md border-[1.5px] outline-none px-2 text-[14px]"
                   >
                     <option value="" disabled selected hidden>
                       Through year
@@ -660,21 +681,21 @@ const SetupProfile = () => {
                 <textarea
                   name="experienceDescription"
                   onChange={handleProfileDetailsChange}
-                  className="mt-1 w-full h-[130px] rounded-md border-[1.5px] outline-none px-2 py-[5px] text-[13px] resize-none"
+                  className="mt-1 w-full h-[130px] rounded-md border-[1.5px] outline-none px-4 py-[5px] text-[14px] resize-none"
                 ></textarea>
               </div>
             </div>
           </div>
-          <div className="px-5 md:px-10 py-5 mt-6 flex flex-col sm:flex-row justify-center sm:justify-between md:justify-end">
+          <div className="px-5 md:px-10 py-5 mt-6 flex flex-col sm:flex-row justify-center sm:justify-between lg:justify-end">
             <button
               onClick={() => experienceFocus()}
-              className="text-primary-100 hover:bg-primary-100 hover:text-primary-50 w-full md:w-[160px] py-3 sm:mr-3 text-sm rounded-full"
+              className="text-primary-100 hover:bg-primary-100 hover:text-white w-full lg:w-[160px] py-3 sm:mr-3 text-sm rounded-full"
             >
               Cancel
             </button>
             <button
               onClick={() => experienceFocus()}
-              className="bg-primary-100 w-full md:w-[160px] mt-4 sm:mt-0 lg:mt-0 text-primary-50 py-3 text-sm rounded-full"
+              className="bg-primary-100 w-full lg:w-[160px] mt-4 sm:mt-0 lg:mt-0 text-white py-3 text-sm rounded-full"
             >
               Save
             </button>
