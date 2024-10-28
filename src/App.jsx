@@ -6,7 +6,6 @@ import Signin from "./components/Signin/Signin";
 import "./App.css";
 import LandingPage from "./Pages/LandingPage";
 import QuestionScreen from "./components/PersonalizedQuestion/QuestionScreen";
-import { Toaster } from "sonner";
 import SetupProfile from "./Pages/ProfileCreation/SetupProfile";
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 import DesignerProfile from "./Pages/DesignerProfile/DesignerProfile";
@@ -58,7 +57,6 @@ const App = () => {
             <Route path="/jobupload" element={<JobApplicationUpload />} />
             <Route path="/jobs/:id" element={<JobApplicationDetails />} />
             <Route path="/createjob" element={<CreateJobPost />} />
-
             <Route
               path="/designer-profile/pending-application"
               element={<ProfilePendingApplication />}

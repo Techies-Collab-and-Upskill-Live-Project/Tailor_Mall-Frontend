@@ -12,17 +12,17 @@ const UploadWorkHome = () => {
         <p className="font-bold text-[25px] sm:text-[30px] md:text-[50px]">
           Upload work
         </p>
-        <p className="text-secondary mt-2 sm:mt-5 w-full sm:w-[550px] text-center text-[14px]">
+        <p className="text-secondary mt-2 sm:mt-3 w-full sm:w-[550px] text-center text-[14px]">
           Upload Your Tailoring Creations to Showcase Your Skills and Attract
           Clients or Collaborators Looking for Unique Fashion Talent
         </p>
-        <div className=" w-full justify-center mt-[25px] lg:mt-2 sm:mt-5 flex md:flex-row flex-col gap-y-[20px] gap-x-[20px]">
+        <div className=" w-full justify-center mt-8 lg:mt-6 sm:mt-5 flex md:flex-row flex-col gap-y-[20px] gap-x-[20px]">
           <button className="text-primary-100 md:w-[250px] py-3 border border-white hover:border-primary-100 md:mr-3 text-sm rounded-full ">
             Skip
           </button>
           <button
             onClick={() => navigateTo("/upload-work-1")}
-            className="bg-primary-100 md:w-[250px] py-3 text-primary-50 text-sm rounded-full"
+            className="bg-primary-100 md:w-[250px] py-3 text-white text-sm rounded-full"
           >
             Continue
           </button>

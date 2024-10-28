@@ -12,8 +12,8 @@ export default {
           200: "#004646",
         },
         foundationGrey: { 50: "#d3d3d3", 100: "#bcbcbc" },
-        primaryGreen: { 50: "#E6F2F2", 100: "#B0D8D8"},
-        success: {50: "#E6FBEE"}
+        primaryGreen: { 50: "#E6F2F2", 100: "#B0D8D8" },
+        success: { 50: "#E6FBEE" },
       },
     },
     screens: {

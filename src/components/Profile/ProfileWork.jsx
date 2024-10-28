@@ -1,5 +1,5 @@
 import React from "react";
-import profileImg from "./Assets/myLove.jpg";
+import profileImg from "./Assets/myLove.JPG";
 
 const ProfileWork = ({ profileWork, isShowWork }) => {
   return (
