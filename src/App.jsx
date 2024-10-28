@@ -1,32 +1,59 @@
-import { Link, Route, Router, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./../src/App.css";
 import Welcome from "./components/Welcome/Welcome";
 import Signup from "./components/Signup/Signup";
 import Signin from "./components/Signin/Signin";
 import "./App.css";
-import Navbar from "./components/Navbar/Navbar";
 import LandingPage from "./Pages/LandingPage";
 import SetupProfile from "./Pages/ProfileCreation/SetupProfile";
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
-import UploadWork from "./Pages/UploadProject/UploadProject";
 import DesignerProfile from "./Pages/DesignerProfile/DesignerProfile";
 import { Toaster, toast } from "sonner";
+import ProfilePendingApplication from "./components/Profile/ProfilePendingApplication";
+import ProfileDoneJobs from "./components/Profile/ProfileDoneJobs";
+import { createContext, useState } from "react";
+import UserProfile from "./Pages/UserProfile/UserProfile";
+import UploadWorkHome from "./Pages/UploadWork/UploadWorkHome";
+import UploadWorkForm1 from "./Pages/UploadWork/UploadWorkForm1";
+
+export const userProfileContext = createContext();
 
 const App = () => {
+  const [userProfile, setUserProfile] = useState([
+    "Suit-making",
+    "Fabric Selection",
+    "Children wear",
+    "Wedding wears",
+    "Fashion Illustration",
+    "Sport kit",
+  ]);
+
   return (
     <>
       <Toaster position="top-right" font-size="50px" />
-      <Routes>
-        <Route path="/" element={<Welcome />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/signin" element={<Signin />} />
-        <Route path="/home" element={<LandingPage />} />
-        <Route path="/setup-profile" element={<SetupProfile />} />
-        <Route path="/reset-password" element={<ResetPassword />} />
-        <Route path="/upload-project" element={<UploadWork />} />
-        <Route path="/upload-project/fill" element={<UploadWork />} />
-        <Route path="/designer-profile" element={<DesignerProfile />} />
-      </Routes>
+      <userProfileContext.Provider value={{ userProfile, setUserProfile }}>
+        <Routes>
+          <Route path="/" element={<Welcome />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/home" element={<LandingPage />} />
+          <Route path="/setup-profile" element={<SetupProfile />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/upload-work" element={<UploadWorkHome />} />
+          <Route path="/upload-work-1" element={<UploadWorkForm1 />} />
+          <Route path="/designer-profile" element={<DesignerProfile />} />
+          <Route path="/user-profile" element={<UserProfile />} />
+
+          <Route
+            path="/designer-profile/pending-application"
+            element={<ProfilePendingApplication />}
+          />
+          <Route
+            path="/designer-profile/done-jobs"
+            element={<ProfileDoneJobs />}
+          />
+        </Routes>
+      </userProfileContext.Provider>
     </>
   );
 };
