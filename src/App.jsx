@@ -8,7 +8,7 @@ import LandingPage from "./Pages/LandingPage";
 import SetupProfile from "./Pages/ProfileCreation/SetupProfile";
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 import DesignerProfile from "./Pages/DesignerProfile/DesignerProfile";
-import { Toaster, toast } from "sonner";
+import { Toaster } from "sonner";
 import ProfilePendingApplication from "./components/Profile/ProfilePendingApplication";
 import ProfileDoneJobs from "./components/Profile/ProfileDoneJobs";
 import { createContext, useState } from "react";
