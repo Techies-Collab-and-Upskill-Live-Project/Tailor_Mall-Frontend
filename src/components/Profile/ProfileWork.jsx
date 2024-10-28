@@ -1,5 +1,5 @@
 import React from "react";
-import profileImg from "./Assets/myLove.JPG";
+import projectImg from "./Assets/projectImg.svg";
 
 const ProfileWork = ({ profileWork, isShowWork }) => {
   return (
@@ -12,7 +12,7 @@ const ProfileWork = ({ profileWork, isShowWork }) => {
         <div key={index} className="">
           <img
             className=" md:h-[350px] lg:h-[290px] w-full object-cover rounded-[8px]"
-            src={profileImg}
+            src={projectImg}
           />
           <div className="flex justify-end gap-x-[18px] mt-[12px]">
             <div className="flex items-center">

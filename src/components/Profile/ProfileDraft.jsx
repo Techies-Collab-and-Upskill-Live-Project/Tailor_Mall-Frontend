@@ -1,5 +1,5 @@
 import React from "react";
-import profileImg from "./Assets/myLove.jpg";
+import projectImg from "./Assets/projectImg.svg";
 
 const ProfileDraft = ({ profileDraft, isShowDraft }) => {
   return (
@@ -12,7 +12,7 @@ const ProfileDraft = ({ profileDraft, isShowDraft }) => {
         <div key={index} className="">
           <img
             className=" md:h-[350px] lg:h-[290px] w-full object-cover rounded-[8px]"
-            src={profileImg}
+            src={projectImg}
           />
         </div>
       ))}

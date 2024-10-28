@@ -1,5 +1,5 @@
 import React, { useState, useContext, useRef, useEffect } from "react";
-import profileImg from "./Assets/myLove.jpg";
+import projectImg from "./Assets/projectImg.svg";
 import ProfileStatChart from "./ProfileStatChart";
 import { userProfileContext } from "../../App";
 
@@ -255,7 +255,7 @@ const ProfileStats = ({ profileStats, isShowStats }) => {
                 <div className="sm:mr-[20px]">
                   <img
                     className="w-[50px] sm:w-[70px] lg:w-[90px] h-[60px] sm:h-[90px] lg:h-[110px] object-cover rounded-[7px]"
-                    src={profileImg}
+                    src={projectImg}
                     alt=""
                   />
                 </div>

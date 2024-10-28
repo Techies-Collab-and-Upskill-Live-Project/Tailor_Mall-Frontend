@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "./Assets/logo.png";
-import profileImg from "./Assets/myLove.jpg";
+import profileImg from "./Assets/profileImg.svg";
 
 const NavWithSearchBar = () => {
   return (
