@@ -62,7 +62,7 @@ const DesignsCard = () => {
     <div className="grid my-10 px-5 md:my-20 md:px-[100px]">
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         {data.map((item, index) => (
-          <div className="flex flex-col gap-5">
+          <div key={index} className="flex flex-col gap-5">
             <img src={img1} className="rounded-lg" alt="" />
 
             <div className="flex items-center justify-between mr-5">

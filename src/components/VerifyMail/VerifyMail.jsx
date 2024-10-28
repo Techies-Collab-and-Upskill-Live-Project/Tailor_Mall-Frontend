@@ -8,6 +8,21 @@ const VerifyMail = () => {
   const [otpValues, setOtpValues] = useState(["", "", "", "", ""]);
   const [resendMail, setResendMail] = useState(false);
 
+  const handleCodesChange = (index, event) => {
+    const newCodes = [...otpValues];
+    newCodes[index] = event.target.value;
+    setOtpValues(newCodes);
+
+    if (event.target.value.length === 1 && index < 4) {
+      document.getElementById(`code-input-${index + 1}`).focus();
+    }
+
+    let codes = newCodes.join("");
+    console.log(codes);
+    
+    
+  };
+
   return (
     <>
       <div
@@ -34,6 +49,8 @@ const VerifyMail = () => {
               {otpValues.map((input, index) => (
                 <input
                   type="text"
+                  id={`code-input-${index}`}
+                  onChange={(e) => handleCodesChange(index, e)}
                   className="text-center outline-none border-none bg-[#E6f2f2] text-[#535353] text-xl font-medium w-10 h-10 rounded-xl"
                 />
               ))}

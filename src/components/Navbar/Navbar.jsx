@@ -3,6 +3,7 @@ import search from "./Assets/fi_search.png";
 import person from "./Assets/person.png";
 import icon from "./Assets/fi_chevron-down.png";
 import filter from "./Assets/Filter.png";
+import logo from "../../assets/Tailoralogo.png"
 
 const Navbar = () => {
   return (
@@ -10,9 +11,7 @@ const Navbar = () => {
       <nav className="border-b px-6 border-[#bcbcbc] flex items-center justify-between self-stretch md:px-10">
         <div className="flex gap-1 justify-between items-center">
           <img src={menu} className="w-6 h-6 flex-shrink-0" alt="" />
-          <h2 className="text-xl md:text-2xl leading-7 tracking-[-4%] text-[#111]">
-            LOGO
-          </h2>
+        <img src={logo} alt="" />
         </div>
 
         <div className="flex gap-[19px] px-6 py-5 items-center justify-between self-stretch">

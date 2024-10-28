@@ -1,0 +1,30 @@
+//       console.log(signupDetails);
+        //       setIsLoading(true);
+        //       // const response = await axios.post(`${baseUrl}/client/signup"`, {
+        //       const response = await axios.post(`${baseUrl}/client/signup`, {
+        //         country: signupDetails.country,
+        //         email: signupDetails.email,
+        //         password: signupDetails.password,
+        //         phoneNumber: signupDetails.phoneNo,
+        //         hearPlatformInfo: signupDetails.platform,
+        //       });
+        //       let token = response?.data?.data?.token;
+        //   if (token) {
+        //     localStorage.setItem("token", token);
+        //     setSignup(true);
+        //     toast.success(response.data.msg)
+        //   } else {
+        //     console.log(response?.data?.message);
+        //   }
+        //   setIsLoading(false)
+        // } else {
+        //   setErrorMessage(validateForm);
+        //   console.log(errorMessage);
+        //   toast.warning("Please check all input fields");
+        // }
+
+
+
+
+
+        // const handleSignup = async (e) => {

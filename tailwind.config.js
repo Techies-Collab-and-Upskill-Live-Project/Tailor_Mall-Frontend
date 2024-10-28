@@ -11,6 +11,9 @@ export default {
           100: "#008080",
           200: "#004646",
         },
+        foundationGrey: { 50: "#d3d3d3", 100: "#bcbcbc" },
+        primaryGreen: { 50: "#E6F2F2", 100: "#B0D8D8"},
+        success: {50: "#E6FBEE"}
       },
     },
     screens: {
@@ -25,6 +28,9 @@ export default {
 
       xl: "1280px",
       // => @media (min-width: 1280px) { ... }
+
+      "2xl": "1536px",
+      // => @media (min-width: 1536px) { ... }
     },
   },
   plugins: [],
