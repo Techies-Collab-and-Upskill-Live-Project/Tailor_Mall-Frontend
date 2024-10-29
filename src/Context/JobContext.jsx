@@ -56,7 +56,7 @@ export const JobProvider = ({ children }) => {
       [name]: value,
     }));
 
-    console.log(jobData);
+    // console.log(jobData);
   };
 
   const validateTitleForm = (e) => {
@@ -78,7 +78,7 @@ export const JobProvider = ({ children }) => {
 
     const validatedForm = validateTitleForm();
 
-    console.log(jobData);
+    // console.log(jobData);
 
     if (Object.keys(validatedForm).length === 0) {
       setIsDescription(true);
@@ -167,6 +167,8 @@ export const JobProvider = ({ children }) => {
           },
         }
       );
+      console.log(clientId);
+      
       console.log(response);
     } catch (error) {
       console.error("Error submitting the form:", error);

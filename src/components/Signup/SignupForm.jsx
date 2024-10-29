@@ -63,15 +63,16 @@ const SignupForm = ({
               <label htmlFor="" className="font-medium text-black">
                 Country of Residence
               </label>
-              <div className="border border-[#bcbcbc] rounded-lg h-9 flex items-center gap-2 px-4 md:h-12 justify-between">
+              <div className="border border-[#bcbcbc] rounded-lg h-9 flex items-center gap-2 px-4 md:h-12 justify-between w-full">
                 <select
                   name="country"
                   id=""
-                  className="flex justify-between border-none outline-none"
+                  className="flex justify-between border-none outline-none w-full"
                   onChange={handleChange}
                   value={signupDetails.country}
                 >
                   Select your country of Residence
+                  <option value=""></option>
                   <option value="nigeria">Nigeria</option>
                   <option value="france">France</option>
                   <option value="india">India</option>
@@ -273,11 +274,12 @@ const SignupForm = ({
                 <select
                   name="platform"
                   id=""
-                  className="flex justify-between border-none outline-none"
+                  className="flex justify-between border-none outline-none w-full"
                   onChange={handleChange}
                   value={signupDetails.platform}
                 >
                   Where did you hear of this platform?
+                  <option value=""></option>
                   <option value="facebook">Facebook</option>
                   <option value="twitter">Twitter</option>
                   <option value="Instagram">Instagram</option>
