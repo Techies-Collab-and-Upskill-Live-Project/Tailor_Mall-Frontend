@@ -16,6 +16,8 @@ import CreateJobPost from "./Pages/JobPosting/CreateJobPost/CreateJobPost";
 import { UserProvider } from "./Context/UserContext";
 import JobReview from "./Pages/JobPosting/JobDetails/JobReview/JobReview";
 import JobDescription from "./Pages/JobPosting/JobDetails/JobDescription/JobDescription";
+import DesignsCard from "./components/Designs/DesignCard";
+import JobTesting from "./Pages/JobApplications/JobTesting";
 
 
 const App = () => {
@@ -35,6 +37,7 @@ const App = () => {
           <Route path="/jobupload" element={<JobApplicationUpload />} />
           <Route path="/jobs/:id" element={<JobApplicationDetails />} />
           <Route path="/createjob" element={<CreateJobPost />} />
+          <Route path="/jobapply" element={<JobApplicationUpload />} />
 
           {/* <Route path="user" element={<UserList />} /> */}
         </Routes>

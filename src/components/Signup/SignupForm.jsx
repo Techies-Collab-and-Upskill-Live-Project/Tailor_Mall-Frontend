@@ -4,6 +4,7 @@ import BigButton from "../Button/BigButton";
 import Google from "../../assets/Google.png";
 import facebook from "../../assets/Facebook.png";
 import password from "../../assets/fi_lock.png";
+import phone from "../../assets/fi_phone (1).png";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../logo/Logo";
@@ -88,7 +89,7 @@ const SignupForm = ({
                 Phone Number
               </label>
               <div className="border border-[#bcbcbc] rounded-lg h-9 flex items-center gap-2 px-4 md:h-12">
-                <img className="w-5 h-5" src={Mail} alt="" />
+                <img className="w-5 h-5" src={phone} alt="" />
                 <input
                   name="phoneNo"
                   value={signupDetails.phoneNo}

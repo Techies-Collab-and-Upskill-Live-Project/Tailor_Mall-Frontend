@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import BigButton from "../Button/BigButton";
 import { useState } from "react";
 import QuestionFrame from "./QuestionsFrame";
 
@@ -9,7 +8,7 @@ const QuestionScreen = () => {
   return (
     <>
       {!hasStarted ? (
-        <div className="flex flex-col justify-center py-[375px] items-center bg-[#fff]">
+        <div className="flex flex-col justify-center items-center bg-[#fff]">
           <div className="flex absolute top-1/2 translate-y-[-50%] items-center justify-center px-5 md:px-10 flex-col gap-10">
             <div className="flex flex-col items-center justify-center self-stretch">
               <h3 className="flex items-center justify-center self-stretch text-center text-[#111] text-xl md:text-[40px] font-bold leading-[120%] md:tracking-[-3.2px] lg:text-6xl lg:tracking-[-4.8px]">
@@ -22,17 +21,17 @@ const QuestionScreen = () => {
             </div>
 
             <div className="flex py-6 px-3 flex-col w-full md:flex-row-reverse items-center justify-center md:justify-around gap-6">
-              <BigButton
-                submit={() => setHasStarted(true)}
-                text="Get started"
-                className="w-full md:w-[50%]"
-              />
-
+              <button
+                onClick={() => setHasStarted(true)}
+                className="rounded-[100px] flex items-center justify-center px-6 py-3 bg-primary-100 text-primaryGreen-50 text-[12px] leading-4 font-medium md:text-base md:leading-[16.8px] lg:text-[16px] w-full md:w-[50%] h-12"
+              >
+                Get started
+              </button>
               <Link
                 to="/setup-profile"
-                className="flex py-3 px-4 justify-center items-center dot rounded-[100px] w-full md:w-[50%]"
+                className="flex justify-center items-center rounded-[100px] border-primary w-full md:w-[50%] h-12"
               >
-                <span className="text-base w-full text-primary-100 leading-[22.4px]">
+                <span className="text-base text-primary-100 leading-[22.4px]">
                   Skip
                 </span>
               </Link>
