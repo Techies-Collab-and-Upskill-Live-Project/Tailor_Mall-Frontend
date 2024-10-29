@@ -29,25 +29,6 @@ import JobTesting from "./Pages/JobApplications/JobTesting";
 export const userProfileContext = createContext();
 
 const App = () => {
-<<<<<<< HEAD
-  return (
-    <UserProvider>
-      <div className="">
-        <Toaster position="top-right" />
-        <Routes>
-          <Route path="/" element={<Welcome />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/signin" element={<Signin />} />
-          <Route path="/home" element={<LandingPage />} />
-          <Route path="/question" element={<QuestionScreen />} />
-          <Route path="/setup-profile" element={<SetupProfile />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
-          <Route path="/jobs" element={<JobApplication />} />
-          <Route path="/jobupload" element={<JobApplicationUpload />} />
-          <Route path="/jobs/:id" element={<JobApplicationDetails />} />
-          <Route path="/createjob" element={<CreateJobPost />} />
-          <Route path="/jobapply" element={<JobApplicationUpload />} />
-=======
   const [userProfile, setUserProfile] = useState([
     "Suit-making",
     "Fabric Selection",
@@ -56,42 +37,42 @@ const App = () => {
     "Fashion Illustration",
     "Sport kit",
   ]);
->>>>>>> 2a14c6bd4c9976f061fd34c4d5704db9919b614b
 
   return (
     <>
       <UserProvider>
-       <div className="">
+        <div className="">
           <Toaster position="top-right" font-size="50px" />
           <userProfileContext.Provider value={{ userProfile, setUserProfile }}>
-          <Routes>
-            <Route path="/" element={<Welcome />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/signin" element={<Signin />} />
-            <Route path="/home" element={<LandingPage />} />
-            <Route path="/question" element={<QuestionScreen />} />
-            <Route path="/setup-profile" element={<SetupProfile />} />
-            <Route path="/reset-password" element={<ResetPassword />} />
-            <Route path="/upload-work" element={<UploadWorkHome />} />
-            <Route path="/upload-work-1" element={<UploadWorkForm1 />} />
-            <Route path="/designer-profile" element={<DesignerProfile />} />
-            <Route path="/user-profile" element={<UserProfile />} />
-            <Route path="/jobs" element={<JobApplication />} />
-            <Route path="/jobupload" element={<JobApplicationUpload />} />
-            <Route path="/jobs/:id" element={<JobApplicationDetails />} />
-            <Route path="/createjob" element={<CreateJobPost />} />
-            <Route
-              path="/designer-profile/pending-application"
-              element={<ProfilePendingApplication />}
-            />
-            <Route
-              path="/designer-profile/done-jobs"
-              element={<ProfileDoneJobs />}
-            />
-        </Routes>
-      </userProfileContext.Provider>
-      </div>
-    </UserProvider>
+            <Routes>
+              <Route path="/" element={<Welcome />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/signin" element={<Signin />} />
+              <Route path="/home" element={<LandingPage />} />
+              <Route path="/question" element={<QuestionScreen />} />
+              <Route path="/setup-profile" element={<SetupProfile />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
+              <Route path="/upload-work" element={<UploadWorkHome />} />
+              <Route path="/upload-work-1" element={<UploadWorkForm1 />} />
+              <Route path="/designer-profile" element={<DesignerProfile />} />
+              <Route path="/user-profile" element={<UserProfile />} />
+              <Route path="/jobs" element={<JobApplication />} />
+              <Route path="/jobupload" element={<JobApplicationUpload />} />
+              <Route path="/jobs/:id" element={<JobApplicationDetails />} />
+              <Route path="/createjob" element={<CreateJobPost />} />
+              <Route path="/jobapply" element={<JobApplicationUpload />} />
+              <Route
+                path="/designer-profile/pending-application"
+                element={<ProfilePendingApplication />}
+              />
+              <Route
+                path="/designer-profile/done-jobs"
+                element={<ProfileDoneJobs />}
+              />
+            </Routes>
+          </userProfileContext.Provider>
+        </div>
+      </UserProvider>
     </>
   );
 };
