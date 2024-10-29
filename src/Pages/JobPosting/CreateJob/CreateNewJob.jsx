@@ -6,7 +6,7 @@ import JobDescription from "../JobDetails/JobDescription/JobDescription";
 const CreateNewJob = () => {
   const { isDescription, jobData } = useContext(JobContext);
 
-  return <>{isDescription ? <JobDescription /> : <JobTitle />}</>;
+  return <div className="font-light text-base">{isDescription ? <JobDescription /> : <JobTitle />}</div>;
 };
 
 export default CreateNewJob;

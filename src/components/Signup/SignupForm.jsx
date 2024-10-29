@@ -4,10 +4,7 @@ import BigButton from "../Button/BigButton";
 import Google from "../../assets/Google.png";
 import facebook from "../../assets/Facebook.png";
 import password from "../../assets/fi_lock.png";
-import logo from "../../assets/Tailoralogo.png"
 import { useState } from "react";
-import { toast } from "sonner";
-import { Oval } from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import Logo from "../logo/Logo";
 
@@ -17,11 +14,11 @@ const SignupForm = ({
   signupDetails,
   errorMessage,
   psswdError,
-  isLoading
+  isLoading,
 }) => {
   return (
     <div className="flex flex-col gap-4 py-6 md:gap-8 md:py-[54px] px-[20px]">
-    <Logo />
+      <Logo />
       <h5 className="font-bold text-xl text-[#000000] md:text-[28px] leading-8">
         Create an account
       </h5>
@@ -63,15 +60,21 @@ const SignupForm = ({
               <label htmlFor="" className="font-medium text-black">
                 Country of Residence
               </label>
-              <div className="border border-[#bcbcbc] rounded-lg h-9 flex items-center gap-2 px-4 md:h-12 justify-between">
+              <div
+                className={`border border-foundationGrey-100 rounded-lg h-9 flex items-center gap-2 px-4 md:h-12 justify-between w-full" ${
+                  errorMessage?.name && "border-red-400 "
+                }`}
+              >
                 <select
                   name="country"
                   id=""
-                  className="flex justify-between border-none outline-none"
+                  className="flex justify-between border-none outline-none w-full"
                   onChange={handleChange}
                   value={signupDetails.country}
                 >
-                  Select your country of Residence
+                  <option value="" disabled selected hidden>
+                    e.g Nigeria
+                  </option>
                   <option value="nigeria">Nigeria</option>
                   <option value="france">France</option>
                   <option value="india">India</option>
@@ -112,8 +115,7 @@ const SignupForm = ({
                   onChange={handleChange}
                 />
               </div>
-
-              {/* {errorMessage && (
+              {errorMessage && (
                 <div className="flex flex-col px-[12px]">
                   <div className="flex items-center gap-x-[8px]">
                     {psswdError?.length ? (
@@ -262,7 +264,7 @@ const SignupForm = ({
                     </p>
                   </div>
                 </div>
-              )} */}
+              )}
             </div>
 
             <div className="flex flex-col gap-3 text-base">
@@ -273,11 +275,14 @@ const SignupForm = ({
                 <select
                   name="platform"
                   id=""
-                  className="flex justify-between border-none outline-none"
+                  className="flex justify-between border-none outline-none w-full"
                   onChange={handleChange}
                   value={signupDetails.platform}
                 >
                   Where did you hear of this platform?
+                  <option value="" disabled selected hidden>
+                    e.g social media
+                  </option>
                   <option value="facebook">Facebook</option>
                   <option value="twitter">Twitter</option>
                   <option value="Instagram">Instagram</option>
@@ -286,22 +291,26 @@ const SignupForm = ({
             </div>
           </div>
 
-          <BigButton IsDisabled={isLoading} loadingText="Signing Up" submit={handleSignup} text="Create an account" />
+          <BigButton
+            IsDisabled={isLoading}
+            loadingText="Signing Up"
+            submit={handleSignup}
+            text="Create an account"
+          />
           <div>
-          <div className="flex mt-2 flex-col gap-2">
+            <div className="flex mt-2 flex-col gap-2">
               <p className="text-center text-base font-normal text-[#535353]">
                 Already have an account?
-                <Link to="/signin" className="ml-1 text-[#008080] block md:inline">
+                <Link
+                  to="/signin"
+                  className="ml-1 text-[#008080] block md:inline"
+                >
                   Log in
                 </Link>
               </p>
             </div>
-
           </div>
-
         </form>
-
-
       </div>
     </div>
   );
