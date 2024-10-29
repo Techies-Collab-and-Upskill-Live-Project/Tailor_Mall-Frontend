@@ -32,7 +32,7 @@ export const JobProvider = ({ children }) => {
       ? JSON.parse(savedJobData)
       : {
           title: "",
-          clientId: clientId,
+          // clientId: clientId,
           category: "",
           jobType: "",
           description: "",
@@ -43,6 +43,10 @@ export const JobProvider = ({ children }) => {
           timeLine: "",
         };
   });
+
+  useEffect(() => {
+    console.log(jobData);
+  }, []);
 
   // Save jobData to localStorage whenever it changes
   useEffect(() => {
@@ -55,8 +59,6 @@ export const JobProvider = ({ children }) => {
       ...prevJobData,
       [name]: value,
     }));
-
-    // console.log(jobData);
   };
 
   const validateTitleForm = (e) => {
@@ -139,19 +141,9 @@ export const JobProvider = ({ children }) => {
     console.log(jobData);
   };
 
-  const validateForm = (e) => {
-    let errors = {};
-    if (!jobData.timeLine) {
-      errors.timeLine = "Please input the Job type";
-    }
-    if (!jobData.budget) {
-      errors.budget = "Please input your budget";
-    }
-    return errors;
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("token", clientId);
 
     // if (Object.keys(validatedForm).length === 0) {
     try {
@@ -160,15 +152,14 @@ export const JobProvider = ({ children }) => {
         {
           ...jobData,
           requiredSkills,
-        },
+          clientId,
+        }, // This is the job data being sent
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }
       );
-      console.log(clientId);
-      
       console.log(response);
     } catch (error) {
       console.error("Error submitting the form:", error);

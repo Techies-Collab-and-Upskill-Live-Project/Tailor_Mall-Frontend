@@ -14,7 +14,6 @@ const JobBudget = () => {
     let errors = {};
     if (!jobData.timeLine) {
       errors.timeLine = "Please input the Job type";
-      // error.timeline = "P"
     }
     if (!jobData.budget) {
       errors.budget = "Please input your budget";
@@ -25,7 +24,6 @@ const JobBudget = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validate the form
     const validatedForm = validateForm();
 
     // Check if validation passed (i.e., no errors)
