@@ -45,7 +45,7 @@ const SigninForm = ({
               >
                 Work email
               </label>
-              <div className="flex h-12 items-center gap-2 rounded-lg border border-[#bcbcbc] px-4">
+              <div className="flex h-12 w-full items-center gap-2 rounded-lg border border-[#bcbcbc] px-4">
                 <img src={Mail} className="h-5 w-5" alt="" />
                 <input
                   value={signinDetails.email}

@@ -34,14 +34,14 @@ const JobTitle = () => {
                   className="flex flex-col justify-center gap-2 self-stretch rounded-xl px-3 border border-foundationGrey-50 h-10 outline-none"
                 />
               </div>
-              <p>eg. Freelance Fashion designer for Custom Evening Gown</p>
+              <p className="text-base text-center font-light">eg. Freelance Fashion designer for Custom Evening Gown</p>
             </div>
 
             <div className="flex flex-col gap-2 self-stretch">
               <label className="self-stretch text-xl leading-6" htmlFor="">
                 Job category
               </label>
-              <div className="flex flex-col justify-center r gap-2 self-stretch rounded-xl p-3 border border-foundationGrey-50 h-12 outline-none">
+              <div className="flex flex-col justify-center gap-2 self-stretch rounded-xl p-3 border border-foundationGrey-50 h-12 outline-none">
                 <select
                   name="category"
                   id=""

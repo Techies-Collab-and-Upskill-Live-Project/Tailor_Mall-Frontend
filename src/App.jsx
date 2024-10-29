@@ -22,6 +22,7 @@ import JobApplicationUpload from "./Pages/JobApplicationUpload/JobApplicationUpl
 import CreateJobPost from "./Pages/JobPosting/CreateJobPost/CreateJobPost";
 import { UserProvider } from "./Context/UserContext";
 import JobReview from "./Pages/JobPosting/JobDetails/JobReview/JobReview";
+import JobDescription from "./Pages/JobPosting/JobDetails/JobDescription/JobDescription";
 
 export const userProfileContext = createContext();
 

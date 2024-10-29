@@ -89,7 +89,7 @@ const QuestionFrame = () => {
                 <div className="flex py-6 px-3 flex-col w-full md:flex-row-reverse items-center justify-center md:justify-around gap-6">
               <BigButton
                 submit={() => increaseCounter()}
-                text="Get started"
+                text="Next"
                 className="w-full md:w-[50%]"
               />
 
