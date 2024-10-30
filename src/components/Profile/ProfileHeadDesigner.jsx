@@ -1,5 +1,5 @@
 import React from "react";
-import profileImg from "./Assets/myLove.JPG";
+import profileImg from "./Assets/myLove.jpg";
 import profileBackg from "./Assets/profileBackg.svg";
 import { GoPencil } from "react-icons/go";
 import { IoMdLink } from "react-icons/io";
