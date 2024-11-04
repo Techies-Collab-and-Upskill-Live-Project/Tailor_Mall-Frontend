@@ -25,6 +25,7 @@ export const JobProvider = ({ children }) => {
   const [isDescription, setIsDescription] = useState(false);
   const [isBudgetPage, setIsBudgetPage] = useState(false);
   const { clientId, token } = useContext(UserContext);
+  const [loading, setIsLoading] = useState(false)
 
   const [jobData, setJobData] = useState(() => {
     const savedJobData = localStorage.getItem("jobData");
@@ -32,7 +33,7 @@ export const JobProvider = ({ children }) => {
       ? JSON.parse(savedJobData)
       : {
           title: "",
-          // clientId: clientId,
+          clientId: clientId,
           category: "",
           jobType: "",
           description: "",
@@ -43,10 +44,6 @@ export const JobProvider = ({ children }) => {
           timeLine: "",
         };
   });
-
-  useEffect(() => {
-    console.log(jobData);
-  }, []);
 
   // Save jobData to localStorage whenever it changes
   useEffect(() => {
@@ -59,6 +56,8 @@ export const JobProvider = ({ children }) => {
       ...prevJobData,
       [name]: value,
     }));
+
+    console.log(jobData);
   };
 
   const validateTitleForm = (e) => {
@@ -79,8 +78,6 @@ export const JobProvider = ({ children }) => {
     e.preventDefault();
 
     const validatedForm = validateTitleForm();
-
-    // console.log(jobData);
 
     if (Object.keys(validatedForm).length === 0) {
       setIsDescription(true);
@@ -124,7 +121,6 @@ export const JobProvider = ({ children }) => {
     if (requiredSkills.length >= 4) {
       setDisable(true);
     }
-    console.log(requiredSkills);
   };
 
   const addFile = (file) => {
@@ -141,26 +137,41 @@ export const JobProvider = ({ children }) => {
     console.log(jobData);
   };
 
+  const validateForm = (e) => {
+    let errors = {};
+    if (!jobData.timeLine) {
+      errors.timeLine = "Please input the Job type";
+    }
+    if (!jobData.budget) {
+      errors.budget = "Please input your budget";
+    }
+    return errors;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("token", clientId);
+    console.log("token", token);
 
     // if (Object.keys(validatedForm).length === 0) {
     try {
+      setIsLoading(true);
+      console.log({ ...jobData, clientId });
       const response = await axios.post(
         `${baseUrl}/job/`,
         {
           ...jobData,
           requiredSkills,
           clientId,
-        }, // This is the job data being sent
+        },
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }
       );
+      console.log("submitted");
       console.log(response);
+      setIsLoading(true);
     } catch (error) {
       console.error("Error submitting the form:", error);
     }
@@ -183,6 +194,7 @@ export const JobProvider = ({ children }) => {
         handleLastPage,
         isBudgetPage,
         handleSubmit,
+        loading
       }}
     >
       {children}

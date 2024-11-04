@@ -32,7 +32,6 @@ const Welcome = () => {
     return;
   };
   const handleLogin = () => {
-    console.log(user);
     if (active === 0 || active === 1) {
       if (active === 0) {
         navigate("signin");

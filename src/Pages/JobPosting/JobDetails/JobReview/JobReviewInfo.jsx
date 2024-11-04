@@ -3,7 +3,7 @@ import { JobContext } from "../../../../Context/JobContext";
 import edit from "../../assets/fi_edit.png";
 import img1 from "../../assets/unsplash_dJNVojMZhGU.png";
 
-const JobReviewInfo = () => {
+const JobReviewInfo = ({ jobData, requiredSkills }) => {
   const responsibility = [
     "Design school, uniforms, including shirts, pants, skirts, and blazers.",
     "Choose appropriate fabrics and materials for durability and comfort.",
@@ -11,11 +11,8 @@ const JobReviewInfo = () => {
     "Collaborate on size and fit specifications to accommodate a range of ages",
   ];
 
-  const { jobData, requiredSkills } = useContext(JobContext);
-
   return (
     <>
-      {/* {jobData ? <h1>Hello</h1> : <p>Loading....</p>} */}
 
       <div className="flex flex-col gap-8 self-stretch lg:w-[90%]">
         <div className="flex p-4 flex-col items-center self-stretch rounded-2xl border border-foundationGrey-50">
@@ -60,7 +57,7 @@ const JobReviewInfo = () => {
         <div className="flex flex-col p-4 items-center self-stretch rounded-2xl border border-foundationGrey-50 bg-white">
           <div className="flex pb-5 items-center justify-between self-stretch border-b border-foundationGrey-50">
             <h5 className="text-xl font-bold leading-6">
-              Job Descrition and Requirement
+              Job Description and Requirement
             </h5>
             <div className="flex items-center p-3 rounded-[69.231px] bg-primaryGreen-50">
               <img src={edit} className=" w-3 h-3" alt="" />
@@ -74,7 +71,7 @@ const JobReviewInfo = () => {
                 {jobData.description}
               </p>
 
-              <div>
+              {/* <div>
                 <p className="self-stretch text-base leading-[22.px] text-secondary">
                   Key responsibility
                 </p>
@@ -85,7 +82,7 @@ const JobReviewInfo = () => {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </div> */}
             </div>
 
             <div className="flex gap-4 flex-col">

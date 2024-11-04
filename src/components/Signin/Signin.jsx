@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Container from "../Authentication/Container";
 import SigninForm from "./SigninForm";
 import { toast } from "sonner";
@@ -12,6 +12,7 @@ const Signin = () => {
 
   const { user, updateNewToken, token, clientId, updateClientId } =
     useContext(UserContext);
+    
 
   const baseUrl =
     user === "client" ? `${url}/client/login` : `${url}/designer/login`;
@@ -47,11 +48,10 @@ const Signin = () => {
     e.preventDefault();
     const validated = validateForm();
 
-    console.log(signinDetails);
+    // console.log(signinDetails);
 
     try {
       if (Object.keys(validated).length === 0) {
-        console.log(signinDetails);
         setIsLoading(true);
         const response = await axios.post(`${baseUrl}`, {
           email: signinDetails.email,

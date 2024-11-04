@@ -1,3 +1,4 @@
+import { useState } from "react";
 import BigButton from "../../components/Button/BigButton";
 import info from "./assets/Info-circle.png";
 import LetterCard from "./components/LetterCard";
@@ -7,8 +8,23 @@ const JobApplicationUpload = () => {
   const baseUrl = import.meta.env.VITE_API_ENDPOINT_URL;
 
   console.log(baseUrl);
-  
 
+  const [jobApplicationData, setJobApplicationData] = useState(() => {
+    const savedJobApplicationData = localStorage.getItem("jobApplication");
+    return savedJobApplicationData
+      ? JSON.parse(savedJobApplicationData)
+      : {
+          letter: "",
+          file: "",
+        };
+  });
+
+  
+  useEffect(() => {
+    localStorage.setItem("jobData", JSON.stringify(jobApplicationData));
+  }, [jobApplicationData]);
+
+  
   return (
     <div className="flex flex-col flex-shrink-0 w-full px-4 gap-8 md:px-10 lg:px-16 lg:gap-11 ">
       <div className="flex py-3 px-4 items-start gap-1 rounded-lg w-fit bg-[#fff2b0]">
@@ -28,10 +44,10 @@ const JobApplicationUpload = () => {
       </div>
 
       <div className="flex lg:justify-end">
-          <button className="rounded-[100px] flex items-center justify-center px-7 py-3 bg-[#008080] h-10 text-[#E6F2F2] text-[12px] w-full leading-4 font-medium md:text-base md:leading-[22.4px] lg:text-[16px] lg:w-fit">
-            Send Application
-          </button>
-        </div>
+        <button className="rounded-[100px] flex items-center justify-center px-7 py-3 bg-[#008080] h-10 text-[#E6F2F2] text-[12px] w-full leading-4 font-medium md:text-base md:leading-[22.4px] lg:text-[16px] lg:w-fit">
+          Send Application
+        </button>
+      </div>
     </div>
   );
 };

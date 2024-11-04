@@ -25,6 +25,7 @@ import JobReview from "./Pages/JobPosting/JobDetails/JobReview/JobReview";
 import JobDescription from "./Pages/JobPosting/JobDetails/JobDescription/JobDescription";
 import DesignsCard from "./components/Designs/DesignCard";
 import JobTesting from "./Pages/JobApplications/JobTesting";
+import CreateNewJob from "./Pages/JobPosting/CreateJob/CreateJob";
 
 export const userProfileContext = createContext();
 
@@ -59,7 +60,7 @@ const App = () => {
               <Route path="/jobs" element={<JobApplication />} />
               <Route path="/jobupload" element={<JobApplicationUpload />} />
               <Route path="/jobs/:id" element={<JobApplicationDetails />} />
-              <Route path="/createjob" element={<CreateJobPost />} />
+              <Route path="/createjob" element={<CreateNewJob />} />
               <Route path="/jobapply" element={<JobApplicationUpload />} />
               <Route
                 path="/designer-profile/pending-application"

@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const UserContext = createContext();
 
@@ -23,11 +23,19 @@ export const UserProvider = ({ children }) => {
 
   const updateClient = () => {
     setUser("client");
+    localStorage.setItem("user", JSON.stringify("client")); // Store user in localStorage
   };
 
   const updateDesigner = () => {
     setUser("designer");
+    localStorage.setItem("user", JSON.stringify("designer")); // Store user in localStorage
   };
+
+  useEffect(() => {
+    if (user !== null) {
+      localStorage.setItem("user", JSON.stringify(user));
+    }
+  }, [user]);
 
   const updateNewToken = (newToken) => {
     setToken(newToken);
