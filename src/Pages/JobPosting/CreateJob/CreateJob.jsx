@@ -11,6 +11,7 @@ import JobTitleTest from "../JobDetails/JobTitle/JobTitleTest";
 import { toast } from "sonner";
 import CreateJobPost from "../CreateJobPost/CreateJobPost";
 import axios from "axios";
+import Navbar from "../../../components/Navbar/Navbar";
 
 const CreateNewJob = () => {
   const { clientId, token } = useContext(UserContext);
@@ -22,6 +23,8 @@ const CreateNewJob = () => {
   const [disable, setDisable] = useState(false);
   const [loading, setLoading] = useState(false);
   const baseUrl = import.meta.env.VITE_API_ENDPOINT_URL;
+  const [client_id, setClient_id] = useState(clientId);
+  const [range, setRange] = useState("0");
 
   const [requiredSkills, setRequiredSkills] = useState(() => {
     const savedSkills = localStorage.getItem("requiredSkills");
@@ -38,7 +41,7 @@ const CreateNewJob = () => {
       ? JSON.parse(savedJobData)
       : {
           title: "",
-          clientId: clientId,
+          clientId: client_id,
           category: "",
           jobType: "",
           description: "",
@@ -74,8 +77,6 @@ const CreateNewJob = () => {
       return toast.error("PLease enter all fields!");
     setTitle(false);
     setDescription(true);
-    console.log(title);
-    console.log(true);
   };
 
   const addSkills = (skill, setSkill) => {
@@ -120,14 +121,15 @@ const CreateNewJob = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log({ ...jobData, clientId, requiredSkills });
 
     try {
       setLoading(true);
-      console.log({ ...jobData, clientId });
       const response = await axios.post(
         `${baseUrl}/job/`,
         {
           ...jobData,
+          clientId,
           requiredSkills,
         },
         {
@@ -146,47 +148,50 @@ const CreateNewJob = () => {
   };
 
   return (
-    <div className="font-light text-base">
-      <div className={postJob ? "flex" : "hidden"}>
-        <CreateJobPost toTitle={toTitle} />
+    <>
+      <Navbar text="Post work" />
+      <div className="font-light text-base lg:my-[80px] mt-[50px] mb-[120px]">
+        <div className={postJob ? "flex" : "hidden"}>
+          <CreateJobPost toTitle={toTitle} />
+        </div>
+
+        {title && (
+          <JobTitleTest
+            handleJobDataChange={handleJobDataChange}
+            toDescription={toDescription}
+            jobData={jobData}
+          />
+        )}
+
+        {description && (
+          <JobDescription
+            handleJobDataChange={handleJobDataChange}
+            addSkills={addSkills}
+            disable={disable}
+            jobData={jobData}
+            requiredSkills={requiredSkills}
+            toBudget={toBudget}
+          />
+        )}
+        {budget && (
+          <JobBudget
+            handleJobDataChange={handleJobDataChange}
+            toReview={toReview}
+            jobData={jobData}
+            updateBudget={updateBudget}
+          />
+        )}
+        {review && (
+          <JobReview
+            handleJobDataChange={handleJobDataChange}
+            jobData={jobData}
+            requiredSkills={requiredSkills}
+            handleSubmit={handleSubmit}
+            loading={loading}
+          />
+        )}
       </div>
-
-      {title && (
-        <JobTitleTest
-          handleJobDataChange={handleJobDataChange}
-          toDescription={toDescription}
-          jobData={jobData}
-        />
-      )}
-
-      {description && (
-        <JobDescription
-          handleJobDataChange={handleJobDataChange}
-          addSkills={addSkills}
-          disable={disable}
-          jobData={jobData}
-          requiredSkills={requiredSkills}
-          toBudget={toBudget}
-        />
-      )}
-      {budget && (
-        <JobBudget
-          handleJobDataChange={handleJobDataChange}
-          toReview={toReview}
-          jobData={jobData}
-          updateBudget={updateBudget}
-        />
-      )}
-      {review && (
-        <JobReview
-          handleJobDataChange={handleJobDataChange}
-          jobData={jobData}
-          requiredSkills={requiredSkills}
-          handleSubmit={handleSubmit}
-          loading={loading}
-        />
-      )}
-    </div>
+    </>
   );
 };
 

@@ -1,34 +1,39 @@
-import menu from "./Assets/fi_menu (1).png";
-import search from "./Assets/fi_search.png";
+import React from "react";
+import logo from "./Assets/logo.png";
+import profileImg from "./Assets/myLove.jpg";
 import person from "./Assets/person.png";
-import icon from "./Assets/fi_chevron-down.png";
-import filter from "./Assets/Filter.png";
-import logo from "../../assets/Tailoralogo.png"
 
-const Navbar = () => {
+const Navbar = ({text}) => {
   return (
-    <div className="shadow-sm bg-[#fff]">
-      <nav className="border-b px-6 border-[#bcbcbc] flex items-center justify-between self-stretch md:px-10">
-        <div className="flex gap-1 justify-between items-center">
-          <img src={menu} className="w-6 h-6 flex-shrink-0" alt="" />
-        <img src={logo} alt="" />
+    <div className="z-40 flex fixed top-0 right-0 left-0 bg-white px-5 sm:px-12 lg:py-[17px] py-[15px] items-center justify-between border-b lg:gap-x-[150px]">
+      <div className="flex flex-1 gap-x-[18px] lg:justify-between items-center">
+        <i className="fa-solid fa-bars lg:hidden text-[22px]"></i>
+        <img className="lg:w-[130px] w-[115px]" src={logo} alt="" />
+        <p className="hidden lg:flex text-[14px] font-semibold">Jobs</p>
+        <p className="hidden lg:flex text-[14px] font-semibold">Community</p>
+        <div className="hidden lg:flex items-center px-[15px] py-[4px] rounded-full border">
+          <i className="fa-solid fa-magnifying-glass text-[15px] mr-[10px] text-zinc-300"></i>
+          <input
+            className="outline-none border-none w-[250px] h-[28px] text-[13px] placeholder:text-zinc-300"
+            type="text"
+            placeholder="Search for project, user etc"
+          />
         </div>
-
-        <div className="flex gap-[19px] px-6 py-5 items-center justify-between self-stretch">
-          <img src={search} className="w-6 h-6" alt="" />
-          <img src={person} className="w-8 h-8" alt="" />
+      </div>
+      <div className="flex lg:w-[360px] justify-between items-center">
+        <div>
+          <button className="hidden lg:flex bg-primary-100 text-white px-[35px] py-[10px] text-[14px] rounded-full cursor-pointer">
+            {text}
+          </button>
         </div>
-      </nav>
-
-      <div className="flex py-[20px] px-6 items-center justify-between md:px-10 ">
-        <div className="flex justify-center items-center h-[42px] w-[120px] rounded-[36px] gap-3 border-[0.75px] border-[#bcbcbc]">
-          <p className="text-sm leading-[16.8px] font-medium">For you</p>
-          <img src={icon} className="h-3 w-3 flex-shrink-0" alt="" />
-        </div>
-
-        <div className="flex flex-col items-center justify-center gap-[8.75] h-[42px] w-[42px] rounded-[87.5px] border-[0.88px]">
-          <img src={filter} className="w-[21px] h-[21px]" alt="" />
-        </div>
+        <i className="fa-regular fa-envelope hidden lg:flex text-[15px] bg-zinc-100 text-zinc-700 px-[12px] py-[12px] rounded-full"></i>
+        <i className="fa-regular fa-bell hidden lg:flex text-[15px]  bg-zinc-100 text-zinc-700 px-[13px] py-[12px] rounded-full"></i>
+        <i className="fa-solid fa-magnifying-glass mr-[18px] flex lg:hidden text-[22px]"></i>
+        <img
+          src={person}
+          className="lg:w-[40px] w-[34px] rounded-full"
+          alt=""
+        />
       </div>
     </div>
   );

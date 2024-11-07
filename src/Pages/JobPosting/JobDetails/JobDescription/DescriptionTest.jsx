@@ -6,7 +6,13 @@ import { JobContext } from "../../../../Context/JobContext";
 import { DescriptionData } from "./DescriptionData";
 import { UserContext } from "../../../../Context/UserContext";
 
-const DescriptionTest = ({ addSkills, disable, requiredSkills, handleJobDataChange, jobData }) => {
+const DescriptionTest = ({
+  addSkills,
+  disable,
+  requiredSkills,
+  handleJobDataChange,
+  jobData,
+}) => {
   const title = "Job Description & requirements";
   const detail =
     "Risus ut dolor mauris molestie est diam. Massa pellentesque tristique vestibulum vivamus scelerisque eu sagittis. Quam habitasse aenean fames mauris amet volutpat neque. ";
@@ -16,7 +22,6 @@ const DescriptionTest = ({ addSkills, disable, requiredSkills, handleJobDataChan
 
   const handleInputChanges = (e) => {
     setSkill(e.target.value);
-    console.log(true);
   };
 
   const handleKeyDown = (e) => {

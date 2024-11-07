@@ -9,9 +9,7 @@ export const UserProvider = ({ children }) => {
       : null
   );
   const [token, setToken] = useState(localStorage.getItem("token") || null);
-  const [clientId, setClientId] = useState(
-    localStorage.getItem("clientId") || null
-  );
+  const [clientId, setClientId] = useState(localStorage.getItem("clientId"));
 
   //   let user;
   // try {
@@ -39,7 +37,7 @@ export const UserProvider = ({ children }) => {
 
   const updateNewToken = (newToken) => {
     setToken(newToken);
-    localStorage.setItem("token", newToken); // Optionally persist the token
+    localStorage.setItem("token", newToken); 
   };
   const updateClientId = (newClientId) => {
     setClientId(newClientId);

@@ -1,7 +1,9 @@
 import { useState } from "react";
 
 const LetterCard = () => {
-  const [jobDetails, setJobDetails] = useState("");
+  const [jobDetails, setJobDetails] = useState("");  
+
+  
 
   const handleChange = (e) => {
     console.log(e.target.value);
