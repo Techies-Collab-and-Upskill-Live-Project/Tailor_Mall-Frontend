@@ -13,8 +13,10 @@ import CreateJobPost from "../CreateJobPost/CreateJobPost";
 import axios from "axios";
 import Navbar from "../../../components/Navbar/Navbar";
 import JobModal from "../JobModal";
+import { useNavigate } from "react-router";
 
 const CreateNewJob = () => {
+  const navigate = useNavigate();
   const { clientId, token } = useContext(UserContext);
   const [postJob, setPostJob] = useState(true);
   const [title, setTitle] = useState(false);
@@ -142,7 +144,9 @@ const CreateNewJob = () => {
       );
       console.log("submitted");
       console.log(response);
-      setHasCreatedJobs(true);
+      // setHasCreatedJobs(true);
+      toast.info("Job suucessfully created");
+      navigate("/home");
     } catch (error) {
       console.error("Error submitting the form:", error);
       setLoading(false);
