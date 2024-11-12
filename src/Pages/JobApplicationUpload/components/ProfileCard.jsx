@@ -1,14 +1,15 @@
 import photo from "../assets/REGULAR CARD.png";
 import location from "../assets/Location.png";
 import photo2 from "../assets/img_desktop.png";
+import { useContext } from "react";
+import { UserContext } from "../../../Context/UserContext";
 
 const ProfileCard = ({ userData }) => {
 
-  console.log(userData);
-  
-
   const photoNum = [1, 2, 3, 4];
   return (
+    <>
+    {/* {userData} */}
     <div className="inline-flex w-full flex-col items-center gap-[37px] rounded-xl border border-primary-100 pt-[6px] px-[7px] pb-10 md:rounded-2xl lg:w-[70%] lg:pt-0">
       <div className="flex flex-col items-center gap-6">
         <div className="flex flex-col items-center">
@@ -82,6 +83,7 @@ const ProfileCard = ({ userData }) => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

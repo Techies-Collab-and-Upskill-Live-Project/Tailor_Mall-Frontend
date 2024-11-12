@@ -1,11 +1,14 @@
 export const DescriptionData = [
     {
-        qualification: "Beginner"
+        qualification: "Beginner",
+        value: "beginner",
     },
     {
-        qualification: "Intermediate"
+        qualification: "Intermediate",
+        value: "intermediate"
     },
     {
-        qualification: "Expert"
+        qualification: "Expert",
+        value: "expert"
     },
 ]

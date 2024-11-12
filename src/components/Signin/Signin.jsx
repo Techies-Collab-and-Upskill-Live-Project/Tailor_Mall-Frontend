@@ -3,16 +3,14 @@ import Container from "../Authentication/Container";
 import SigninForm from "./SigninForm";
 import { toast } from "sonner";
 import axios from "axios";
-import VerifyMail from "../VerifyMail/VerifyMail";
 import { UserContext } from "../../Context/UserContext";
-import LandingPage from "../../Pages/LandingPage";
+import HomePage from "../../Pages/Homepage";
 
 const Signin = () => {
   const url = import.meta.env.VITE_API_ENDPOINT_URL;
 
   const { user, updateNewToken, token, clientId, updateClientId } =
     useContext(UserContext);
-    
 
   const baseUrl =
     user === "client" ? `${url}/client/login` : `${url}/designer/login`;
@@ -60,12 +58,12 @@ const Signin = () => {
         console.log(response);
         let token = response?.data?.data?.token;
         let clientid = response?.data?.data?._id;
-        
+
         if (token) {
           localStorage.setItem("token", token);
           setHasSignin(true);
-          updateNewToken(token)
-          updateClientId(clientid)
+          updateNewToken(token);
+          updateClientId(clientid);
           toast.success(response.data.msg);
         } else {
           console.log(response?.data?.message);
@@ -87,7 +85,7 @@ const Signin = () => {
   return (
     <div>
       {hasSignin ? (
-        <LandingPage />
+        <HomePage />
       ) : (
         <Container>
           <SigninForm

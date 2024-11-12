@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import logo from "./Assets/logo.png";
 import profileImg from "./Assets/myLove.jpg";
 import person from "./Assets/person.png";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../../Context/UserContext";
 
-const Navbar = ({text}) => {
+const Navbar = ({ text }) => {
+  const navigate = useNavigate();
+
+  const { user } = useContext(UserContext);
+
+
   return (
     <div className="z-40 flex fixed top-0 right-0 left-0 bg-white px-5 sm:px-12 lg:py-[17px] py-[15px] items-center justify-between border-b lg:gap-x-[150px]">
       <div className="flex flex-1 gap-x-[18px] lg:justify-between items-center">
@@ -21,11 +28,11 @@ const Navbar = ({text}) => {
         </div>
       </div>
       <div className="flex lg:w-[360px] justify-between items-center">
-        <div>
+        <Link to={ user === "client" ? "/jobs" : "/createjob"}>
           <button className="hidden lg:flex bg-primary-100 text-white px-[35px] py-[10px] text-[14px] rounded-full cursor-pointer">
             {text}
           </button>
-        </div>
+        </Link>
         <i className="fa-regular fa-envelope hidden lg:flex text-[15px] bg-zinc-100 text-zinc-700 px-[12px] py-[12px] rounded-full"></i>
         <i className="fa-regular fa-bell hidden lg:flex text-[15px]  bg-zinc-100 text-zinc-700 px-[13px] py-[12px] rounded-full"></i>
         <i className="fa-solid fa-magnifying-glass mr-[18px] flex lg:hidden text-[22px]"></i>

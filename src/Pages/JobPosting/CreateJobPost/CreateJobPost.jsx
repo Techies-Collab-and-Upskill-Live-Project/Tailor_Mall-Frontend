@@ -2,7 +2,7 @@
 const CreateJobPost = ({toTitle}) => {
   return (
     <>
-      <div className="flex px-5 py-[60px] md:px-10 flex-col items-start gap-[60px] lg:px-[100px]">
+      <div className="flex px-5 py-[60px] md:px-10 flex-col items-start gap-[60px] lg:px-[50px]">
         <div className="flex flex-col lg:flex-row lg:px-5 gap-[60px] items-center justify-center">
           <div className="flex gap-10 flex-col lg:items-center lg:gap-3 w-full">
             <h3 className="text-black text-[28px] font-bold leading-[33.6px] self-stretch md:font-bold">

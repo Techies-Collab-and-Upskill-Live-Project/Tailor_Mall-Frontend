@@ -12,6 +12,7 @@ import { toast } from "sonner";
 import CreateJobPost from "../CreateJobPost/CreateJobPost";
 import axios from "axios";
 import Navbar from "../../../components/Navbar/Navbar";
+import JobModal from "../JobModal";
 
 const CreateNewJob = () => {
   const { clientId, token } = useContext(UserContext);
@@ -22,6 +23,7 @@ const CreateNewJob = () => {
   const [review, setReview] = useState(false);
   const [disable, setDisable] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [hasCreatedJob, setHasCreatedJobs] = useState(false);
   const baseUrl = import.meta.env.VITE_API_ENDPOINT_URL;
   const [client_id, setClient_id] = useState(clientId);
   const [range, setRange] = useState("0");
@@ -140,7 +142,7 @@ const CreateNewJob = () => {
       );
       console.log("submitted");
       console.log(response);
-      setLoading(true);
+      setHasCreatedJobs(true);
     } catch (error) {
       console.error("Error submitting the form:", error);
       setLoading(false);
@@ -190,6 +192,8 @@ const CreateNewJob = () => {
             loading={loading}
           />
         )}
+
+        {hasCreatedJob && <JobModal />}
       </div>
     </>
   );

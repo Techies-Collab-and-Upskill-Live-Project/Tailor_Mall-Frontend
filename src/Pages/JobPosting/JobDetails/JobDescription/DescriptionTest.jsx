@@ -104,7 +104,7 @@ const DescriptionTest = ({
                 <input
                   type="radio"
                   name="qualification"
-                  value={option.qualification}
+                  value={option.value}
                   onChange={handleJobDataChange}
                   className="w-4 h-4"
                 />

@@ -64,7 +64,7 @@ const JobTitleTest = ({ handleJobDataChange, jobData, toDescription }) => {
                   <div key={index} className="flex items-center gap-2">
                     <input
                       name="jobType"
-                      value={option.jobType}
+                      value={option.value}
                       onChange={handleJobDataChange}
                       type="radio"
                     />

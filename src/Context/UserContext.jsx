@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 export const UserContext = createContext();
 
@@ -8,16 +9,19 @@ export const UserProvider = ({ children }) => {
       ? JSON.parse(localStorage.getItem("user"))
       : null
   );
-  const [token, setToken] = useState(localStorage.getItem("token") || null);
+  const navigate = useNavigate();
+  const [token, setToken] = useState(localStorage.getItem("token") || "");
   const [clientId, setClientId] = useState(localStorage.getItem("clientId"));
 
-  //   let user;
-  // try {
-  //   user = JSON.parse(someData);  // Attempt to parse the JSON string
-  // } catch (error) {
-  //   console.error("Invalid JSON data:", error);
-  //   user = null;  // Set user to null or some default value if parsing fails
-  // }
+  const logout = () => {
+    setUser(null);
+    setToken("");
+    setClientId("")
+    localStorage.removeItem("token");
+    navigate("signup")
+  };
+
+  const isAuthenticated = !!token;
 
   const updateClient = () => {
     setUser("client");
@@ -37,7 +41,7 @@ export const UserProvider = ({ children }) => {
 
   const updateNewToken = (newToken) => {
     setToken(newToken);
-    localStorage.setItem("token", newToken); 
+    localStorage.setItem("token", newToken);
   };
   const updateClientId = (newClientId) => {
     setClientId(newClientId);
@@ -54,6 +58,8 @@ export const UserProvider = ({ children }) => {
         token,
         clientId,
         updateClientId,
+        logout,
+        isAuthenticated,
       }}
     >
       {children}

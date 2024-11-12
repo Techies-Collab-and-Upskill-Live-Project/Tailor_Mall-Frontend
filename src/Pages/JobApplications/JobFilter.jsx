@@ -37,7 +37,7 @@ const JobFilter = () => {
 
         <div className="flex gap-2">
           <input className="w-5 h-5" type="checkbox" />
-          <h4>Open to remote</h4>
+          <h4 className="text-[14px] font-normal">Open to remote</h4>
           <h4></h4>
         </div>
 
