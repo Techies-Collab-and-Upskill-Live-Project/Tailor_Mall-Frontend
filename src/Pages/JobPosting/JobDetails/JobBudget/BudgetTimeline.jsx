@@ -2,26 +2,9 @@ import { useContext, useState } from "react";
 import { BudgetData } from "./BudgetData";
 import { JobContext } from "../../../../Context/JobContext";
 
-const BudgetTimeline = () => {
-  const [error, setError] = useState (null);
-  const { handleChange, jobData, setJobData } = useContext(JobContext);
+const  BudgetTimeline = ({jobData, handleJobDataChange, updateBudget}) => {
+ 
 
-
-  const updateBudget = (e) => {
-    const { name, value } = e.target;
-
-    setJobData((prevData) => ({
-      ...prevData,
-      budget: {
-        ...prevData.budget,
-        [name]: value,
-      },
-    }));
-  };
-
-  const handleSubmit = () => {
-    
-  }
 
   return (
     <div className="flex flex-col gap-4 self-stretch">
@@ -78,8 +61,8 @@ const BudgetTimeline = () => {
                         name="budget"
                         className="dot outline-none border h-12 pl-2 "
                         placeholder="0.00"
-                        value={jobData.budget}
-                        onChange={(e) => updateBudget(e)}
+                        // value={jobData.budget.max}
+                        // onChange={handleJobDataChange}
                       />
                     </div>
                   </div>
@@ -210,7 +193,7 @@ const BudgetTimeline = () => {
                   className="w-full outline-none"
                   name="timeLine"
                   value={jobData.timeLine}
-                  onChange={(e) => handleChange(e)}
+                  onChange={handleJobDataChange}
                 />
                 <p className="bg-foundationGrey-50 self-end items-end flex p-4">
                   weeks

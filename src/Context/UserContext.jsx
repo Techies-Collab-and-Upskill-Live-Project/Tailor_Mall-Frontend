@@ -1,4 +1,5 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 export const UserContext = createContext();
 
@@ -8,30 +9,39 @@ export const UserProvider = ({ children }) => {
       ? JSON.parse(localStorage.getItem("user"))
       : null
   );
-  const [token, setToken] = useState(localStorage.getItem("token") || null);
-  const [clientId, setClientId] = useState(
-    localStorage.getItem("clientId") || null
-  );
+  const navigate = useNavigate();
+  const [token, setToken] = useState(localStorage.getItem("token") || "");
+  const [clientId, setClientId] = useState(localStorage.getItem("clientId"));
 
-  //   let user;
-  // try {
-  //   user = JSON.parse(someData);  // Attempt to parse the JSON string
-  // } catch (error) {
-  //   console.error("Invalid JSON data:", error);
-  //   user = null;  // Set user to null or some default value if parsing fails
-  // }
+  const logout = () => {
+    setUser(null);
+    setToken("");
+    setClientId("")
+    localStorage.removeItem("token");
+    navigate("signup")
+  };
+
+  const isAuthenticated = !!token;
 
   const updateClient = () => {
     setUser("client");
+    localStorage.setItem("user", JSON.stringify("client")); // Store user in localStorage
   };
 
   const updateDesigner = () => {
     setUser("designer");
+    localStorage.setItem("user", JSON.stringify("designer")); // Store user in localStorage
   };
+
+  useEffect(() => {
+    if (user !== null) {
+      localStorage.setItem("user", JSON.stringify(user));
+    }
+  }, [user]);
 
   const updateNewToken = (newToken) => {
     setToken(newToken);
-    localStorage.setItem("token", newToken); // Optionally persist the token
+    localStorage.setItem("token", newToken);
   };
   const updateClientId = (newClientId) => {
     setClientId(newClientId);
@@ -48,6 +58,8 @@ export const UserProvider = ({ children }) => {
         token,
         clientId,
         updateClientId,
+        logout,
+        isAuthenticated,
       }}
     >
       {children}

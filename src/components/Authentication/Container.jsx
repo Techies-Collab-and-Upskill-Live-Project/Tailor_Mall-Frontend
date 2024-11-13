@@ -6,6 +6,9 @@ import { UserContext } from "../../Context/UserContext";
 const Container = ({ children }) => {
   const { user } = useContext(UserContext);
 
+  // console.log(user);
+  
+
   return (
       <div className="w-full flex h-screen">
         <div className="hidden lg:block w-[55%]">
