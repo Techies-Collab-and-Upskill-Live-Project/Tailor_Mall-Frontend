@@ -73,10 +73,10 @@ const SignupForm = ({
                   onChange={handleChange}
                   value={signupDetails.country}
                 >
-                  <option value="" disabled selected hidden>
+                  {/* <option value="" disabled selected hidden>
                     e.g Nigeria
-                  </option>
-                  <option value="nigeria">Nigeria</option>
+                  </option> */}
+                  <option value="nigeria" selected>Nigeria</option>
                   <option value="france">France</option>
                   <option value="india">India</option>
                   <option value="italy">Italy</option>
@@ -281,9 +281,9 @@ const SignupForm = ({
                   value={signupDetails.platform}
                 >
                   Where did you hear of this platform?
-                  <option value="" disabled selected hidden>
+                  {/* <option value="" disabled selected hidden>
                     e.g social media
-                  </option>
+                  </option> */}
                   <option value="facebook">Facebook</option>
                   <option value="twitter">Twitter</option>
                   <option value="Instagram">Instagram</option>

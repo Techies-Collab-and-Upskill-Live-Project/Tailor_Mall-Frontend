@@ -35,6 +35,46 @@ const CreateJobPost = ({toTitle}) => {
                 0
               </h6>
             </div>
+
+            <div className="flex justify-between py-5 items-center border-t border-foundationGrey-50">
+              <h5 className="text-xl leading-[24px] font-medium">
+                Drafts
+              </h5>
+
+              <h6 className="flex p-[10px] justify-center gap-[10px] rounded-[100px] bg-primaryGreen-50">
+                0
+              </h6>
+            </div>
+
+            <div className="flex justify-between py-5 items-center border-t border-foundationGrey-50">
+              <h5 className="text-xl leading-[24px] font-medium">
+                Messages
+              </h5>
+
+              <h6 className="flex p-[10px] justify-center gap-[10px] rounded-[100px] bg-primaryGreen-50">
+                0
+              </h6>
+            </div>
+
+            <div className="flex justify-between py-5 items-center border-t border-foundationGrey-50">
+              <h5 className="text-xl leading-[24px] font-medium">
+                Pending Applications
+              </h5>
+
+              <h6 className="flex p-[10px] justify-center gap-[10px] rounded-[100px] bg-primaryGreen-50">
+                0
+              </h6>
+            </div>
+
+            <div className="flex justify-between py-5 items-center border-t border-foundationGrey-50">
+              <h5 className="text-xl leading-[24px] font-medium">
+                Hired
+              </h5>
+
+              <h6 className="flex p-[10px] justify-center gap-[10px] rounded-[100px] bg-primaryGreen-50">
+                0
+              </h6>
+            </div>
           </div>
         </div>
 

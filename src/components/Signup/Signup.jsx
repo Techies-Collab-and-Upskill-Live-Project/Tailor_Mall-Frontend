@@ -14,8 +14,8 @@ const Signup = () => {
     email: "",
     phoneNo: "",
     password: "",
-    country: "",
-    platform: "",
+    country: "Nigeria",
+    platform: "Facebook",
   });
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);

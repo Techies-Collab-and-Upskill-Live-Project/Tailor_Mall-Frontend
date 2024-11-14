@@ -5,6 +5,6 @@ export const TitleData = [
   },
   {
     jobType: "One-off time",
-    value: "one-"
+    value: "one-off"
   },
 ];

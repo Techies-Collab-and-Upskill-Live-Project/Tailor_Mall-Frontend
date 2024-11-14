@@ -26,6 +26,7 @@ import DesignsCard from "./components/Designs/DesignCard";
 import JobTesting from "./Pages/JobApplications/JobTesting";
 import CreateNewJob from "./Pages/JobPosting/CreateJob/CreateJob";
 import HomePage from "./Pages/Homepage";
+import Notifications from "./Pages/Community/Notification";
 
 export const userProfileContext = createContext();
 
@@ -70,6 +71,7 @@ const App = () => {
                 <Route path="/createjob" element={<CreateNewJob />} />
                 <Route path="/jobapply" element={<JobApplicationUpload />} />
               </Route>
+                <Route path="/community" element={<Notifications />} />
               <Route
                 path="/designer-profile/pending-application"
                 element={<ProfilePendingApplication />}
