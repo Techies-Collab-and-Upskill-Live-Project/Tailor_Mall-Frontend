@@ -82,7 +82,7 @@ const JobTitleTest = ({ handleJobDataChange, jobData, toDescription }) => {
         </div>
       </JobContainer>
 
-      <div className="px-5 py-5 lg:flex lg:border-t lg:bottom-0 lg:fixed lg:border-foundationGrey-100 lg:justify-between lg:w-full">
+      <div className="px-5 py-5 lg:flex lg:border-t lg:bottom-0 lg:fixed lg:border-foundationGrey-100 lg:justify-between lg:w-full bg-white">
         <div className="flex py-4 w-full items-center justify-center lg:w-fit">
           <JobDraft />
         </div>
