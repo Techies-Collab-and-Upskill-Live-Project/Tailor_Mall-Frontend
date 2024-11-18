@@ -9,9 +9,6 @@ import { Toaster } from "sonner";
 import { Oval } from "react-loader-spinner";
 
 const JobApplicationCard = ({ job }) => {
-  useEffect(() => {
-    console.log(job);
-  }, []);
 
   return (
     <div className="flex flex-col gap-4 rounded-xl md:gap-6">
@@ -19,9 +16,9 @@ const JobApplicationCard = ({ job }) => {
         Array.isArray(job) &&
         job.map((item, index) => (
           <Link
-            // to={`/jobs/${item.clientId}`}
+            to={`/jobs/${item.clientId}`}
             className="flex flex-col items-start gap-4 rounded-xl border-[1.2px] border-dashed border-[#008080] py-4 px-6"
-            key={item.index}
+            key={index}
           >
             <section className="flex flex-col dot gap-2 self-stretch">
               <section className="flex justify-between items-center self-stretch">

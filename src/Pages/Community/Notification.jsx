@@ -31,10 +31,10 @@ const Notifications = () => {
           </div>
         </section>
 
-        <section className="flex flex-col gap-3">
+        <section className="flex flex-col self-stretch items-start">
           {NotificationData.map((item, index) => (
-            <div className="flex">
-              <div className="flex items-center pb-6 border-b border-secondary text-[12px] gap-3">
+            <div className="flex justify-between items-center pb-8 border-b border-foundationGrey-50 text-[12px] gap-3 self-stretch">
+              <div className="flex items-center gap-4 dot">
                 <img src={item.img} alt="User profile picture" />
 
                 <div className="flex flex-col gap-3 text-[12px]">

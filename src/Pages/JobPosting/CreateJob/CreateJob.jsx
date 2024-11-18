@@ -142,24 +142,27 @@ const CreateNewJob = () => {
           },
         }
       );
-      console.log("submitted");
-      console.log(response);
-      // setHasCreatedJobs(true);
+      setLoading(false)
+      setHasCreatedJobs(true);
       toast.info("Job suucessfully created");
-      navigate("/home");
+
     } catch (error) {
       console.error("Error submitting the form:", error);
       setLoading(false);
     }
   };
 
+  const postedJob = () => {
+    setHasCreatedJobs(false);
+    setReview(false);
+    setPostJob(true);
+  };
+
   return (
     <>
       <Navbar text="Post work" />
       <div className="font-light text-base lg:my-[80px] mt-[50px] mb-[120px]">
-        <div className={postJob ? "flex" : "hidden"}>
-          <CreateJobPost toTitle={toTitle} />
-        </div>
+        {postJob && <CreateJobPost toTitle={toTitle} />}
 
         {title && (
           <JobTitleTest
@@ -194,10 +197,12 @@ const CreateNewJob = () => {
             requiredSkills={requiredSkills}
             handleSubmit={handleSubmit}
             loading={loading}
+            hasCreatedJob={hasCreatedJob}
+            postedJob={postedJob}
           />
         )}
 
-        {hasCreatedJob && <JobModal />}
+        {hasCreatedJob && <JobModal postedJob={postedJob} />}
       </div>
     </>
   );

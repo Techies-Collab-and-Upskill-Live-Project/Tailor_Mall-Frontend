@@ -26,8 +26,6 @@ const JobApplication = () => {
 
       const data = response?.data?.data;
 
-      console.log(data);
-
       setJob(data);
     } catch (error) {
       const message = error?.response?.data?.message;
