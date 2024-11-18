@@ -27,7 +27,7 @@ export const userProfileContext = createContext();
 
 const App = () => {
   const [userProfile, setUserProfile] = useState([
-    "Suit-making",
+    "Suit-makg",
     "Fabric Selection",
     "Children wear",
     "Wedding wears",
