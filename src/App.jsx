@@ -28,6 +28,7 @@ import CreateNewJob from "./Pages/JobPosting/CreateJob/CreateJob";
 import HomePage from "./Pages/Homepage";
 import Notifications from "./Pages/Community/Notification";
 import JobModal from "./Pages/JobPosting/JobModal";
+import Messages from "./Pages/Messages/Messages";
 
 export const userProfileContext = createContext();
 
@@ -72,7 +73,7 @@ const App = () => {
                 <Route path="/createjob" element={<CreateNewJob />} />
                 <Route path="/jobapply" element={<JobApplicationUpload />} />
               </Route>
-              <Route path="/community" element={<Notifications />} />
+              <Route path="/community" element={<Messages />} />
               <Route
                 path="/designer-profile/pending-application"
                 element={<ProfilePendingApplication />}

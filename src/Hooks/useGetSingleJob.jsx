@@ -7,65 +7,37 @@ import { UserContext } from "../Context/UserContext";
 
 const useGetProducts = () => {
   let { id } = useParams();
-  const [products, setProducts] = useState([]);
-  const [singleProducts, setSingleProducts] = useState([]);
-  const baseUrl = import.meta.env.VITE_API_ENDPOINT_URL;
+  const [singleJob, setSingleJob] = useState(null);
   const { token } = useContext(UserContext);
 
-  // const BASE_URL = `http://localhost:5500/api/v1/job?${id}`;
   const BASE_URL = import.meta.env.VITE_API_ENDPOINT_URL;
-  // https://tailors-mall-backend.onrender.com/api/v1/
-  // job?clientId=66f1a68e5e62e963a32f54bb
-  //   http://localhost:5500/api/v1/job?id=66f5d0dbee99e692dc27d136
 
+  // useEffect(() => {
   const getSingleJob = async (id) => {
     try {
-      // const response = axios.get(`${baseUrl}/job?id=${id}`, {
-      const response = axios.get(`${baseUrl}/job?id=673aa7f3d4bde4043787e561`, {
+      const response = await axios.get(`${BASE_URL}/job?id=${id}`, {
         headers: {
-          Authorization: `Bearer ${ token }`,
+          Authorization: `Bearer ${token}`,
         },
       });
 
-      console.log(id);
-
-      console.log(response);
+      const data = response?.data?.data;
+      setSingleJob(data);
+      console.log(singleJob);
     } catch (error) {
       console.log(error);
     }
   };
 
-  // const getJob = async () => {
-  //   try {
-  //     const response = await axios.get(`${baseUrl}/job`, {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     });
-
-  //     const data = response?.data?.data;
-
-  //     setJob(data);
-  //   } catch (error) {
-  //     const message = error?.response?.data?.message;
-  //     if (message) {
-  //       navigate("/")
-  //     }
-  //     console.log(error?.response?.data?.message);
-  //   }
-  // };
-
-  //   const getSingleProduct = useCallback(() => {
-  //     axios.get(`${BASE_URL}/${id}.json`).then((response) => {
-  //       setSingleProducts(response.data);
-  //       // console.log("Getting single products");
-  //       // getRecomendedProducts(response.data);
-  //     });
-  //   });
+  useEffect(() => {
+    getSingleJob();
+}, [id, getSingleJob]);
+  // }, []);
 
   return {
     BASE_URL,
-    getSingleJob,
+    // getSingleJob,
+    singleJob
     // products,
     // getTopProduct,
     // getSingleProduct,

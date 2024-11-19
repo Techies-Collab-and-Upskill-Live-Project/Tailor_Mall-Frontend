@@ -145,6 +145,8 @@ const CreateNewJob = () => {
       setLoading(false)
       setHasCreatedJobs(true);
       toast.info("Job suucessfully created");
+      console.log(response);
+      
 
     } catch (error) {
       console.error("Error submitting the form:", error);
