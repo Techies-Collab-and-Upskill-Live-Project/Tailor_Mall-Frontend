@@ -31,20 +31,25 @@ const Notifications = () => {
           </div>
         </section>
 
-        <section className="flex flex-col gap-3">
+        <section className="flex flex-col self-stretch items-start">
           {NotificationData.map((item, index) => (
-            <div className="flex">
-              <div className="flex items-center pb-6 border-b border-secondary text-[12px] gap-3">
-                <img src={item.img} alt="User profile picture" />
+            <div className="flex justify-between items-center pb-8 border-b border-foundationGrey-50 text-[12px] gap-3 self-stretch">
+              <div className="flex items-center justify-between gap-4 dot">
+                <div className="flex items-center gap-4 justify-center">
+                  <img src={item.img} alt="User profile picture" />
 
-                <div className="flex flex-col gap-3 text-[12px]">
-                  <h3 className="font-bold">
-                    Sarah Gomez <span className="font-light">followed you</span>
-                  </h3>
-                  <p>Aug 01 - 05:00 AM</p>
+                  <div className="flex flex-col gap-4 text-[12px]">
+                    <h3 className="font-bold">
+                      Sarah Gomez{" "}
+                      <span className="font-light">followed you</span>
+                    </h3>
+                    <p>Aug 01 - 05:00 AM</p>
+                  </div>
                 </div>
 
-                <img src={dot} className="w-4 h-4 rounded-full" alt="" />
+                {item.unread && (
+                  <img src={dot} className="w-4 h-4 rounded-full" alt="" />
+                )}
               </div>
             </div>
           ))}

@@ -7,7 +7,8 @@ export const NotificationData = [
         name: "Sarah Gomez",
         message: "followed you",
         date: "Aug 01",
-        time: "05:00 AM"
+        time: "05:00 AM",
+        unread: true
     },
     {
         id: 1,
@@ -21,7 +22,7 @@ export const NotificationData = [
         id: 2,
         img: img1,
         name: "Sarah Gomez",
-        message: "followed you",
+        message: "commented on your post",
         date: "Aug 01",
         time: "05:00 AM"
     },
@@ -29,7 +30,15 @@ export const NotificationData = [
         id: 3,
         img: img1,
         name: "Mmma Obiora",
-        message: "Invited you to join a communityh",
+        message: "Invited you to join a community",
+        date: "Aug 01",
+        time: "05:00 AM"
+    },
+    {
+        id: 3,
+        img: img1,
+        name: "Williams Alfred",
+        message: "Shared your post",
         date: "Aug 01",
         time: "05:00 AM"
     },

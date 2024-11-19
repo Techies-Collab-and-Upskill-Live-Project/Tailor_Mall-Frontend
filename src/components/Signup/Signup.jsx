@@ -113,6 +113,8 @@ const Signup = () => {
     } catch (error) {
       toast.warning(error?.response?.data?.message);
       setIsLoading(false);
+      console.log(error);
+      
     }
   };
 

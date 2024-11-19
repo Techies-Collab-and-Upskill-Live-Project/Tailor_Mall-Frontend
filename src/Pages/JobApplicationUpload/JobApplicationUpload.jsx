@@ -23,7 +23,6 @@ const JobApplicationUpload = () => {
 
   const getProfile = async () => {
     try {
-      
       const response = await axios.get(`${baseUrl}/designer/me`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -39,10 +38,11 @@ const JobApplicationUpload = () => {
 
   const jobApplication = async () => {
     try {
-      setIsLoading(true);
+      // setIsLoading(true);
       if (!message) {
         return toast.error("Please enter the message!");
       } else {
+        setIsLoading(true)
         const response = await axios.post(
           `${baseUrl}/job/apply/${clientId}`,
           {
@@ -54,12 +54,13 @@ const JobApplicationUpload = () => {
             },
           }
         );
+
         console.log(response);
       }
-
     } catch (error) {
+      setIsLoading(false);
       console.log(error);
-      setIsLoading(false)
+      setIsLoading(false);
     }
   };
 
