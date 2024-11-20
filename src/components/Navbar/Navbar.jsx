@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from "react";
 import logo from "./Assets/logo.png";
-import profileImg from "./Assets/myLove.jpg";
 import person from "./Assets/person.png";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../Context/UserContext";
@@ -9,7 +8,6 @@ const Navbar = ({ text }) => {
   const navigate = useNavigate();
 
   const { user } = useContext(UserContext);
-
 
   return (
     <div className="z-40 flex fixed top-0 right-0 left-0 bg-white px-5 sm:px-12 lg:py-[17px] py-[15px] items-center justify-between border-b lg:gap-x-[150px]">
@@ -28,7 +26,7 @@ const Navbar = ({ text }) => {
         </div>
       </div>
       <div className="flex lg:w-[360px] justify-between items-center">
-        <Link to={ user === "client" ? "/jobs" : "/createjob"}>
+        <Link to={user === "client" ? "/jobs" : "/createjob"}>
           <button className="hidden lg:flex bg-primary-100 text-white px-[35px] py-[10px] text-[14px] rounded-full cursor-pointer">
             {text}
           </button>
