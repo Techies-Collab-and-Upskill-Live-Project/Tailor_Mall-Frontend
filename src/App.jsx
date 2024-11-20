@@ -1,10 +1,9 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import "./../src/App.css";
 import Welcome from "./components/Welcome/Welcome";
 import Signup from "./components/Signup/Signup";
 import Signin from "./components/Signin/Signin";
 import "./App.css";
-import LandingPage from "./Pages/LandingPage";
 import QuestionScreen from "./components/PersonalizedQuestion/QuestionScreen";
 import SetupProfile from "./Pages/ProfileCreation/SetupProfile";
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
@@ -12,7 +11,7 @@ import DesignerProfile from "./Pages/DesignerProfile/DesignerProfile";
 import { Toaster } from "sonner";
 import ProfilePendingApplication from "./components/Profile/ProfilePendingApplication";
 import ProfileDoneJobs from "./components/Profile/ProfileDoneJobs";
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import UserProfile from "./Pages/UserProfile/UserProfile";
 import UploadWorkHome from "./Pages/UploadWork/UploadWorkHome";
 import UploadWorkForm1 from "./Pages/UploadWork/UploadWorkForm1";
@@ -20,15 +19,28 @@ import JobApplication from "./Pages/JobApplications/JobApplication";
 import JobApplicationDetails from "./Pages/JobApplications/JobApplicationDetails";
 import JobApplicationUpload from "./Pages/JobApplicationUpload/JobApplicationUpload";
 import CreateJobPost from "./Pages/JobPosting/CreateJobPost/CreateJobPost";
-import { UserProvider } from "./Context/UserContext";
+import { UserContext, UserProvider } from "./Context/UserContext";
 import JobReview from "./Pages/JobPosting/JobDetails/JobReview/JobReview";
 import JobDescription from "./Pages/JobPosting/JobDetails/JobDescription/JobDescription";
 // import ProjectView from "./Pages/ProjectView/ProjectView";
 // import ResetPasswordVerify from "./Pages/ResetPassword/ResetPasswordVerify";
 // import ResetPasswordSetnew from "./Pages/ResetPassword/ResetPasswordSetnew";
 // import ResetPasswordSuccess from "./Pages/ResetPassword/ResetPasswordSuccess";
+import DesignsCard from "./components/Designs/DesignCard";
+import JobTesting from "./Pages/JobApplications/JobTesting";
+import CreateNewJob from "./Pages/JobPosting/CreateJob/CreateJob";
+import HomePage from "./Pages/Homepage";
+import Notifications from "./Pages/Community/Notification";
+import JobModal from "./Pages/JobPosting/JobModal";
+import Messages from "./Pages/Messages/Messages";
 
 export const userProfileContext = createContext();
+
+export const PrivateRoutes = () => {
+  const { isAuthenticated } = useContext(UserContext);
+
+  return isAuthenticated ? <Outlet /> : <Navigate to="/" />;
+};
 
 const App = () => {
   const [userProfile, setUserProfile] = useState([
@@ -66,6 +78,10 @@ const App = () => {
                 path="/reset-password/success"
                 element={<ResetPasswordSuccess />}
               /> */}
+              <Route path="/home" element={<HomePage />} />
+              <Route path="/question" element={<QuestionScreen />} />
+              <Route path="/setup-profile" element={<SetupProfile />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
               <Route path="/upload-work" element={<UploadWorkHome />} />
               <Route path="/upload-work-1" element={<UploadWorkForm1 />} />
               <Route path="/designer-profile" element={<DesignerProfile />} />
@@ -75,6 +91,14 @@ const App = () => {
               <Route path="/jobupload" element={<JobApplicationUpload />} />
               <Route path="/jobs/:id" element={<JobApplicationDetails />} />
               <Route path="/createjob" element={<CreateJobPost />} />
+              <Route path="/jobupload" element={<JobApplicationUpload />} />
+              <Route path="/jobs/:id" element={<JobApplicationDetails />} />
+              <Route element={<PrivateRoutes />}>
+                <Route path="/jobs" element={<JobApplication />} />
+                <Route path="/createjob" element={<CreateNewJob />} />
+                <Route path="/jobapply" element={<JobApplicationUpload />} />
+              </Route>
+              <Route path="/community" element={<Messages />} />
               <Route
                 path="/designer-profile/pending-application"
                 element={<ProfilePendingApplication />}

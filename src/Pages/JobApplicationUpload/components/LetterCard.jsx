@@ -1,18 +1,6 @@
 import { useState } from "react";
 
-const LetterCard = () => {
-  const [jobDetails, setJobDetails] = useState("");
-
-  const handleChange = (e) => {
-    console.log(e.target.value);
-
-    setJobDetails(e.target.value);
-  };
-
-  const SendApplication = (e) => {
-    console.log(jobDetails);
-  };
-  
+const LetterCard = ({ handleChange, setMessage, message }) => {
   return (
     <div className="inline-flex w-full py-[22px] px-4 flex-col gap-[10px] rounded-2xl border border-primary-50 bg-white">
       <div className="flex flex-col w-full items-center gap-8">
@@ -24,9 +12,9 @@ const LetterCard = () => {
 
             <div className="flex flex-col justify-center items-start gap-2 self-stretch rounded-lg">
               <textarea
-                name=""
+                name="message"
                 onChange={handleChange}
-                value={jobDetails}
+                value={message}
                 className="flex px-8 items-center gap-2 outline-none w-full h-[168px] py-3 border border-foundationGrey-50 rounded-lg"
                 id=""
               ></textarea>

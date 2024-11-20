@@ -1,16 +1,21 @@
 import photo from "../assets/REGULAR CARD.png";
 import location from "../assets/Location.png";
-import photo2 from "../assets/img_desktop.png"
+import photo2 from "../assets/img_desktop.png";
+import { useContext } from "react";
+import { UserContext } from "../../../Context/UserContext";
 
-const ProfileCard = () => {
+const ProfileCard = ({ userData }) => {
+
   const photoNum = [1, 2, 3, 4];
   return (
+    <>
+    {/* {userData} */}
     <div className="inline-flex w-full flex-col items-center gap-[37px] rounded-xl border border-primary-100 pt-[6px] px-[7px] pb-10 md:rounded-2xl lg:w-[70%] lg:pt-0">
       <div className="flex flex-col items-center gap-6">
         <div className="flex flex-col items-center">
           <div className="flex pr-0 w-full justify-center gap-[2.3px] rounded-[7.48px] md:pr-[0.001px] md:gap-[4.8px] md:rounded-[11px]">
             {photoNum.map((item, index) => (
-              <div className="">
+              <div key={index} className="">
                 <img
                   src={photo2}
                   className="flex items-center object-cover py-1 flex-col justify-center flex-shrink-0 bg-foundationGrey-100 w-[150px] md:w-[200px] rounded-lg"
@@ -78,6 +83,7 @@ const ProfileCard = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

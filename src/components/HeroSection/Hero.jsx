@@ -1,4 +1,4 @@
-import Slideshow from "../../Pages/LandingPage/Carousel";
+import Slideshow from "../../Pages/Homepage/Carousel";
 
 const Hero = () => {
   return (

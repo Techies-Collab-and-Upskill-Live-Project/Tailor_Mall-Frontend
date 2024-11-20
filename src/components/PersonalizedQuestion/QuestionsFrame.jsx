@@ -66,8 +66,6 @@ const QuestionFrame = () => {
                     ))}
                   </div>
                 )}
-              
-
 
                 {/* <div className="flex py-6 px-3 flex-col w-full md:flex-row-reverse items-center md:justify-around gap-6">
                   <Link
@@ -85,23 +83,22 @@ const QuestionFrame = () => {
                   />
                 </div> */}
 
-
                 <div className="flex py-6 px-3 flex-col w-full md:flex-row-reverse items-center justify-center md:justify-around gap-6">
-              <BigButton
-                submit={() => increaseCounter()}
-                text="Get started"
-                className="w-full md:w-[50%]"
-              />
-
-              <Link
-                to="/setup-profile"
-                className="flex py-3 px-4 justify-center items-center dot rounded-[100px] w-full md:w-[50%]"
-              >
-                <span className="text-base w-full text-primary-100 leading-[22.4px]">
-                  Skip
-                </span>
-              </Link>
-            </div>
+                  <button
+                    onClick={() => increaseCounter()}
+                    className="rounded-[100px] flex items-center justify-center px-6 py-3 bg-primary-100 text-primaryGreen-50 text-[12px] leading-4 font-medium md:text-base md:leading-[16.8px] lg:text-[16px] w-full md:w-[50%] h-12"
+                  >
+                    Next
+                  </button>
+                  <Link
+                    to="/setup-profile"
+                    className="flex justify-center items-center rounded-[100px] border-primary w-full md:w-[50%] h-12"
+                  >
+                    <span className="text-base text-primary-100 leading-[22.4px]">
+                      Skip
+                    </span>
+                  </Link>
+                </div>
               </div>
             )
         )}

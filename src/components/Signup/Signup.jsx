@@ -14,8 +14,8 @@ const Signup = () => {
     email: "",
     phoneNo: "",
     password: "",
-    country: "",
-    platform: "",
+    country: "Nigeria",
+    platform: "Facebook",
   });
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -113,6 +113,8 @@ const Signup = () => {
     } catch (error) {
       toast.warning(error?.response?.data?.message);
       setIsLoading(false);
+      console.log(error);
+      
     }
   };
 

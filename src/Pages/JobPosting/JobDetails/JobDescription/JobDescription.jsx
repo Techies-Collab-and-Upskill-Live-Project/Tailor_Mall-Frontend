@@ -9,8 +9,9 @@ import { JobContext } from "../../../../Context/JobContext";
 import JobBudget from "../JobBudget/JobBudget";
 import JobDraft from "../component/JobDraft";
 import PreviousBtn from "../component/PreviousBtn";
+import DescriptionTest from "./DescriptionTest";
 
-const JobDescription = () => {
+const JobDescription = ({addSkills, disable, requiredSkills, handleJobDataChange, jobData, toBudget}) => {
   const title = "Job Description & requirements";
   const detail =
     "Risus ut dolor mauris molestie est diam. Massa pellentesque tristique vestibulum vivamus scelerisque eu sagittis. Quam habitasse aenean fames mauris amet volutpat neque. ";
@@ -30,30 +31,31 @@ const JobDescription = () => {
 
   // }
 
-  const { handleLastPage, isBudgetPage } = useContext(JobContext);
+  // const { handleLastPage, isBudgetPage } = useContext(JobContext);
   return (
     <>
-      {!isBudgetPage ? (
+      {/* {!isBudgetPage ? ( */}
         <>
           <JobContainer title={title} detail={detail}>
-            <Description />
+            <DescriptionTest addSkills={addSkills} disable={disable} requiredSkills={requiredSkills} handleJobDataChange={handleJobDataChange} jobData={jobData} />
           </JobContainer>
 
-          <div className="px-5 py-5 lg:flex lg:border-t lg:bottom-0 lg:fixed lg:border-foundationGrey-100 lg:justify-between lg:w-full">
+          <div className="px-5 py-5 lg:flex lg:border-t lg:bottom-0 lg:fixed lg:border-foundationGrey-100 lg:justify-between lg:w-full bg-white">
             <div className="flex py-4 w-full items-center justify-center lg:w-fit">
               <JobDraft />
             </div>
 
             <div className="flex py-6 px-3 flex-col md:flex-row-reverse items-center md:justify-around gap-6 border-t border-foundationGrey-100 lg:border-none">
-              <JobButton handleClick={handleLastPage} />
+              <JobButton handleClick={toBudget} />
 
               <PreviousBtn />
             </div>
           </div>
         </>
-      ) : (
-        <JobBudget />
-      )}
+       
+      {/* : (
+        <JobBudget /> */}
+      {/* )} */}
     </>
   );
 };

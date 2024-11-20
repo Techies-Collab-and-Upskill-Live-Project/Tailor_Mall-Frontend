@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { JobContext } from "../../../../Context/JobContext";
 
 const JobProgress = () => {
-  const { isDescription } = useContext(JobContext);
+  // const { isDescription } = useContext(JobContext);
   return (
     <div className="flex flex-col justify-center gap-6 self-stretch rounded-xl">
       <div className="flex justify-between items-center self-stretch">
@@ -34,7 +34,8 @@ const JobProgress = () => {
           <img
             className="w-5 h-5"
             //  src={isDescription ? mark : checked}
-            src={isDescription ? checked : mark}
+            // src={isDescription ? checked : mark}
+            src={mark}
             alt=""
           />
         </div>

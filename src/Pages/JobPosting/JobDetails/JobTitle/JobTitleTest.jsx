@@ -8,13 +8,10 @@ import { Link } from "react-router-dom";
 import JobDraft from "../component/JobDraft";
 import PreviousBtn from "../component/PreviousBtn";
 
-const JobTitle = () => {
+const JobTitleTest = ({ handleJobDataChange, jobData, toDescription }) => {
   const title = "Basic Job Detail";
   const description =
     "Risus ut dolor mauris molestie est diam. Massa pellentesque tristique vestibulum vivamus scelerisque eu sagittis. Quam habitasse aenean fames mauris amet volutpat neque. ";
-    // const [isDes]
-
-  const { jobData, handleInputChange, handleNextPage } = useContext(JobContext);
 
   return (
     <>
@@ -29,12 +26,14 @@ const JobTitle = () => {
                 <input
                   name="title"
                   value={jobData.title}
-                  onChange={(e) => handleInputChange(e)}
+                  onChange={handleJobDataChange}
                   type="text"
                   className="flex flex-col justify-center gap-2 self-stretch rounded-xl px-3 border border-foundationGrey-50 h-10 outline-none"
                 />
               </div>
-              <p className="text-base text-center font-light">eg. Freelance Fashion designer for Custom Evening Gown</p>
+              <p className="text-base text-center  md:text-left font-light">
+                eg. Freelance Fashion designer for Custom Evening Gown
+              </p>
             </div>
 
             <div className="flex flex-col gap-2 self-stretch">
@@ -46,10 +45,9 @@ const JobTitle = () => {
                   name="category"
                   id=""
                   className="flex justify-between border-none outline-none"
-                  onChange={(e) => handleInputChange(e)}
-                  value={jobData.category}
+                    onChange={handleJobDataChange}
+                    value={jobData.category}
                 >
-                  Select your country of Residence
                   <option value=""></option>
                   <option value="fashion">fashion</option>
                   <option value="needlework">needlework</option>
@@ -66,8 +64,8 @@ const JobTitle = () => {
                   <div key={index} className="flex items-center gap-2">
                     <input
                       name="jobType"
-                      value={option.jobType}
-                      onChange={(e) => handleInputChange(e)}
+                      value={option.value}
+                      onChange={handleJobDataChange}
                       type="radio"
                     />
                     <label
@@ -90,7 +88,7 @@ const JobTitle = () => {
         </div>
 
         <div className="flex py-6 px-3 flex-col md:flex-row-reverse items-center md:justify-around gap-6 border-t border-foundationGrey-100 lg:border-none">
-          <JobButton handleClick={handleNextPage} />
+          <JobButton handleClick={toDescription} />
 
           <PreviousBtn />
         </div>
@@ -99,4 +97,4 @@ const JobTitle = () => {
   );
 };
 
-export default JobTitle;
+export default JobTitleTest;

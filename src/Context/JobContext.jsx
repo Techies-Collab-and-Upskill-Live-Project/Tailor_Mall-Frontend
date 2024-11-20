@@ -25,6 +25,7 @@ export const JobProvider = ({ children }) => {
   const [isDescription, setIsDescription] = useState(false);
   const [isBudgetPage, setIsBudgetPage] = useState(false);
   const { clientId, token } = useContext(UserContext);
+  const [loading, setIsLoading] = useState(false)
 
   const [jobData, setJobData] = useState(() => {
     const savedJobData = localStorage.getItem("jobData");
@@ -78,8 +79,6 @@ export const JobProvider = ({ children }) => {
 
     const validatedForm = validateTitleForm();
 
-    console.log(jobData);
-
     if (Object.keys(validatedForm).length === 0) {
       setIsDescription(true);
     } else {
@@ -122,7 +121,6 @@ export const JobProvider = ({ children }) => {
     if (requiredSkills.length >= 4) {
       setDisable(true);
     }
-    console.log(requiredSkills);
   };
 
   const addFile = (file) => {
@@ -152,14 +150,18 @@ export const JobProvider = ({ children }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("token", token);
 
     // if (Object.keys(validatedForm).length === 0) {
     try {
+      setIsLoading(true);
+      console.log({ ...jobData, clientId });
       const response = await axios.post(
         `${baseUrl}/job/`,
         {
           ...jobData,
           requiredSkills,
+          clientId,
         },
         {
           headers: {
@@ -167,7 +169,9 @@ export const JobProvider = ({ children }) => {
           },
         }
       );
+      console.log("submitted");
       console.log(response);
+      setIsLoading(true);
     } catch (error) {
       console.error("Error submitting the form:", error);
     }
@@ -190,6 +194,7 @@ export const JobProvider = ({ children }) => {
         handleLastPage,
         isBudgetPage,
         handleSubmit,
+        loading
       }}
     >
       {children}
