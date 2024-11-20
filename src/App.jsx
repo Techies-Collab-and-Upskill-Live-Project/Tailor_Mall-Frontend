@@ -23,9 +23,9 @@ import { UserContext, UserProvider } from "./Context/UserContext";
 import JobReview from "./Pages/JobPosting/JobDetails/JobReview/JobReview";
 import JobDescription from "./Pages/JobPosting/JobDetails/JobDescription/JobDescription";
 // import ProjectView from "./Pages/ProjectView/ProjectView";
-// import ResetPasswordVerify from "./Pages/ResetPassword/ResetPasswordVerify";
-// import ResetPasswordSetnew from "./Pages/ResetPassword/ResetPasswordSetnew";
-// import ResetPasswordSuccess from "./Pages/ResetPassword/ResetPasswordSuccess";
+import ResetPasswordVerify from "./Pages/ResetPassword/ResetPasswordVerify";
+import ResetPasswordSetnew from "./Pages/ResetPassword/ResetPasswordSetnew";
+import ResetPasswordSuccess from "./Pages/ResetPassword/ResetPasswordSuccess";
 import DesignsCard from "./components/Designs/DesignCard";
 import JobTesting from "./Pages/JobApplications/JobTesting";
 import CreateNewJob from "./Pages/JobPosting/CreateJob/CreateJob";
@@ -66,7 +66,7 @@ const App = () => {
               <Route path="/question" element={<QuestionScreen />} />
               <Route path="/setup-profile" element={<SetupProfile />} />
               <Route path="/reset-password" element={<ResetPassword />} />
-              {/* <Route
+              <Route
                 path="/reset-password/verify"
                 element={<ResetPasswordVerify />}
               />
@@ -77,7 +77,8 @@ const App = () => {
               <Route
                 path="/reset-password/success"
                 element={<ResetPasswordSuccess />}
-              /> */}
+              />
+
               <Route path="/home" element={<HomePage />} />
               <Route path="/question" element={<QuestionScreen />} />
               <Route path="/setup-profile" element={<SetupProfile />} />
