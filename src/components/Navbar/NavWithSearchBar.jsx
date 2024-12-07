@@ -4,7 +4,7 @@ import profileImg from "./Assets/myLove.jpg";
 
 const NavWithSearchBar = () => {
   return (
-    <div className="z-40 flex fixed top-0 right-0 left-0 bg-white px-5 sm:px-12 lg:py-[17px] py-[15px] items-center justify-between border-b lg:gap-x-[150px]">
+    <div className="z-[99] flex sticky top-0 right-0 left-0 bg-white px-5 sm:px-12 lg:py-[17px] py-[15px] items-center justify-between border-b lg:gap-x-[150px]">
       <div className="flex flex-1 gap-x-[18px] lg:justify-between items-center">
         <i className="fa-solid fa-bars lg:hidden text-[22px]"></i>
         <img className="lg:w-[130px] w-[115px]" src={logo} alt="" />

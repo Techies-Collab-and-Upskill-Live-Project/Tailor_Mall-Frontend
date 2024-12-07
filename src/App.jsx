@@ -26,9 +26,9 @@ import DesignsCard from "./components/Designs/DesignCard";
 import JobTesting from "./Pages/JobApplications/JobTesting";
 import CreateNewJob from "./Pages/JobPosting/CreateJob/CreateJob";
 import HomePage from "./Pages/Homepage";
-import Notifications from "./Pages/Community/Notification";
-import JobModal from "./Pages/JobPosting/JobModal";
-import Messages from "./Pages/Messages/Messages";
+import Layout from "./Pages/Community/communityLayouts/Layout";
+import Chat from "./Pages/Community/Chats/chat";
+import SideMenu from "./Pages/SideMenu/SideMenu";
 
 export const userProfileContext = createContext();
 
@@ -73,7 +73,12 @@ const App = () => {
                 <Route path="/createjob" element={<CreateNewJob />} />
                 <Route path="/jobapply" element={<JobApplicationUpload />} />
               </Route>
-              <Route path="/community" element={<Messages />} />
+              {/* <Route path="/community" element={<Layout />}> */}
+              <Route path="/community" element={<Layout />}>
+                {/* <Route index element={<Chat />} /> */}
+                <Route path="chat" element={<Chat />} />
+                <Route path="side" element={<SideMenu />} />
+              </Route>
               <Route
                 path="/designer-profile/pending-application"
                 element={<ProfilePendingApplication />}

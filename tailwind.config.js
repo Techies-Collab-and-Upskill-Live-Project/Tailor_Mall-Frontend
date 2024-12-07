@@ -10,10 +10,12 @@ export default {
           50: "#b0d8d8",
           100: "#008080",
           200: "#004646",
+          300: "#F9FBFB"
         },
         foundationGrey: { 50: "#d3d3d3", 100: "#bcbcbc" },
         primaryGreen: { 50: "#E6F2F2", 100: "#B0D8D8" },
         success: { 50: "#E6FBEE" },
+        grey: { 50: "#6F6F6F", 100: "#E9E9E9" },
       },
     },
     screens: {

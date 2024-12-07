@@ -3,9 +3,8 @@ import search from "./assets/fi_search (1).png";
 
 const Search = () => {
   return (
-    <div className="flex lg:hidden gap-x-[30px] items-center mb-[25px] mt-[100px]">
+    <div className="flex gap-x-[30px] items-center mb-[25px] mt-[100px]">
       <div className="flex flex-1 items-center px-[20px] py-[10px] border rounded-[8px]">
-        {/* <i class="fa-solid fa-magnifying-glass text-zinc-300 text-[15px] mr-[15px]"></i> */}
         <img src={search} alt="" />
         <input
           className="w-full placeholder:text-[14px] placeholder:text-zinc-300 py-[2px] outline-none border-none"

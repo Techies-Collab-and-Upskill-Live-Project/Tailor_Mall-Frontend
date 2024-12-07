@@ -1,4 +1,4 @@
-import hammenu from "./assets/Frame 125.png";
+import hammenu from "./assets/hammenu.png";
 import { NotificationData } from "./CommunityData";
 import dot from "./assets/dot.png";
 
