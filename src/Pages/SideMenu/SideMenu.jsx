@@ -1,13 +1,13 @@
 import exit from "../Community/assets/fi_exit.png";
 import person from "../Community/assets/Ellipse 11 (3).png";
-import photo1 from "../Community/assets/suit.png"
-import photo2 from "../Community/assets/img.png"
+import photo1 from "../Community/assets/suit.png";
+import photo2 from "../Community/assets/img.png";
 
-const SideMenu = ({}) => {
+const SideMenu = ({ showSideMenu }) => {
   return (
-    <div className="px-3 pt-1 pb-[150px]">
-      <div className="mt-[50px] flex py-8 px-2 flex-col gap-7 flex-shrink-0">
-        <div className="rounded-[100px] flex w-8 h-8 justify-center items-center gap-[10px] bg-grey-100">
+    <div className={`px-10 pt-5 ${showSideMenu ? "px-10 border-r border-foundationGrey-50" : ""}`}>
+      <div className="mt-[50px] flex py-8 flex-col gap-7 flex-shrink-0 md:pb-0">
+        <div className="md:hidden rounded-[100px] flex w-8 h-8 justify-center items-center gap-[10px] bg-grey-100">
           {/* <img className="w-3 h-3 -rotate-45 flex-shrink-0" src={exit} alt="" /> */}
           <h1 className="">x</h1>
         </div>
@@ -39,27 +39,45 @@ const SideMenu = ({}) => {
           </div>
 
           <div className="flex gap-2">
-            <img src={photo1} className="rounded-[12px] border-[3px] bg-[#fff] sidemenu" alt="" />
-            <img src={photo1} className="rounded-[12px] border-[3px] bg-[#fff] sidemenu" alt="" />
+            <img
+              src={photo1}
+              className="rounded-[12px] border-[3px] bg-[#fff] sidemenu"
+              alt=""
+            />
+            <img
+              src={photo1}
+              className="rounded-[12px] border-[3px] bg-[#fff] sidemenu"
+              alt=""
+            />
           </div>
         </div>
 
         <div className="flex flex-col gap-4 self-stretch">
           <div className="flex justify-between items-center w-full gap-3">
             <p className="text-black text-base leading-[22.4px] dot">Files</p>
-            <p className="text-grey-50 text-center text-[14px] leading-[19.6px]">view all</p>
+            <p className="text-grey-50 text-center text-[14px] leading-[19.6px]">
+              view all
+            </p>
           </div>
 
-          <p className="text-grey-50 text-[14px] leading-[19.6px] items-start">No files</p>
+          <p className="text-grey-50 text-[14px] leading-[19.6px] items-start">
+            No files
+          </p>
         </div>
 
         <div className="flex flex-col items-start gap-[10px] self-stretch">
-        <div className="flex justify-between items-center w-full gap-3">
-            <p className="text-black text-base leading-[22.4px] dot">Communities in common</p>
-            <p className="text-grey-50 text-center text-[14px] leading-[19.6px]">view all</p>
+          <div className="flex justify-between items-center w-full gap-3">
+            <p className="text-black text-base leading-[22.4px] dot">
+              Communities in common
+            </p>
+            <p className="text-grey-50 text-center text-[14px] leading-[19.6px]">
+              view all
+            </p>
           </div>
 
-          <p className="text-grey-50 text-[14px] leading-[19.6px] items-start">No communities in common</p>
+          <p className="text-grey-50 text-[14px] leading-[19.6px] items-start">
+            No communities in common
+          </p>
         </div>
       </section>
     </div>

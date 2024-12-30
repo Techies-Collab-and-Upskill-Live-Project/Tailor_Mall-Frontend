@@ -92,10 +92,10 @@ const ChatArea = () => {
                   message.type === "received" ? "justify-start" : "justify-end"
                 }`}
               >
-                <div className="flex flex-col items-center justify-center w-[300px] bg-white py-4 px-5 rounded-tl-[16px] rounded-tr-[16px] rounded-br-[16px] rounded-bl-[0px]">
-                  <p className="text-[12px] text-grey-50">{message.text}</p>
+                <div className="flex flex-col items-center justify-center max-w-[300px] md:max-w-[400px] lg:max-w-[540px] bg-white py-4 px-5 rounded-tl-[16px] rounded-tr-[16px] rounded-br-[16px] rounded-bl-[0px]">
+                  <p className="text-[12px] md:text-base text-grey-50">{message.text}</p>
                   <div className="flex items-center gap-2 self-end">
-                    <p className="text-[12px] text-grey-50">{message.time}</p>
+                    <p className="text-[12px]  text-grey-50">{message.time}</p>
 
                     <img src={tick} alt="" />
                   </div>

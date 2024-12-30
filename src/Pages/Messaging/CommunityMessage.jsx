@@ -1,31 +1,18 @@
+import { MessageData } from "../Messages/MessageData";
 
-import { MessageData } from "./MessageData";
-
-const Message = ({ showChat, setShowChat }) => {
+const CommunityMessage = () => {
   return (
-    <div className={`flex-col items-center justify-center flex-start gap-6 flex-shrink-0 ${
-      showChat ? "w-full" : "w-[260px]"
-    }`}>
-      {/* // <div className={`${showChat ? "" : " overflow-hidden w-[50]"}`}> */}
-      <div
-        className={`flex flex-col gap-10 items-start`}
-      >
+    <div className="w-full flex-col items-center justify-center flex-start gap-6 flex-shrink-0 lg:px-5">
+      <div className={`flex w-full flex-col gap-10 items-start`}>
         {MessageData.map((item, index) => (
           <div
-            className={`flex items-center justify-between gap-5 rounded-2xl bg-[#fff] hover:bg-primary-10 cursor-pointer ${
-              showChat ? "w-fit" : "w-full"
-            }`}
+            className="flex items-center justify-between gap-3 w-full rounded-2xl bg-[#fff]"
             key={index}
-            onClick={() => setShowChat(true)}
           >
             <img src={item.img} className="w-[60px] h-[60px]" alt="" />
 
-            <div
-              className={`flex dot flex-col gap-2 dot transition-all ease-in-out ${
-                showChat ? "md:hidden lg:flex" : "flex"
-              }`}
-            >
-              <div className={`flex justify-between items-center self-stretch`}>
+            <div className="flex dot flex-col gap-2 dot">
+              <div className="flex justify-between items-center self-stretch">
                 <p className="text-[14px] leading-[22.4px]">{item.name}</p>
                 <p className="text-grey-50 opacity-[0.38] text-[12px] leading-[14.4px]">
                   {item.time}
@@ -51,4 +38,4 @@ const Message = ({ showChat, setShowChat }) => {
   );
 };
 
-export default Message;
+export default CommunityMessage;

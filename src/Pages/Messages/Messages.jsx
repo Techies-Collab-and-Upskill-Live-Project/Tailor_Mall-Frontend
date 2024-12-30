@@ -1,9 +1,8 @@
 import { useState } from "react";
 import NavWithSearchBar from "../../components/Navbar/NavWithSearchBar";
 import Search from "../../components/Search/Search";
-import Message from "./Message";
+import Message from "./NotMessage";
 import { MessageData } from "./MessageData";
-
 
 const Messages = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -12,7 +11,7 @@ const Messages = () => {
 
   return (
     <div className="lg:w-[37%] h-screen lg:border-r-2">
-      <NavWithSearchBar  />
+      <NavWithSearchBar />
 
       <div className="lg:mt-[100px] mt-[90px] mb-[120px] px-5 md:px-10 lg:w-[400px]">
         <Search />

@@ -27,8 +27,14 @@ import JobTesting from "./Pages/JobApplications/JobTesting";
 import CreateNewJob from "./Pages/JobPosting/CreateJob/CreateJob";
 import HomePage from "./Pages/Homepage";
 import Layout from "./Pages/Community/communityLayouts/Layout";
-import Chat from "./Pages/Community/Chats/chat";
+import Chat from "./Pages/Community/Chats/Chat";
 import SideMenu from "./Pages/SideMenu/SideMenu";
+import Notifications from "./Pages/Community/Notification";
+import Sidebar from "./Pages/Community/communityLayouts/components/Sidebar";
+import Messaging from "./Pages/Messaging/Messaging";
+import Messages from "./Pages/Messages/Messages";
+import Message from "./Pages/Messages/NotMessage";
+import CommunityAdmin from "./Pages/Messaging/Test";
 
 export const userProfileContext = createContext();
 
@@ -51,7 +57,7 @@ const App = () => {
   return (
     <>
       <UserProvider>
-        <div className="">
+        <div className="overflow-hidden">
           <Toaster position="top-right" font-size="50px" />
           <userProfileContext.Provider value={{ userProfile, setUserProfile }}>
             <Routes>
@@ -68,12 +74,15 @@ const App = () => {
               <Route path="/user-profile" element={<UserProfile />} />
               <Route path="/jobupload" element={<JobApplicationUpload />} />
               <Route path="/jobs/:id" element={<JobApplicationDetails />} />
+              <Route path="/non" element={<Messaging />} />
+              {/* <Route path="/sidebar" element={<Messaging />} /> */}
+              {/* <Route path="/admin" element={<CommunityAdmin />} /> */}
+              {/* <Route path="/notification" element={<Notifications />}> */}
               <Route element={<PrivateRoutes />}>
                 <Route path="/jobs" element={<JobApplication />} />
                 <Route path="/createjob" element={<CreateNewJob />} />
                 <Route path="/jobapply" element={<JobApplicationUpload />} />
               </Route>
-              {/* <Route path="/community" element={<Layout />}> */}
               <Route path="/community" element={<Layout />}>
                 {/* <Route index element={<Chat />} /> */}
                 <Route path="chat" element={<Chat />} />

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { MessageData } from "../../../Messages/MessageData";
+import search from "../../assets/fi_search (2).png";
 
 const Sidebar = () => {
   const [isExpanded, setIsExpanded] = useState(true);
@@ -7,12 +8,19 @@ const Sidebar = () => {
   return (
     // <div className="hidden border pt-[110px] md:flex w-max h-screen z-[20] px-4">
     <div
-    className="px-5 pt-10 inline-flex flex-start gap-6 flex-shrink-0 lg:px-5"
+      className="px-5 pt-10 inline-flex flex-col items-center justify-center flex-start gap-6 flex-shrink-0 lg:px-5"
       // className="lg:w-[310px] fixed top-[6.7%] md:w-[150px] lg:top-[7.6%] left-0 z-[99] md:px-4 lg:px-4 border-r-2 lg:shrink-0 h-screen  bg-white max-lg:pt-[54px] flex lg:flex-col max-lg:justify-center"
     >
-      <div className={`flex flex-col gap-10 items-start`}>
+      {/* <div className="items-center">
+        <img src={search} alt="" />
+      </div> */}
+      {/* <Filter /> */}
+      <div className={`flex w-full flex-col gap-10 items-start`}>
         {MessageData.map((item, index) => (
-          <div className="flex items-center justify-center gap-3 rounded-2xl bg-[#fff]" key={index}>
+          <div
+            className="flex items-center justify-center gap-3 rounded-2xl bg-[#fff]"
+            key={index}
+          >
             <img src={item.img} className="w-[60px] h-[60px]" alt="" />
 
             <div className="hidden lg:flex dot flex-col gap-2 dot">

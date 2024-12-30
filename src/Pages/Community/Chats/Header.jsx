@@ -2,14 +2,14 @@ import dp from "../assets/img2.png";
 import search from "../assets/fi_search (2).png";
 import sidebar from "../assets/Sidebar.png";
 import hamburger from "../assets/hammenu.png";
-import { useOutletContext } from "react-router";
 
-const Header = () => {
-  const [openSideMenu, setOpenSideMenu] = useOutletContext();
+const Header = ({ setShowSideMenu, showSideMenu }) => {
+  // const [openSideMenu, setOpenSideMenu] = useOutletContext();
 
   return (
     // className="sticky border border-red-700 top-[29px] lg:top-[88px] z-[99] w-full lg:h-[88px] bg-white flex justify-between pl-[32px] pr-[24px] py-[24px] text-[16px] font-[500] leading-[16px] tracking-[-0.64px] text-[#7B7C7C] "
-    <div className="flex sticky z-[90] py-1 mt-[70px] md:mt-0 md:pt-0 px-4 items-center justify-between gap-4 border-b border-b-foundationGrey-50 bg-[#fff]">
+    // <div className="fixed w-full top-[-6px] md:top-[63px]">
+    <div className="flex sticky z-[50] py-1 mt-[70px] md:mt-0 xl:mt-[100px] md:pt-0 px-4 items-center justify-between gap-4 border-b border-b-foundationGrey-50 bg-[#fff]">
       <div className="flex items-center flex-shrink-0 gap-2">
         <img src={dp} alt="" />
 
@@ -27,8 +27,10 @@ const Header = () => {
           alt=""
         />
         <img
-          className="w-[20px] h-[22px] flex items-center"
-          onClick={setOpenSideMenu((prev) => prev)}
+          className={`w-[20px] h-[22px] flex items-center ${
+            showSideMenu ? "bg-foundationGrey-50 rounded-full" : ""
+          }`}
+          onClick={() => setShowSideMenu((prev) => !prev)}
           src={sidebar}
           alt=""
         />
@@ -37,6 +39,7 @@ const Header = () => {
         </div>
       </div>
     </div>
+    // </div>
   );
 };
 
